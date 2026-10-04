@@ -2,8 +2,8 @@
 # POWER BY @CHUMOGH
 
 #[[ $1 = '--check' ]] && rm -f /etc/folteto && cp /bin/cgh /bin/menu
-#[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/styles/msg)
-[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/styles/styles.cpp)
+#[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/msg)
+[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/styles.cpp)
 [[ -d /etc/ADMcgh/ ]] || mkdir /etc/ADMcgh
 [[ -d /etc/ADMcgh/bin ]] || mkdir /etc/ADMcgh/bin/
 mportas () {
@@ -773,7 +773,7 @@ unset svcs porta puertos i x
 [[ -z ${cor[5]} ]] && cor[5]="\033[1;33m"
 [[ -z ${cor[6]} ]] && cor[6]="\033[1;35m"
 
-#declare -A tnUP=' ⚠️ ChumoGH ADM ⚠️ NECESITA ACTUALIZARSE!'
+#declare -A tnUP=' ⚠️ MgScript ⚠️ NECESITA ACTUALIZARSE!'
 declare -A exitokey="\033[3;49;32m$(cat < /bin/ejecutar/exito)©"
 [[ $v1 = $v2 ]] && vesaoSCT="\033[1;37m Key: $exitokey 】\033[0m\033[0;33m($v2)" || vesaoSCT="\033[1;37m Key: $exitokey 】\033[0m\033[0;33m($v2) ► \033[1;32m[$v1]\033[1;31m"
 [[ -e /root/name ]] && {
@@ -2827,9 +2827,9 @@ print_center '\e[97m\033[1;41m MENUS V2RAY REFACTORIZADOS\033[0m'
 menu_item "MENU LITE  V2RAY  MultiCuentas  \033[0;32m(#OFICIAL)   " "V2RAY MENU CUSTOM MultiCuentas  \033[0;32m(#OFICIAL)" "MENU LITE   XRAY  MultiCuentas  \033[0;32m(#OFICIAL)   " "MENU LITE TROJAN MultiCuentas  \033[0;32m(#OFICIAL)"
 selection=$(selection_fun 4)
 case ${selection} in
-1)[[ $(which v2r.sh) ]] && $(which v2r.sh) || source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/v2r.sh) ;;
+1)[[ $(which v2r.sh) ]] && $(which v2r.sh) || source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/v2r.sh) ;;
 2)[[ -e /etc/v2ray/config.json ]] && source <(curl -sSL https://www.dropbox.com/s/id3llagyfvwceyr/v2ray1.sh) || source <(curl -sSL https://www.dropbox.com/s/q6mpwhfgt1665pl/v2ray.sh) ;;
-3)[[ $(which xr.sh) ]] && $(which xr.sh) || source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/xr.sh) ;;
+3)[[ $(which xr.sh) ]] && $(which xr.sh) || source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/xr.sh) ;;
 4)[[ $(which troj.sh) ]] && $(which troj.sh) || troj.sh;; 
 0)return 0 ;;
 esac
@@ -2837,7 +2837,7 @@ esac
 
 
 ssrmenu () {
-source <(curl -sL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/ssrrmu.sh)
+source <(curl -sL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/ssrrmu.sh)
 }
 
 
@@ -3721,7 +3721,7 @@ trojanports=$(cat $config | jq -r .local_port)
 _tconex=$(netstat -nap | grep "$trojanports" | grep trojan  | grep ESTABLISHED | awk {'print $5'} | awk -F ":" '{print $1}' | sort | uniq | wc -l)
 	v1=$(cat /etc/adm-lite/v-local.log)
 	v2=$(cat /bin/ejecutar/v-new.log)
-	#echo -e "\033[7;49;35m  =====>>►► 🐲 Menu TROJAN ChumoGH💥VPS 🐲 ◄◄<<=====    \033[0m"
+	#echo -e "\033[7;49;35m  =====>>►► 🌐 Menu TROJAN MgScript💥VPS 🌐 ◄◄<<=====    \033[0m"
 	msg -bar3
 	[[ $(uname -m 2> /dev/null) != x86_64 ]] && echo -e "	CPU : ARM64 - BINARIO : trojan-go"
 	[[ ${v1} = ${v2} ]] && echo -e "      \e[97m\033[1;44mPROYECT TROJAN BY @ChumoGH  [$v1]  \033[0m" || echo -e "   \e[97m\033[1;44mProyecto Trojan by @ChumoGH [$v1] >> \033[1;92m[$v2]  \033[0m"
@@ -4803,7 +4803,7 @@ echo -e "BANNER INEXISTENTE - RECOMENDADO MODIFICAR TU BANNER"
 _sleepColor '2'
 credit=$(cat </etc/adm-lite/menu_credito | head -1)
 [[ -e /root/name ]] && credi="$(cat < /root/name)" || credi="${credit}"
-echo -e '<p style="text-align: center;"> <big><big><big><big><big><big>🐲</big></big></big></big></big></big></p>' > /etc/bannerssh
+echo -e '<p style="text-align: center;"> <big><big><big><big><big><big>🌐</big></big></big></big></big></big></p>' > /etc/bannerssh
 echo -e '<p style="text-align: center;"><strong><span style="color: #FF00FF;">'" $credit "'&reg;</span> |&nbsp;</strong><span style="color: #483D8B;"><strong>'"$credi"'</strong></span></p>' >> /etc/bannerssh
 [[ -d /etc/dropbear ]] && {
 [[ -e /etc/bannerssh ]] && cat /etc/bannerssh > /etc/dropbear/banner
@@ -5703,7 +5703,7 @@ esac
 
 fun_shadowsocks () {
 [[ ! -e /etc/ADMcgh/bin/budp.sh ]] && {
-  if wget -q --no-cache -O /etc/ADMcgh/bin/shadowsocks.sh  https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/shadowsocks.sh &>/dev/null ; then
+  if wget -q --no-cache -O /etc/ADMcgh/bin/shadowsocks.sh  https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/shadowsocks.sh &>/dev/null ; then
   chmod +x /etc/ADMcgh/bin/shadowsocks.sh
   ln -s /etc/ADMcgh/bin/shadowsocks.sh /bin/shawD.sh
   msg -verd "[OK]"  
@@ -5729,7 +5729,7 @@ tittle ' CLASH FOR ANDROID ( 2024 )'
 sleep 0.5s
 #source <(curl -sSL https://www.dropbox.com/s/uz3s8keszpdwx0y/clash-beta.sh)
 [[ -e /bin/clash.sh ]] && clash.sh || {
-  if wget --no-check-certificate -t3 -T3 -O /etc/ADMcgh/bin/clash.bin https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/ClashForAndroidGLOBAL.sh &>/dev/null ; then
+  if wget --no-check-certificate -t3 -T3 -O /etc/ADMcgh/bin/clash.bin https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/ClashForAndroidGLOBAL.sh &>/dev/null ; then
   chmod +x /etc/ADMcgh/bin/clash.bin
   bash /etc/ADMcgh/bin/clash.bin
   msg -verd "[OK]"
@@ -5749,7 +5749,7 @@ source <(curl -sSL https://www.dropbox.com/s/oqtcyg8r9v2zulu/SockPython.sh)
 }
 
 ssrmenu() {
-source <(curl -sL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/ssrrmu.sh)
+source <(curl -sL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/ssrrmu.sh)
 }
 
 trojan() {
@@ -6510,7 +6510,7 @@ local carpeta_temporal=$(mktemp -d)
 sudo apt install unzip autoconf automake libpcre3-dev libnl-3-dev libsqlite3-dev libssl-dev ethtool build-essential g++ libnl-genl-3-dev libgcrypt20-dev libtool python3-distutils -y
 sudo apt install -y pkg-config 
 #git clone https://github.com/mtrojnar/stunnel.git
-wget --no-cache -O stunnel.tar.gz https://raw.githubusercontent.com/karl1999x/ChumoGH/main/bin/stunnel-5.65.tar.gz
+wget --no-cache -O stunnel.tar.gz https://raw.githubusercontent.com/mgvpn/ChumoGH/main/bin/stunnel-5.65.tar.gz
 #mkdir ${carpeta_temporal}
 #wget --no-cache -O stunnel.zip https://www.dropbox.com/s/3u29bb5o38cmfa3/stunnel.zip
 #tar xzf stunnel.tar.gz
@@ -7554,9 +7554,9 @@ echo -e " \033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m${flech}\033[0;33m  DESINS
 msg -bar3 
 selection=$(selection_fun 6)
 case ${selection} in
-1)[[ $(which v2r.sh) ]] && $(which v2r.sh) || source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/v2r.sh) ;;
+1)[[ $(which v2r.sh) ]] && $(which v2r.sh) || source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/v2r.sh) ;;
 2)[[ -e /etc/v2ray/config.json ]] && source <(curl -sSL https://www.dropbox.com/s/id3llagyfvwceyr/v2ray1.sh) || source <(curl -sSL https://www.dropbox.com/s/q6mpwhfgt1665pl/v2ray.sh) ;;
-3)[[ $(which xr.sh) ]] && $(which xr.sh) || source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/xr.sh) ;;
+3)[[ $(which xr.sh) ]] && $(which xr.sh) || source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/xr.sh) ;;
 4)[[ -e /etc/v2ray/config.json ]] && v2ray;;
 5)[[ -e /usr/bin/x-ui ]] && x-ui || v2ui;;
 6)clear&&clear
@@ -7962,7 +7962,7 @@ msg -bar3
 [[ ! -d /etc/adm-lite/slow/ ]] && mkdir /etc/adm-lite/slow/
 [[ -e /etc/ADMcgh/bin/SlowDNS.sh ]] || {
 rm -f /bin/SlowDNS.sh
-wget -q --no-check-certificate -O /etc/ADMcgh/bin/SlowDNS.sh https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/SlowDNS.sh
+wget -q --no-check-certificate -O /etc/ADMcgh/bin/SlowDNS.sh https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/SlowDNS.sh
 chmod +x /etc/ADMcgh/bin/SlowDNS.sh
 ln -s /etc/ADMcgh/bin/SlowDNS.sh /bin/SlowDNS.sh
 }
@@ -8159,7 +8159,7 @@ print_center -verd  ' INICIANDO . . .'
 msg -bar3
 #source <(curl -sSL https://www.dropbox.com/s/0stqb3dzm47kky6/budp.sh)
 [[ ! -e /etc/ADMcgh/bin/budp.sh ]] && {
-  if wget --no-cache -O /etc/ADMcgh/bin/budp.sh https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/budp.sh &>/dev/null ; then
+  if wget --no-cache -O /etc/ADMcgh/bin/budp.sh https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/budp.sh &>/dev/null ; then
   chmod +x /etc/ADMcgh/bin/budp.sh
   ln -s /etc/ADMcgh/bin/budp.sh /bin/budp.sh
   msg -verd "[OK]"  
@@ -8386,7 +8386,7 @@ done
 return
 }
 
-#source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/styles/msg)
+#source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/msg)
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 [[ -z $(echo $SHELL|grep zsh) ]] && ENV_FILE=".bashrc" || ENV_FILE=".zshrc"
 _link='https://www.dropbox.com/s/'
@@ -8576,7 +8576,7 @@ Call.CONTROLADOR
 06|6)
 export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/usr/games
 #msg -bar3
-#[[ -e /root/name ]] && figlet -p -f smslant < /root/name | lolcat || echo -e "\033[7;49;35m   =====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====     \033[0m"
+#[[ -e /root/name ]] && figlet -p -f smslant < /root/name | lolcat || echo -e "\033[7;49;35m   =====>>►► 🌐 MgScript 💥 Plus 🌐 ◄◄<<=====     \033[0m"
 clear && header
 menu_item "\033[0;33m[!] ${cor[2]}ACTUALIZAR SCRIPT \033[0;33m($v2) ► ${cor[2]}[$v1] " "\033[0;33m[!] \033[0;31mDESINSTALAR SCRIPT "
 	selection=$(selection_fun 2)
@@ -8740,7 +8740,7 @@ cd /root
 }
 
 clash-man () {
-source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/ClashForAndroidGLOBAL.sh)
+source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/ClashForAndroidGLOBAL.sh)
 }
 
 fixssh () {
@@ -8924,7 +8924,7 @@ echo -e "\033[1;31mINSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
 read -p " "
 }
 function removershadowsocks(){
-wget --no-check-certificate -O libev.sh https://raw.githubusercontent.com/karl1999x/ChumoGH/main/plugins/shadowsocks.sh > /dev/null 2>&1
+wget --no-check-certificate -O libev.sh https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/shadowsocks.sh > /dev/null 2>&1
 chmod +x libev.sh 
 ./libev.sh uninstall 
 rm -rf libev.sh 
@@ -9007,7 +9007,7 @@ read -p " "
 function mtraff(){
 [[ -e /root/name ]] && {
 [[ -z $(less /root/name) ]] || figlet -p -f smslant < /root/name | lolcat 
-}|| echo -e "\033[1;44;44m   ${cor[5]}=====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====     \033[0m"
+}|| echo -e "\033[1;44;44m   ${cor[5]}=====>>►► 🌐 MgScript 💥 Plus 🌐 ◄◄<<=====     \033[0m"
 echo -e "\033[1;37m  【  ★ Reseller : $(cat < /bin/ejecutar/menu_credito) 2024 ★  】\033[0m"
 msg -bar3
 vnstat
