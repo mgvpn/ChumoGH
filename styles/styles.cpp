@@ -148,7 +148,7 @@ if [[ ! -e $colors ]]; then
 COLOR[0]='\033[1;37m' #BRAN='\033[1;37m'
 COLOR[1]='\e[31m' #VERMELHO='\e[31m'
 COLOR[2]='\e[32m' #VERDE='\e[32m'
-COLOR[3]='\e[33m' #AMARELO='\e[33m'
+COLOR[3]='\e[38;2;30;144;255m' #AMARELO='\e[38;2;30;144;255m'
 COLOR[4]='\e[34m' #AZUL='\e[34m'
 COLOR[5]='\e[35m' #MAGENTA='\e[35m'
 COLOR[6]='\033[1;97m' #MAG='\033[1;36m'
@@ -161,7 +161,7 @@ case $number in
 1)COLOR[$COL]='\033[1;37m';;
 2)COLOR[$COL]='\e[31m';;
 3)COLOR[$COL]='\e[32m';;
-4)COLOR[$COL]='\e[33m';;
+4)COLOR[$COL]='\e[38;2;30;144;255m';;
 5)COLOR[$COL]='\e[34m';;
 6)COLOR[$COL]='\e[35m';;
 7)COLOR[$COL]='\033[1;36m';;

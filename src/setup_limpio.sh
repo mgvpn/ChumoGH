@@ -200,7 +200,7 @@ print_center "		[ ! ]  ESPERE UN MOMENTO  [ ! ]"
 echo ""
 msg -bar3
 [[ $(echo -e "${vercion}" | grep -w "22.10") ]] && {
-print_center  "\e[1;31m  SISTEMA:  \e[33m$distro $vercion \e[1;31m	CPU:  \e[33m$(lscpu | grep "Vendor ID" | awk '{print $3}'|head -1)" 
+print_center  "\e[1;31m  SISTEMA:  \e[38;2;30;144;255m$distro $vercion \e[1;31m	CPU:  \e[38;2;30;144;255m$(lscpu | grep "Vendor ID" | awk '{print $3}'|head -1)" 
 echo 
 echo -e " ---- SISTEMA NO COMPATIBLE CON EL ADM ---"
 echo -e " "
@@ -211,7 +211,7 @@ echo ""
 msg -bar3
 exit && exit
 }
-echo -e "\e[1;31m  SISTEMA:  \e[33m$distro $vercion \e[1;31m	CPU:  \e[33m$(lscpu | grep "Vendor ID" | awk '{print $3}'|head -1)" 
+echo -e "\e[1;31m  SISTEMA:  \e[38;2;30;144;255m$distro $vercion \e[1;31m	CPU:  \e[38;2;30;144;255m$(lscpu | grep "Vendor ID" | awk '{print $3}'|head -1)" 
 msg -bar3
 echo -e "\033[94m    ${TTcent} INTENTANDO RECONFIGURAR UPDATER ${TTcent}" | pv -qL 80 && _sleepColor '' 'dpkg --configure -a'
 msg -bar3
