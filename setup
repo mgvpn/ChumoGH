@@ -1,8 +1,8 @@
 # -*- ENCODING: UTF-8 -*-
 
-#CREADOR Henry Chumo | 25/08/2022
+#CREADOR MgScript | 25/08/2022
 # UPDATE  | 10/09/2025
-#Alias : @ChumoGH
+#Alias : @MgScript
 
 # -*- ENCODING: UTF-8 -*-
 # Ejecutar el comando con DEBIAN_FRONTEND=noninteractive para evitar interacciones
@@ -15,7 +15,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/ga
 front_file_local='/bin/ejecutar/msg'
 ENLACES=(
     "https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/msg"
-    "https://raw.githubusercontent.com/karl1999x/ChumoGH/main/styles/msg"
+    "https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/msg"
 	"https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/styles.cpp"
 )
 SERVIDORES=(
