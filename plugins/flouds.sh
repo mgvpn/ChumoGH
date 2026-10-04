@@ -34,7 +34,7 @@ tittle() {
     local vl=""
     [[ -f /etc/adm-lite/v-local.log ]] && vl="$(cat /etc/adm-lite/v-local.log 2>/dev/null)"
     [[ -z "$vl" && -f /etc/ADMcgh/v-local.log ]] && vl="$(cat /etc/ADMcgh/v-local.log 2>/dev/null)"
-    echo -e "\033[1;44;44m   \033[1;33m=====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====\033[0m \033[0;33m[${vl:-V4}]"
+    echo -e "\033[1;44;44m   \033[1;33m=====>>►► 🌐 MgScript 💥 Pro 🌐 ◄◄<<=====\033[0m \033[0;33m[${vl:-V4}]"
     msg -bar3
 }
 
