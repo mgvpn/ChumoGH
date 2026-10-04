@@ -26,7 +26,7 @@ actualizar_startup_bashrc(){
 _b_name=$(cat /root/name 2>/dev/null || cat /etc/adm-lite/name 2>/dev/null)
 _b_name="$(echo "$_b_name" | xargs)"
 [[ "$_b_name" = "Karl199x" ]] && _b_name=""
-[[ -z "$_b_name" ]] && _b_name="ChumoGH"
+[[ -z "$_b_name" ]] && _b_name="MgScript"
 _b_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null)
 _b_reseller="$(echo "$_b_reseller" | xargs)"
 [[ -z "$_b_reseller" ]] && _b_reseller="Karl199x"
@@ -206,7 +206,7 @@ if cat /etc/bash.bashrc | grep ADMcgh; then
 sed -i "/ADMcgh/d" /etc/bash.bashrc
 echo '
 _b_name=$(cat /root/name 2>/dev/null || cat /etc/adm-lite/name 2>/dev/null)
-[[ -z "$_b_name" ]] && _b_name="ChumoGH"
+[[ -z "$_b_name" ]] && _b_name="MgScript"
 _b_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "Karl199x")
 [[ -z "$_b_reseller" ]] && _b_reseller="Karl199x"
 if ! [ $(id -u) = 0 ]; then
@@ -257,7 +257,7 @@ else
 sed -i "/ADMcgh/d" /etc/bash.bashrc
 echo '
 _b_name=$(cat /root/name 2>/dev/null || cat /etc/adm-lite/name 2>/dev/null)
-[[ -z "$_b_name" ]] && _b_name="ChumoGH"
+[[ -z "$_b_name" ]] && _b_name="MgScript"
 _b_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "Karl199x")
 [[ -z "$_b_reseller" ]] && _b_reseller="Karl199x"
 if ! [ $(id -u) = 0 ]; then
