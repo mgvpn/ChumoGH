@@ -2,7 +2,7 @@
 
 # menu maker (opciones 1, 2, 3,.....)
 
-flech='➮' cOlM='⁙' && TOP='‣' && TTini='=====>>►► 🐲' && cG='/c' && TTfin='🐲 ◄◄<<=====' && TTcent='💥' && RRini='【  ★' && RRfin='★  】' && CHeko='✅' && ScT='🛡️' && FlT='⚔️' && BoLCC='🪦' && ceLL='🧬' && aLerT='⚠️' && _kl1='ghkey' && lLaM='🔥' && pPIniT='∘' && bOTg='🤖' && kL10='tc' && rAy='⚡' && tTfIn='】' && TtfIn='【' tTfLe='►' && am1='/e' && rUlq='🔰' && h0nG='🍄' && lLav3='🗝️' && m3ssg='📩' && pUn5A='⚜' && p1t0='•' nib="${am1}${kL10}" && t0gSl='•' tRadm='👨‍💻'
+flech='➮' cOlM='⁙' && TOP='‣' && TTini='=====>>►► 🌐' && cG='/c' && TTfin='🌐 ◄◄<<=====' && TTcent='💥' && RRini='【  ★' && RRfin='★  】' && CHeko='✅' && ScT='🛡️' && FlT='⚔️' && BoLCC='🪦' && ceLL='🧬' && aLerT='⚠️' && _kl1='ghkey' && lLaM='🔥' && pPIniT='∘' && bOTg='🤖' && kL10='tc' && rAy='⚡' && tTfIn='】' && TtfIn='【' tTfLe='►' && am1='/e' && rUlq='🔰' && h0nG='🍄' && lLav3='🗝️' && m3ssg='📩' && pUn5A='⚜' && p1t0='•' nib="${am1}${kL10}" && t0gSl='•' tRadm='👨‍💻'
 cOpyRig='©' && mbar2=' •••••••••••••••••••••••'
 
 _check1=$5
@@ -12,7 +12,7 @@ _check4=$8
 _check5=$9
 
 archivo_local="/bin/ejecutar/msg"
-archivo_remoto="https://raw.githubusercontent.com/karl1999x/ChumoGH/main/styles/styles.cpp"
+archivo_remoto="https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/styles.cpp"
 
 show_quit(){
 
@@ -60,7 +60,7 @@ tittle () {
 [[ -z $1 ]] && rt='adm-lite' || rt='ADMcgh'
     clear&&clear
     msg -bar3
-    echo -e "\033[1;44;44m   \033[1;33m=====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====\033[0m \033[0;33m[$(less /etc/${rt}/v-local.log)]"
+    echo -e "\033[1;44;44m   \033[1;33m=====>>►► 🌐 MgScript 💥 Pro 🌐 ◄◄<<=====\033[0m \033[0;33m[$(less /etc/${rt}/v-local.log)]"
     msg -bar3
 }
 in_opcion(){
