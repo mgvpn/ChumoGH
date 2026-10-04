@@ -9079,7 +9079,7 @@ if [[ -n "$_srv_name" ]]; then
 else
     echo -e "\033[1;44;44m   ${cor[5]}=====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====     \033[0m"
 fi
-local _cur_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "Karl199x")
+local _cur_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "MgScript")
 _cur_reseller="$(echo "$_cur_reseller" | xargs)"
 [[ -z "$_cur_reseller" ]] && _cur_reseller="Karl199x"
 echo -e "\033[1;37m  【  ★ Reseller : ${_cur_reseller} ★  】\033[0m"

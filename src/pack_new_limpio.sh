@@ -100,10 +100,10 @@ else
     _banner_title="$_nameS"
 fi
 msg -bar3
-read -t 30 -p " Nombre del Reseller (ENTER para default Karl199x): " -e -i "" _resellS
+read -t 30 -p " Nombre del Reseller (ENTER para default MgScript): " -e -i "" _resellS
 if [[ -z "$_resellS" ]]; then
     _resellS="Karl199x"
-    echo -e " ${CHeko} \033[1;32mReseller por defecto: \033[1;94mKarl199x\033[0m"
+    echo -e " ${CHeko} \033[1;32mReseller por defecto: \033[1;94mMgScript\033[0m"
 else
     _resellS="${_resellS:0:15}"
     echo -e " ${CHeko} \033[1;32mReseller asignado: \033[1;94m$_resellS\033[0m"
@@ -207,7 +207,7 @@ sed -i "/ADMcgh/d" /etc/bash.bashrc
 echo '
 _b_name=$(cat /root/name 2>/dev/null || cat /etc/adm-lite/name 2>/dev/null)
 [[ -z "$_b_name" ]] && _b_name="MgScript"
-_b_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "Karl199x")
+_b_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "MgScript")
 [[ -z "$_b_reseller" ]] && _b_reseller="Karl199x"
 if ! [ $(id -u) = 0 ]; then
 figlet -f slant "$_b_name" 2>/dev/null | lolcat 2>/dev/null || figlet "$_b_name" 2>/dev/null
@@ -258,7 +258,7 @@ sed -i "/ADMcgh/d" /etc/bash.bashrc
 echo '
 _b_name=$(cat /root/name 2>/dev/null || cat /etc/adm-lite/name 2>/dev/null)
 [[ -z "$_b_name" ]] && _b_name="MgScript"
-_b_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "Karl199x")
+_b_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "MgScript")
 [[ -z "$_b_reseller" ]] && _b_reseller="Karl199x"
 if ! [ $(id -u) = 0 ]; then
 figlet -f slant "$_b_name" 2>/dev/null | lolcat 2>/dev/null || figlet "$_b_name" 2>/dev/null
