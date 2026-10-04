@@ -121,7 +121,7 @@ if [[ -n "$_nameS" ]]; then
     command -v figlet >/dev/null && figlet "$_nameS" | lolcat 2>/dev/null || figlet "$_nameS" 2>/dev/null
 else
     command -v figlet >/dev/null && figlet -f slant "ChumoGH" 2>/dev/null | lolcat 2>/dev/null || figlet "ChumoGH" 2>/dev/null
-    echo -e " \033[1;44;44m   \033[1;33m  ${TTini} ChumoGH ${TTcent} Plus ${TTfin}     \033[0m"
+    echo -e " \033[1;44;44m   \033[1;33m  ${TTini} MgScript ${TTcent} Pro ${TTfin}     \033[0m"
 fi
 sleep 2s
 clear&&clear
