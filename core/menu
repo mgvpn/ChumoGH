@@ -968,7 +968,7 @@ unset svcs porta puertos i x
 [[ -z ${cor[5]} ]] && cor[5]="\033[1;94m"
 [[ -z ${cor[6]} ]] && cor[6]="\033[1;35m"
 
-[[ $v1 = $v2 ]] && vesaoSCT="\033[1;37m ADMcgh 】\033[0m\033[0;94m($v2)" || vesaoSCT="\033[1;37m ADMcgh 】\033[0m\033[0;94m($v2) ► \033[1;32m[$v1]\033[1;31m"
+[[ $v1 = $v2 ]] && vesaoSCT="\033[1;37m MgScript 】\033[0m\033[0;94m($v2)" || vesaoSCT="\033[1;37m MgScript 】\033[0m\033[0;94m($v2) ► \033[1;32m[$v1]\033[1;31m"
 local _srv_name=""
 if [[ -s /root/name ]]; then
     _srv_name=$(cat /root/name 2>/dev/null)
