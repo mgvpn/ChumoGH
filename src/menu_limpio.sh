@@ -1,5 +1,5 @@
 # NUNCA  DEJES DE APRENDER
-# POWER BY @CHUMOGH
+# POWER BY @mgvpn
 
 #[[ $1 = '--check' ]] && rm -f /etc/folteto && cp /bin/cgh /bin/menu
 #[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/msg)
