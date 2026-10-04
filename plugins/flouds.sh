@@ -9,7 +9,7 @@ elif [[ -s /etc/ADMcgh/bin/styles.cpp ]]; then
 elif [[ -s /etc/adm-lite/styles.cpp ]]; then
     source /etc/adm-lite/styles.cpp
 else
-    source <(curl -sSL https://raw.githubusercontent.com/karl1999x/ChumoGH/main/styles/styles.cpp 2>/dev/null) 2>/dev/null || true
+    source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/styles/styles.cpp 2>/dev/null) 2>/dev/null || true
 fi
 
 # Fallback definitions
