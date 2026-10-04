@@ -16,10 +16,10 @@ fi
 if ! declare -f msg >/dev/null 2>&1; then
     msg() {
         case "$1" in
-            -bar|-bar2|-bar3|-bar4|-blue|-br) echo -e "\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" ;;
+            -bar|-bar2|-bar3|-bar4|-blue|-br) echo -e "\033[1;94m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" ;;
             -verd|-nverd) echo -e "\033[1;32m${2}\033[0m" ;;
             -verm|-verm2|-verm3) echo -e "\033[1;31m${2}\033[0m" ;;
-            -ama|-nama) echo -e "\033[1;33m${2}\033[0m" ;;
+            -ama|-nama) echo -e "\033[1;94m${2}\033[0m" ;;
             -bra) echo -e "\033[1;37m${2}\033[0m" ;;
             *) echo -e "${2}" ;;
         esac
@@ -97,11 +97,11 @@ read -p "PRESIONE ENTER PARA RETORNAR"
 tittle
 print_center -verm2 'ADVERTENCIA!!!\n RECUERDA QUE EL BACKUP DEBE SER ALMACENADO \n FUERA DEL VPS PARA EVITAR PERDIDAS \n UNA VEZ RESTAURADO EL SERVIDOR RECUPERA EL \n FICHERO, SEA ONLINE O LOCAL !'
 msg -bar3
-echo -e "\033[0;35m [${cor[2]:-\033[0;32m}01\033[0;35m]\033[0;33m ${flech:-➮}${cor[3]:-\033[0;33m} RESPALDAR USUARIOS   \033[0;31m[ $(msg -verm2 ' ONLINE') \033[0;31m]" 
-echo -e "\033[0;35m [${cor[2]:-\033[0;32m}02\033[0;35m]\033[0;33m ${flech:-➮}${cor[3]:-\033[0;33m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' ONLINE') \033[0;31m]" 
-echo -e "\033[0;35m [${cor[2]:-\033[0;32m}03\033[0;35m]\033[0;33m ${flech:-➮}${cor[3]:-\033[0;33m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' LOCAL') \033[0;31m]" 
+echo -e "\033[0;35m [${cor[2]:-\033[0;32m}01\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESPALDAR USUARIOS   \033[0;31m[ $(msg -verm2 ' ONLINE') \033[0;31m]" 
+echo -e "\033[0;35m [${cor[2]:-\033[0;32m}02\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' ONLINE') \033[0;31m]" 
+echo -e "\033[0;35m [${cor[2]:-\033[0;32m}03\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' LOCAL') \033[0;31m]" 
 msg -bar3
-echo -e " \033[0;35m [${cor[2]:-\033[0;32m}0\033[0;35m]\033[0;33m ${flech:-➮} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+echo -e " \033[0;35m [${cor[2]:-\033[0;32m}0\033[0;35m]\033[0;94m ${flech:-➮} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 msg -bar3
 read -p "ESCOJE: " option
 
@@ -115,8 +115,8 @@ print_center -verm2 ' Este nombre sera el ARCHIVO FINAL \n PARA PODER SER RESTAU
 msg -bar3
 print_center -verd ' NO SE RESPALDAN ** OPENVPN FILES **'
 msg -bar3
-echo -ne "[\033[1;31m${TTcent}\033[1;33m]\033[1;31m \033[1;33m"
-echo -e "\033[1;33mINGRESA NOMBRE DEL FICHERO ( UsuarioXYZ ) "
+echo -ne "[\033[1;31m${TTcent}\033[1;94m]\033[1;31m \033[1;94m"
+echo -e "\033[1;94mINGRESA NOMBRE DEL FICHERO ( UsuarioXYZ ) "
 msg -bar3
 read -p " Ejemplo: ChumoGH : " name
 [[ -z ${name} ]] && name='UsuarioXYZ'
@@ -200,8 +200,8 @@ print_center -verm2 ' AQUI VA EL ENLACE DEL FICHERO \n PARA PODER SER RESTAURDO 
 msg -bar3
 print_center -verd ' NO SE RESTAURAN ** OPENVPN FILES **'
 msg -bar3
-echo -ne "[\033[1;31m${TTcent}\033[1;33m]\033[1;31m \033[1;33m"
-echo -ne "\033[1;33mINGRESA ENLACE DEL FICHERO "
+echo -ne "[\033[1;31m${TTcent}\033[1;94m]\033[1;31m \033[1;94m"
+echo -ne "\033[1;94mINGRESA ENLACE DEL FICHERO "
 read -p " : " url1
 wget -q -O recovery $url1 && echo -e "\033[1;31m- \033[1;32mFile Exito!" || echo -e "\033[1;31m- \033[1;31mFile Fallo"
 #echo -n "Escriba el directorio del archivo Backup: "

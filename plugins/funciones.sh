@@ -71,8 +71,8 @@ bar=(âââââââââââââ�
 ââââââââââââââââââââ
 ââââââââââââââââââââ);
 #==color==
-in="\033[1;33m$in\033[0m"
-en="\033[1;33m$en\033[0m"
+in="\033[1;94m$in\033[0m"
+en="\033[1;94m$en\033[0m"
 full_in="\033[1;31m$full_in"
 full_en="\033[1;32m$full_en\033[0m"
 
@@ -120,23 +120,23 @@ print_center(){
 SCPdir="/etc/adm-lite" 
 #SCPfrm="${SCPdir}" && [[ ! -d ${SCPfrm} ]] && exit 
 #SCPinst="${SCPdir}"&& [[ ! -d ${SCPinst} ]] && exit 
-declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;33m" [4]="\033[1;32m" [5]="\e[1;36m" )
+declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;94m" [4]="\033[1;32m" [5]="\e[1;36m" )
 
 fun_bar () { 
 comando="$1"  
 _=$( $comando > /dev/null 2>&1 ) & > /dev/null 
 pid=$! 
 while [[ -d /proc/$pid ]]; do 
-echo -ne " \033[1;33m["    
+echo -ne " \033[1;94m["    
 for((i=0; i<20; i++)); do    
 echo -ne "\033[1;31m##"    
 sleep 0.5    
 done 
-echo -ne "\033[1;33m]" 
+echo -ne "\033[1;94m]" 
 sleep 1s 
 echo tput cuu1 tput dl1 
 done 
-echo -e " \033[1;33m[\033[1;31m########################################\033[1;33m] - \033[1;32m100%\033[0m" 
+echo -e " \033[1;94m[\033[1;31m########################################\033[1;94m] - \033[1;32m100%\033[0m" 
 sleep 1s 
 }  
 
@@ -200,7 +200,7 @@ function aguarde() {
 		done
 		tput cnorm
 	}
-	echo -ne "  \033[1;37mINSTALANDO \033[1;32mNAMI \033[1;37m& \033[1;32mBROOK JOKER\033[1;32m.\033[1;33m.\033[1;31m. \033[1;33m"
+	echo -ne "  \033[1;37mINSTALANDO \033[1;32mNAMI \033[1;37m& \033[1;32mBROOK JOKER\033[1;32m.\033[1;94m.\033[1;31m. \033[1;94m"
 	helice
 	echo -e "\e[1DDONE"
 }
@@ -480,14 +480,14 @@ _ports
 msg -bar2
 echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;31m â®${cor[3]} ADMINISTRAR USUARIOS                  "
 echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m â®${cor[3]} HERRAMIENTAS (\033[0;34mBad/VPN$_badvpn${cor[3]}) (\033[0;34mTCP-SPEED$_tcpspeed${cor[3]})    "
-echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;31m â®\033[0;33m [!]${cor[3]} OPTIMIZAR VPS                     "
-echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;31m â®\033[0;33m [!]\033[0;31m DESINSTALAR SCRIPT                "
+echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;31m â®\033[0;94m [!]${cor[3]} OPTIMIZAR VPS                     "
+echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;31m â®\033[0;94m [!]\033[0;31m DESINSTALAR SCRIPT                "
 echo -e "\033[0;35m [\033[0;36m6\033[0;35m]\033[0;31m â®${cor[3]} Cont/Limit DE USUARIOS $VERIFICAR_PID              \033[1;31m â"
-echo -e "\033[0;35m [\033[0;36m7\033[0;35m]\033[0;31m â® \e[3;32mHERRAMIENTAS BETA\e[0m \033[0;33m (#EXPERIMENTAL)    "
+echo -e "\033[0;35m [\033[0;36m7\033[0;35m]\033[0;31m â® \e[3;32mHERRAMIENTAS BETA\e[0m \033[0;94m (#EXPERIMENTAL)    "
 echo -e "\033[0;35m [\033[0;36m8\033[0;35m]\033[0;31m â®${cor[3]} AUTOINICIAR SCRIPT $_autorun             "
 echo -e "\033[0;35m [\033[0;36m9\033[0;35m]\033[0;31m â®${cor[3]} INSTALADOR DE PROTOCOLOS              "
 msg -bar2
-echo -e "\033[0;35m [\033[0;36m10\033[0;35m]\033[0;31m â®\033[0;33m [!] \033[1;32mACTUALIZAR${cor[3]} |\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m â® $(msg -bra "\033[1;41m[ Salir ]\e[0m")"
+echo -e "\033[0;35m [\033[0;36m10\033[0;35m]\033[0;31m â®\033[0;94m [!] \033[1;32mACTUALIZAR${cor[3]} |\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m â® $(msg -bra "\033[1;41m[ Salir ]\e[0m")"
 echo -ne "\033[1;31m â°âââââââ£ OPCION :" && read -p "" opt
 
 }

@@ -202,14 +202,14 @@ msg -bar3
     echo "Ingresa Puerto SSL a USAR ( Defauld 443 ) "
     read -p " Listen-SSL: " SSLPORT
     [[ $(mportas|grep $SSLPORT) ]] || break
-    echo -e "\033[1;33m El puerto seleccionado ya se encuentra en uso"
+    echo -e "\033[1;94m El puerto seleccionado ya se encuentra en uso"
     unset SSLPORT
 	msg -bar3
 	return 0
     done
 unset porta1ws
 msg -bar3
-echo -e "\033[1;33m Instalando SSL/TLS : $(curl -sSL ipinfo.io > info && cat info | grep country | awk '{print $2}' | sed -e 's/[^a-z0-9 -]//ig')"
+echo -e "\033[1;94m Instalando SSL/TLS : $(curl -sSL ipinfo.io > info && cat info | grep country | awk '{print $2}' | sed -e 's/[^a-z0-9 -]//ig')"
 msg -bar3
 fun_bar "apt install stunnel4 -y"
 echo -e "cert = /etc/stunnel/stunnel.pem\nclient = no\nsocket = a:SO_REUSEADDR=1\nsocket = l:TCP_NODELAY=1\nsocket = r:TCP_NODELAY=1\n\n[WS]\nconnect = 127.0.0.1:80\naccept = ${SSLPORT}" > /etc/stunnel/stunnel.conf
@@ -224,7 +224,7 @@ service ssh restart 1> /dev/null 2> /dev/null
 echo -e "\033[1;34m ##############################"
 echo -e "\033[1;37m R E I N I C I A N D O  -  STUNNEL4 - SSL"
 echo -e "\033[1;34m ##############################"
-echo -e "\033[1;33m $(source trans -b pt:${id} "INSTALACION EXITOSA")"
+echo -e "\033[1;94m $(source trans -b pt:${id} "INSTALACION EXITOSA")"
 msg -bar3
 }
 
@@ -241,7 +241,7 @@ msg -bar3
     echo " Ingresa Puerto Dropbear/SSH a USAR ( Defauld 143 ) "
     read -p " Listen-Dropbear: " porta1
     [[ $(mportas|grep $porta1) ]] || break
-    echo -e "\033[1;33m El puerto seleccionado ya se encuentra en uso"
+    echo -e "\033[1;94m El puerto seleccionado ya se encuentra en uso"
     unset porta1
 	msg -bar3
 	return 0
@@ -256,7 +256,7 @@ msg -bar3
     echo " Ingrese Puerto WebSocket ( Default 80 ) "
     read -p " Listen-WS: " porta1ws
 	if lsof -Pi :$porta1ws -sTCP:LISTEN -t >/dev/null ; then
-	echo -e "\033[1;33m El puerto seleccionado ya se encuentra en uso"
+	echo -e "\033[1;94m El puerto seleccionado ya se encuentra en uso"
     unset porta1ws
 	msg -bar3
 	return 0
@@ -269,11 +269,11 @@ service dropbear stop 1> /dev/null 2> /dev/null
 rm -rf /etc/default/dropbear
 echo -e "Habilitando Entrada Dropbear" | pv -qL 30
 fun_log
-echo -e "NO_START=0" > /etc/default/dropbear && echo -e "\033[1;33mExito" || echo -e "\033[0;31mFail"
+echo -e "NO_START=0" > /etc/default/dropbear && echo -e "\033[1;94mExito" || echo -e "\033[0;31mFail"
 echo -e "Habilitando Puerto $porta1 Dropbear" | pv -qL 30
 #
 echo $porta1 > /etc/default/dadd
-echo -e 'DROPBEAR_EXTRA_ARGS="-p '$porta1'"' >> /etc/default/dropbear && echo -e "\033[1;33mExito" || echo -e "\033[0;31mFail"
+echo -e 'DROPBEAR_EXTRA_ARGS="-p '$porta1'"' >> /etc/default/dropbear && echo -e "\033[1;94mExito" || echo -e "\033[0;31mFail"
 echo -e "\033[1;32mHabilitando BannerSSH DropBear" | pv -qL 30
 #
 echo -e 'DROPBEAR_BANNER="/etc/bannerssh"' >> /etc/default/dropbear && touch /etc/bannerssh || echo -e "\033[0;31mFail"
@@ -312,7 +312,7 @@ echo -e $barra
 #
 #[[ -e /etc/systemd/system/nodews1.service ]] && systemctl status nodews1 || echo -e "Error al Iniciar NODE WS" | pv -qL 15
 echo -e $barra
-echo -e "\033[1;33m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
+echo -e "\033[1;94m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
 read -p " "
 }
 
@@ -338,7 +338,7 @@ msg -bar3
     echo " $(source trans -b pt:${id} "Ingrese Puerto WebSocket ( Default 80 ) ") "
     read -p " Listen-WS: " porta1ws
     [[ $(mportas|grep $porta1ws) ]] || break
-    echo -e "\033[1;33m $(source trans -b es:${id} "El puerto seleccionado ya se encuentra en uso")"
+    echo -e "\033[1;94m $(source trans -b es:${id} "El puerto seleccionado ya se encuentra en uso")"
     unset porta1ws
 	msg -bar3
 	return 0
@@ -374,7 +374,7 @@ echo -e $barra
 #
 #[[ -e /etc/systemd/system/nodews1.service ]] && systemctl status nodews1 || echo -e "Error al Iniciar NODE WS" | pv -qL 15
 echo -e $barra
-echo -e "\033[1;33m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
+echo -e "\033[1;94m › INSTALACION FINALIZADA - PRESIONE ENTER\033[0m"
 read -p " "
 fi
 }
@@ -405,11 +405,11 @@ echo -e $barra
 echo -e "          \033[1;42mBIENVENIDO NUEVAMENTE!\033[0m"
 echo -e $barra
 echo -e " SSH OVER WEBSOCKET CDN  "
-echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m INICIAR WEBSOCKET CDN  (HTTP)  DROPBEAR"
-echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m INICIAR WEBSOCKET CDN  (HTTPS) SSL/SSH"
-echo -e "\033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;33m DETENER TODOS WEBSOCKET CDN"
+echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m INICIAR WEBSOCKET CDN  (HTTP)  DROPBEAR"
+echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m INICIAR WEBSOCKET CDN  (HTTPS) SSL/SSH"
+echo -e "\033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;94m DETENER TODOS WEBSOCKET CDN"
 echo -e $barra
-echo -e "\033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m<\033[0;33m SALIR"
+echo -e "\033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m<\033[0;94m SALIR"
 unset inst
 echo -e $barra
 echo -ne "\033[97m ESCOJE [ 1 / 2 ]: "

@@ -28,15 +28,15 @@ if [[ $1 == "" ]]
 then
 figlet -p -f slant < /root/name | lolcat
 echo -e "\033[1;37m      【     ★ ChumoGH Packet 2020 ★     】\033[0m"
-echo -e "[\033[1;31m-\033[1;33m]\033[1;30m ───────────────── /// ─────────────────\033[1;33m"
+echo -e "[\033[1;31m-\033[1;94m]\033[1;30m ───────────────── /// ─────────────────\033[1;94m"
 echo -e "\033[1;37m       ChumoGH-ADM @ FIX SOURCES \033[0m"
-echo -e "[\033[1;31m-\033[1;33m]\033[1;31m ───────────────── /// ─────────────────\033[1;33m"
-echo -e "\033[1;37mSeleccione una opcion:    Para Salir Ctrl + C\033[1;33m
-[\033[1;32m1\033[1;33m]   › FIX SOURCES UBUNTU 16.04 \033[1;33m
-[\033[1;32m2\033[1;33m]   › FIX SOURCES UBUNTU 18.04 \033[1;33m
-[\033[1;32m3\033[1;33m]   › FIX SOURCES UBUNTU 19.10 \033[1;33m
-[\033[1;32m4\033[1;33m]   › FIX SOURCES UBUNTU 20.04 \033[1;33m
-[\033[1;32m0\033[1;33m] < REGRESAR                 \033[1;33m"
+echo -e "[\033[1;31m-\033[1;94m]\033[1;31m ───────────────── /// ─────────────────\033[1;94m"
+echo -e "\033[1;37mSeleccione una opcion:    Para Salir Ctrl + C\033[1;94m
+[\033[1;32m1\033[1;94m]   › FIX SOURCES UBUNTU 16.04 \033[1;94m
+[\033[1;32m2\033[1;94m]   › FIX SOURCES UBUNTU 18.04 \033[1;94m
+[\033[1;32m3\033[1;94m]   › FIX SOURCES UBUNTU 19.10 \033[1;94m
+[\033[1;32m4\033[1;94m]   › FIX SOURCES UBUNTU 20.04 \033[1;94m
+[\033[1;32m0\033[1;94m] < REGRESAR                 \033[1;94m"
 read -p ": " opcao
 else
 opcao=$1

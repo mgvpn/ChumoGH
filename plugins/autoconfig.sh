@@ -59,7 +59,7 @@ function fix_ssl() {
 		done
 		tput cnorm
 	}
-	echo -ne "\033[1;37m INSTALANDO  \033[1;32mSTUNNEL (\033[1;37mS\033[1;32mS\033[1;32mL\033[1;33m)\033[1;31m. \033[1;33m"
+	echo -ne "\033[1;37m INSTALANDO  \033[1;32mSTUNNEL (\033[1;37mS\033[1;32mS\033[1;32mL\033[1;94m)\033[1;31m. \033[1;94m"
 	helice
 	echo -e "\e[1DOk"
 }
@@ -112,8 +112,8 @@ menu_intro() {
 	msg -bar3 #echo -e "\033[1;31m———————————————————————————————————————————————————\033[1;37m"
 	echo -e "\033[1;37m      Requiere tener el puerto libre 443 y el 80"
 	msg -bar3
-    echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m${flech} ${cor[3]}Activar AUTOCONFIG (Python + SSL)"
-    echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m${flech} ${cor[3]}Desactivar (Payload+SSL) | \033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+    echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m${flech} ${cor[3]}Activar AUTOCONFIG (Python + SSL)"
+    echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m${flech} ${cor[3]}Desactivar (Payload+SSL) | \033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
     msg -bar3
     read -p "Seleccione una opción [0-2]: " opcion
     case $opcion in
@@ -129,8 +129,8 @@ menu_intro() {
 			msg -bar3
             echo "Seleccione versión de Python para ejecutar:"
 			msg -bar3
-            echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m${flech} ${cor[3]}Python2"
-            echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m${flech} ${cor[3]}Python3 (Deb11+ / Ubu22+)"
+            echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m${flech} ${cor[3]}Python2"
+            echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m${flech} ${cor[3]}Python3 (Deb11+ / Ubu22+)"
             msg -bar3
 			read -p "Opción [1-2]: " py_opt
             [[ $py_opt == "1" ]] && pybin="python" && pyfile="$PY2_FILE" || pybin="python3" && pyfile="$PY3_FILE"

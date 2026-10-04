@@ -32,8 +32,8 @@ menu_func(){
     echo -ne "$(msg -verd " [$num]") $(msg -verm2 ">") "
     array=(${!num})
     case ${array[0]} in
-      "-vd")echo -e "\033[1;33m[!]\033[1;32m ${array[@]:1}";;
-      "-vm")echo -e "\033[1;33m[!]\033[1;31m ${array[@]:1}";;
+      "-vd")echo -e "\033[1;94m[!]\033[1;32m ${array[@]:1}";;
+      "-vm")echo -e "\033[1;94m[!]\033[1;31m ${array[@]:1}";;
       "-fi")echo -e "${array[@]:2} ${array[1]}";;
       -bar|-bar2|-bar3|-bar4)echo -e "\033[1;37m${array[@]:1}\n$(msg ${array[0]})";;
       *)echo -e "\033[1;37m${array[@]}";;
@@ -131,13 +131,13 @@ menu_item(){
   local opciones=("$@")
   local i=1
   msg -bar3
-  #echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;33m ${flech} $(msg -bra "\033[1;43m[ REGRESAR ]\e[0m")"
+  #echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;43m[ REGRESAR ]\e[0m")"
   for item in "${opciones[@]}"; do
-    echo -e "\033[0;35m [\033[0;36m${i}\033[0;35m]\033[0;33m ${flech} ${cor[3]}${item}"
+    echo -e "\033[0;35m [\033[0;36m${i}\033[0;35m]\033[0;94m ${flech} ${cor[3]}${item}"
     ((i++))
   done
   msg -bar3
-  echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;33m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+  echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
   msg -bar3
 }
 
@@ -211,20 +211,20 @@ ${comando[0]} -y > /dev/null 2>&1
 ${comando[1]} -y > /dev/null 2>&1
 touch $HOME/fim
  ) > /dev/null 2>&1 &
-echo -ne "\033[1;33m ["
+echo -ne "\033[1;94m ["
 while true; do
    for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m##"
    sleep 0.1s
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
-   echo -e "\033[1;33m]"
+   echo -e "\033[1;94m]"
    sleep 1s
    tput cuu1
    tput dl1
-   echo -ne "\033[1;33m ["
+   echo -ne "\033[1;94m ["
 done
-echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+echo -e "\033[1;94m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
 
 del(){
@@ -270,7 +270,7 @@ cor[1]="\033[1;34m"
 cor[2]="\033[1;32m"
 cor[3]="\033[1;37m"
 cor[4]="\033[1;36m"
-cor[5]="\033[1;33m"
+cor[5]="\033[1;94m"
 cor[6]="\033[1;35m"
 export -f msg
 export -f fun_bar

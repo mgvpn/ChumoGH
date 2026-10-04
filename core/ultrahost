@@ -73,7 +73,7 @@ return 0
 
 #INICIA SCRIPT
 echo -e "\033[1;31m====================================\033[0m"
-echo -e "\033[1;33m INICIALIZANDO PROCEDIMENTOS (SCAN)"
+echo -e "\033[1;94m INICIALIZANDO PROCEDIMENTOS (SCAN)"
 echo -e "\033[1;31m====================================\033[0m"
 iniciar $1 $2
 [[ $? = "0" ]] &&

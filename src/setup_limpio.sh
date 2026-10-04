@@ -167,20 +167,20 @@ comando[0]="$1"
 ${comando[0]} -y > /dev/null 2>&1
 touch $HOME/fim
  ) > /dev/null 2>&1 &
-echo -ne "\033[1;33m ["
+echo -ne "\033[1;94m ["
 while true; do
    for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m##"
    sleep 0.1s
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
-   echo -e "\033[1;33m]"
+   echo -e "\033[1;94m]"
    sleep 0.5s
    tput cuu1
    tput dl1
-   echo -ne "\033[1;33m ["
+   echo -ne "\033[1;94m ["
 done
-echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+echo -e "\033[1;94m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
 
 msg -bar3
@@ -243,7 +243,7 @@ export c_magenta="\033[1;35m"
 export c_cyan="\033[1;36m"
 export c_green="\033[1;32m"
 export c_red="\033[1;31m"
-export c_yellow="\033[1;33m"
+export c_yellow="\033[1;94m"
 
 anim=(
   "${c_blue}${t0gSl}${c_green}${t0gSl}${c_red}${t0gSl}${c_magenta}${t0gSl}    "
@@ -482,7 +482,7 @@ echo -e ' https://t.me/ChumoGH  - @ChumoGH' >> error.log
 msg -bar3 >> error.log
 cat error.log | lolcat
 #msg -bar3
-echo -e "    \033[1;44m  Deseas Reintentar con OTRA KEY\033[0;33m  :v"
+echo -e "    \033[1;44m  Deseas Reintentar con OTRA KEY\033[0;94m  :v"
 echo -ne "\033[0;32m "
 read -p "  Responde [ s | n ] : " -e -i "n" x
 [[ $x = @(s|S|y|Y) ]] && funkey || {
@@ -510,7 +510,7 @@ msg -bar3
 figlet ' . ADMcgh . ' | boxes -d stone -p a0v0 | lolcat
 echo "           PEGA TU KEY DE INSTALACION " | lolcat
 msg -bar3
-read -p "$(echo -e " \033[1;41m Key : \033[0;33m")" _filtro
+read -p "$(echo -e " \033[1;41m Key : \033[0;94m")" _filtro
 #Key=$(echo -e ${_filtro} | tr -d '[[:space:]]')
 clean_input="${_filtro}"
 local uncryp="$(cryptic_transform $clean_input)"
@@ -537,10 +537,10 @@ if wget --no-cache --no-check-certificate --max-redirect=20 -qO- "${_checkBT}:88
 #[[ $(curl -s --connect-timeout 5 ${IiP}:8888) ]] && {
 tput cuu1 && tput dl1
 msg -bar3
-echo -ne " \e[90m\e[43m CHEK KEY : \033[0;33m"
+echo -ne " \e[90m\e[43m CHEK KEY : \033[0;94m"
 echo -e " \e[3;32m ENLAZADA AL GENERADOR\e[0m" | pv -qL 50
 tput cuu1 && tput dl1
-echo -ne " \033[1;41m ESTATUS : \033[0;33m"
+echo -ne " \033[1;41m ESTATUS : \033[0;94m"
 tput cuu1 && tput dl1
 echo -ne "\033[1;34m [ \e[3;32m VALIDANDO CONEXION \e[0m \033[1;34m]\033[0m"
 if wget --no-cache --no-check-certificate --max-redirect=20 -O $HOME/lista-arq ${_key}/$_trix/$_sys/${new_id}  &>/dev/null ; then
@@ -619,7 +619,7 @@ local _IP=$(cryptic_transform "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0
    wget --no-check-certificate -O ${SCPinstal}/${arqx} ${_checkBT}:81/${uncryp2}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" 
    done
 }
-echo -ne "\033[1;37m COMPILANDO VIA\033[1;32m \033[1;37mHTTPS \033[1;32m 127.0.0.1:81 \033[1;32m.\033[1;33m.\033[1;31m. \033[1;33m"
+echo -ne "\033[1;37m COMPILANDO VIA\033[1;32m \033[1;37mHTTPS \033[1;32m 127.0.0.1:81 \033[1;32m.\033[1;94m.\033[1;31m. \033[1;94m"
 	helice
 echo -e "\e[1DOk"
 msg -bar3

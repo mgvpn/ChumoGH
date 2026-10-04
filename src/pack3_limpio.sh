@@ -241,7 +241,7 @@ print_center -verd "NOMBRE AGREGADO EXITOSAMENTE"
 #echo -e " \033[0m"
 fun_add_name_dom
 msg -bar3
-echo -e "\033[1;32mCHANGE ZONA TIME ( * \033[1;33mMenu 5 \033[1;32m*\033[1;33m opcion 30, opcion 11 \033[1;32m)"
+echo -e "\033[1;32mCHANGE ZONA TIME ( * \033[1;94mMenu 5 \033[1;32m*\033[1;94m opcion 30, opcion 11 \033[1;32m)"
 msg -bar3
 print_center -verd " ${cor[3]} ADMcgh Configurado Exitosamente!"
 #echo -e "${cor[2]} Reinicie para completar Instalacion - OPCIONAL - "
@@ -256,11 +256,11 @@ msg -bar3
 print_center -verd  "${cor[1]}       YA TIENES ACCESO ROOT A TU VPS?\n ESTO ES ESPECIAL PARA [AWS,GOOGLE,AZURE,ORACLE,ETC]\n SI ENTRASTE CON UN USUARIO DIFERENTE AL ROOT\n PRESIONA S, CASO CONTRARIO, IGNORA EL MENSAJE"
 msg -bar3
 echo -e "\033[1;42m APLICAR FIX de PASSWD para LIBERAR ACCESO "
-echo -e "SI YA ERES ROOT, SE CAMBIARA TU CLAVE \033[0;33m "
+echo -e "SI YA ERES ROOT, SE CAMBIARA TU CLAVE \033[0;94m "
 echo -ne "\033[0;32m"
 read -t 20 -p " Responde [ s | n ] : " -e -i "n" x
 echo ''
-[[ "${x}" = @(s|S|y|Y) ]] && source <(wget -qO- --no-cache --no-check-certificate --max-redirect=20 https://raw.githubusercontent.com/karl1999x/ChumoGH/main/bin/root-pass.sh) || echo -e "\033[1;32mAplica FIX en ( * \033[1;33m Menu 5\033[1;32m *\033[1;33m opcion 30, opcion 9 \033[1;32m*\033[1;32m)"
+[[ "${x}" = @(s|S|y|Y) ]] && source <(wget -qO- --no-cache --no-check-certificate --max-redirect=20 https://raw.githubusercontent.com/karl1999x/ChumoGH/main/bin/root-pass.sh) || echo -e "\033[1;32mAplica FIX en ( * \033[1;94m Menu 5\033[1;32m *\033[1;94m opcion 30, opcion 9 \033[1;32m*\033[1;32m)"
 [[ -e /root/name ]] && figlet "$(less /root/name)" | lolcat || tittle
 return
 }
@@ -278,7 +278,7 @@ declare -A cpu_model=$(uname -m)
 echo -e "\033[97m"
 print_center -azu  "     -- \033[41mINSTALAREMOS LO NECESARIO PARA EL ADM\033[0m --"
 print_center "     \033[44mSU IP REGISTRADA ES : ${_IP}\033[41m"
-print_center "   -- \033[41m Arch : \033[1;33m$(lscpu | grep "Vendor ID" | awk '{print $3}'|head -1) SISTEMA  $(lsb_release -si) $(lsb_release -sr)\033[0m --"
+print_center "   -- \033[41m Arch : \033[1;94m$(lscpu | grep "Vendor ID" | awk '{print $3}'|head -1) SISTEMA  $(lsb_release -si) $(lsb_release -sr)\033[0m --"
 print_center "\033[100mATENCION A INSTALACION POR SI DEVUELVE UN ERROR \033[0m"
 print_center "\033[97m\n$(msg -bar3)\033[0m"
 print_center "\033[100mERRORES GRAFICOS FIXEADOS AL FINALIZAR  \033[0m"

@@ -16,7 +16,7 @@ BHTTP_CONF="${CONF_DIR}/bhttp.conf"
 
 # Variables visuales (Fallbacks por si se ejecuta fuera de la matriz)
 [[ -z "$flech" ]] && flech=">"
-[[ -z "${cor[3]}" ]] && cor[3]="\033[0;33m"
+[[ -z "${cor[3]}" ]] && cor[3]="\033[0;94m"
 
 if ! type msg >/dev/null 2>&1; then
     msg() {
@@ -24,7 +24,7 @@ if ! type msg >/dev/null 2>&1; then
             -bar3) echo -e "\033[0;36m======================================================\033[0m" ;;
             -verd) echo -e "\033[0;32m$2\033[0m" ;;
             -verm) echo -e "\033[0;31m$2\033[0m" ;;
-            -ama)  echo -e "\033[0;33m$2\033[0m" ;;
+            -ama)  echo -e "\033[0;94m$2\033[0m" ;;
             -bra)  echo -e "\033[1;37m$2\033[0m" ;;
         esac
     }
@@ -93,7 +93,7 @@ install_btun() {
     msg -bar3
     echo -e "\033[0;36m      INSTALACIÓN DE BTUN\033[0m"
     msg -bar3
-    echo -e "\033[0;33m Verificando binario BTUN...\033[0m"
+    echo -e "\033[0;94m Verificando binario BTUN...\033[0m"
     
     if [[ -f "/bin/BTUN" && -x "/bin/BTUN" ]]; then
         cp -f /bin/BTUN ${DEST}/BTUN 2>/dev/null || true
@@ -117,10 +117,10 @@ install_btun() {
     fi
     
     echo ""
-    read -p "$(echo -e "\033[0;33m Puerto TCP [Default 7300]: \033[0m")" in_tcp
+    read -p "$(echo -e "\033[0;94m Puerto TCP [Default 7300]: \033[0m")" in_tcp
     BTUN_TCP=${in_tcp:-7300}
     
-    read -p "$(echo -e "\033[0;33m Puerto UDP [Default 7300]: \033[0m")" in_udp
+    read -p "$(echo -e "\033[0;94m Puerto UDP [Default 7300]: \033[0m")" in_udp
     BTUN_UDP=${in_udp:-7300}
 
     save_btun_conf
@@ -148,18 +148,18 @@ menu_btun() {
         msg -bar3
         echo -e "\033[0;35m       [ CONFIGURACIÓN BTUN ] - Estado: $est_btun"
         msg -bar3
-        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m ${flech} ${cor[3]}Cambiar Puerto TCP \033[0;32m[${BTUN_TCP}]\033[0m"
-        echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m ${flech} ${cor[3]}Cambiar Puerto UDP \033[0;32m[${BTUN_UDP}]\033[0m"
-        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;33m ${flech} ${cor[3]}Reiniciar Servicio\033[0m"
-        echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;33m ${flech} ${cor[3]}Iniciar/Detener\033[0m"
+        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m ${flech} ${cor[3]}Cambiar Puerto TCP \033[0;32m[${BTUN_TCP}]\033[0m"
+        echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m ${flech} ${cor[3]}Cambiar Puerto UDP \033[0;32m[${BTUN_UDP}]\033[0m"
+        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;94m ${flech} ${cor[3]}Reiniciar Servicio\033[0m"
+        echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;94m ${flech} ${cor[3]}Iniciar/Detener\033[0m"
         echo -e "\033[0;35m [\033[0;36m5\033[0;35m]\033[0;31m ${flech} ${cor[3]}Desinstalar BTUN\033[0m"
         echo -e "\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
         msg -bar3
-        read -p "$(echo -e "\033[0;33m Opcion: \033[0m")" opt
+        read -p "$(echo -e "\033[0;94m Opcion: \033[0m")" opt
 
         case $opt in
             1)
-                read -p "$(echo -e "\033[0;33m Nuevo TCP: \033[0m")" n_tcp
+                read -p "$(echo -e "\033[0;94m Nuevo TCP: \033[0m")" n_tcp
                 if [[ -n "$n_tcp" ]]; then
                     manage_iptables "remove" "$BTUN_TCP"
                     BTUN_TCP="$n_tcp"
@@ -168,7 +168,7 @@ menu_btun() {
                 fi
                 ;;
             2)
-                read -p "$(echo -e "\033[0;33m Nuevo UDP: \033[0m")" n_udp
+                read -p "$(echo -e "\033[0;94m Nuevo UDP: \033[0m")" n_udp
                 if [[ -n "$n_udp" ]]; then
                     manage_iptables "remove" "$BTUN_UDP"
                     BTUN_UDP="$n_udp"
@@ -242,7 +242,7 @@ install_bhttp() {
     msg -bar3
     echo -e "\033[0;36m      INSTALACIÓN DE BHTTP\033[0m"
     msg -bar3
-    echo -e "\033[0;33m Verificando binario BHTTP...\033[0m"
+    echo -e "\033[0;94m Verificando binario BHTTP...\033[0m"
     
     if [[ -f "/bin/BHTTP" && -x "/bin/BHTTP" ]]; then
         cp -f /bin/BHTTP ${DEST}/BHTTP 2>/dev/null || true
@@ -266,10 +266,10 @@ install_bhttp() {
     fi
     
     echo ""
-    read -p "$(echo -e "\033[0;33m Puerto de escucha (--port) [Default 80]: \033[0m")" in_port
+    read -p "$(echo -e "\033[0;94m Puerto de escucha (--port) [Default 80]: \033[0m")" in_port
     BHTTP_PORT=${in_port:-80}
     
-    read -p "$(echo -e "\033[0;33m Puerto SSH local (--ssh) [Default 22]: \033[0m")" in_ssh
+    read -p "$(echo -e "\033[0;94m Puerto SSH local (--ssh) [Default 22]: \033[0m")" in_ssh
     BHTTP_SSH=${in_ssh:-22}
 
     save_bhttp_conf
@@ -296,18 +296,18 @@ menu_bhttp() {
         msg -bar3
         echo -e "\033[0;35m      [ CONFIGURACIÓN BHTTP ] - Estado: $est_bhttp"
         msg -bar3
-        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m ${flech} ${cor[3]}Cambiar Puerto Escucha \033[0;32m[${BHTTP_PORT}]\033[0m"
-        echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m ${flech} ${cor[3]}Cambiar Puerto SSH Dest \033[0;32m[${BHTTP_SSH}]\033[0m"
-        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;33m ${flech} ${cor[3]}Reiniciar Servicio\033[0m"
-        echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;33m ${flech} ${cor[3]}Iniciar/Detener\033[0m"
+        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m ${flech} ${cor[3]}Cambiar Puerto Escucha \033[0;32m[${BHTTP_PORT}]\033[0m"
+        echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m ${flech} ${cor[3]}Cambiar Puerto SSH Dest \033[0;32m[${BHTTP_SSH}]\033[0m"
+        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;94m ${flech} ${cor[3]}Reiniciar Servicio\033[0m"
+        echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;94m ${flech} ${cor[3]}Iniciar/Detener\033[0m"
         echo -e "\033[0;35m [\033[0;36m5\033[0;35m]\033[0;31m ${flech} ${cor[3]}Desinstalar BHTTP\033[0m"
         echo -e "\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
         msg -bar3
-        read -p "$(echo -e "\033[0;33m Opcion: \033[0m")" opt
+        read -p "$(echo -e "\033[0;94m Opcion: \033[0m")" opt
 
         case $opt in
             1)
-                read -p "$(echo -e "\033[0;33m Nuevo Listen Port: \033[0m")" n_port
+                read -p "$(echo -e "\033[0;94m Nuevo Listen Port: \033[0m")" n_port
                 if [[ -n "$n_port" ]]; then
                     manage_iptables "remove" "$BHTTP_PORT"
                     BHTTP_PORT="$n_port"
@@ -316,7 +316,7 @@ menu_bhttp() {
                 fi
                 ;;
             2)
-                read -p "$(echo -e "\033[0;33m Nuevo Target SSH: \033[0m")" n_ssh
+                read -p "$(echo -e "\033[0;94m Nuevo Target SSH: \033[0m")" n_ssh
                 if [[ -n "$n_ssh" ]]; then
                     BHTTP_SSH="$n_ssh"
                     save_bhttp_conf && render_bhttp_service && systemctl restart bhttp
@@ -357,13 +357,13 @@ main_menu() {
         msg -bar3
         echo -e "\033[0;36m      GESTOR DE PROTOCOLOS ADMcgh\033[0m"
         msg -bar3
-        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m ${flech} ${cor[3]}Gestionar BTUN       $st_btun"
-        echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m ${flech} ${cor[3]}Gestionar BHTTP      $st_bhttp"
-        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;33m ${flech} ${cor[3]}Opción 3 (Reservada) \033[0;37m[PRONTO]\033[0m"
+        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m ${flech} ${cor[3]}Gestionar BTUN       $st_btun"
+        echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m ${flech} ${cor[3]}Gestionar BHTTP      $st_bhttp"
+        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;94m ${flech} ${cor[3]}Opción 3 (Reservada) \033[0;37m[PRONTO]\033[0m"
         echo -e "\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ SALIR ]\e[0m")"
         msg -bar3
         
-        read -p "$(echo -e "\033[0;33m Seleccione una opción: \033[0m")" m_opt
+        read -p "$(echo -e "\033[0;94m Seleccione una opción: \033[0m")" m_opt
 
         case $m_opt in
             1) menu_btun ;;

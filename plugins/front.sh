@@ -1,7 +1,7 @@
 #!/bin/bash
 #PUTO EL QUE LO DESENCRIPTA
 #colores
-lor1='\033[1;31m';lor2='\033[1;32m';lor3='\033[1;33m';lor4='\033[1;34m';lor5='\033[1;35m';lor6='\033[1;36m';lor7='\033[1;37m'
+lor1='\033[1;31m';lor2='\033[1;32m';lor3='\033[1;94m';lor4='\033[1;34m';lor5='\033[1;35m';lor6='\033[1;36m';lor7='\033[1;37m'
 
 fun_bar () {
           comando[0]="$1"

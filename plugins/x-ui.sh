@@ -2,7 +2,7 @@
 
 red='\033[0;31m'
 green='\033[0;32m'
-yellow='\033[0;33m'
+yellow='\033[0;94m'
 plain='\033[0m'
 
 if [[ -f /bin/ejecutar/msg ]]; then
@@ -18,7 +18,7 @@ command -v msg >/dev/null 2>&1 || msg() {
         -bar|-bar2|-bar3|-bar4) echo -e "\033[1;37m=====================================================\033[0m";;
         -verm|-verm2) echo -e "\033[1;31m$2\033[0m";;
         -verd) echo -e "\033[1;32m$2\033[0m";;
-        -ama) echo -e "\033[1;33m$2\033[0m";;
+        -ama) echo -e "\033[1;94m$2\033[0m";;
         -azu) echo -e "\033[1;34m$2\033[0m";;
         *) echo -e "$*";;
     esac
@@ -27,7 +27,7 @@ command -v print_center >/dev/null 2>&1 || print_center() {
     if [[ $# -gt 1 ]]; then echo -e "$2"; else echo -e "$1"; fi
 }
 command -v title >/dev/null 2>&1 || title() {
-    clear; echo -e "\033[1;33m=== $1 ===\033[0m"; msg -bar3
+    clear; echo -e "\033[1;94m=== $1 ===\033[0m"; msg -bar3
 }
 
 function chekKEY { return 0; }
@@ -440,25 +440,25 @@ show_usage() {
 show_menu() {
 msg -bar3
 print_center -verm2 'MENU PRINCIPAL DE X-UI WEB (ADMgh)'
-echo -e "\033[0;35m [${cor[2]}01\033[0;35m]\033[0;33m ${flech}${cor[3]}INSTALAR X-UI WEB" 
-echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;33m ${flech}${cor[3]}ACTUALIZAR X-UI WEB (BORRA ESTA TRADUCCION)" 
-echo -e "\033[0;35m [${cor[2]}03\033[0;35m]\033[0;33m ${flech}${cor[3]}DESINSTALAR X-UI WEB"
+echo -e "\033[0;35m [${cor[2]}01\033[0;35m]\033[0;94m ${flech}${cor[3]}INSTALAR X-UI WEB" 
+echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;94m ${flech}${cor[3]}ACTUALIZAR X-UI WEB (BORRA ESTA TRADUCCION)" 
+echo -e "\033[0;35m [${cor[2]}03\033[0;35m]\033[0;94m ${flech}${cor[3]}DESINSTALAR X-UI WEB"
 msg -bar3
-echo -e "\033[0;35m [${cor[2]}04\033[0;35m]\033[0;33m ${flech}${cor[3]}REESTABLECER USUARIO Y CONTRASEÑA DE ACCESO"
-echo -e "\033[0;35m [${cor[2]}05\033[0;35m]\033[0;33m ${flech}${cor[3]}REESTABLECER CONFIG DEL PANNEL"
-echo -e "\033[0;35m [${cor[2]}06\033[0;35m]\033[0;33m ${flech}${cor[3]}CAMBIAR PUERTO DEL PANNEL"
+echo -e "\033[0;35m [${cor[2]}04\033[0;35m]\033[0;94m ${flech}${cor[3]}REESTABLECER USUARIO Y CONTRASEÑA DE ACCESO"
+echo -e "\033[0;35m [${cor[2]}05\033[0;35m]\033[0;94m ${flech}${cor[3]}REESTABLECER CONFIG DEL PANNEL"
+echo -e "\033[0;35m [${cor[2]}06\033[0;35m]\033[0;94m ${flech}${cor[3]}CAMBIAR PUERTO DEL PANNEL"
 msg -bar3
-echo -e "\033[0;35m [${cor[2]}07\033[0;35m]\033[0;33m ${flech}${cor[3]}INICIAR SERVICIO X-UI"
-echo -e "\033[0;35m [${cor[2]}08\033[0;35m]\033[0;33m ${flech}${cor[3]}DETENER SERVICIO X-UI"
-echo -e "\033[0;35m [${cor[2]}09\033[0;35m]\033[0;33m ${flech}${cor[3]}REINICIAR SERVICIO X-UI"
-echo -e "\033[0;35m [${cor[2]}10\033[0;35m]\033[0;33m ${flech}${cor[3]}VER ESTADO DEL SERVICIO"
-echo -e "\033[0;35m [${cor[2]}11\033[0;35m]\033[0;33m ${flech}${cor[3]}VER REGISTRO X-UI"
+echo -e "\033[0;35m [${cor[2]}07\033[0;35m]\033[0;94m ${flech}${cor[3]}INICIAR SERVICIO X-UI"
+echo -e "\033[0;35m [${cor[2]}08\033[0;35m]\033[0;94m ${flech}${cor[3]}DETENER SERVICIO X-UI"
+echo -e "\033[0;35m [${cor[2]}09\033[0;35m]\033[0;94m ${flech}${cor[3]}REINICIAR SERVICIO X-UI"
+echo -e "\033[0;35m [${cor[2]}10\033[0;35m]\033[0;94m ${flech}${cor[3]}VER ESTADO DEL SERVICIO"
+echo -e "\033[0;35m [${cor[2]}11\033[0;35m]\033[0;94m ${flech}${cor[3]}VER REGISTRO X-UI"
 msg -bar3
-echo -e "\033[0;35m [${cor[2]}12\033[0;35m]\033[0;33m ${flech}${cor[3]}ACTIVAR AUTOREINICIO"
-echo -e "\033[0;35m [${cor[2]}13\033[0;35m]\033[0;33m ${flech}${cor[3]}DESACTIVAR AUTOREINICIO"
-echo -e "\033[0;35m [${cor[2]}14\033[0;35m]\033[0;33m ${flech}${cor[3]}INSTALACION DE BBR (NO RECOMENDADO)"
+echo -e "\033[0;35m [${cor[2]}12\033[0;35m]\033[0;94m ${flech}${cor[3]}ACTIVAR AUTOREINICIO"
+echo -e "\033[0;35m [${cor[2]}13\033[0;35m]\033[0;94m ${flech}${cor[3]}DESACTIVAR AUTOREINICIO"
+echo -e "\033[0;35m [${cor[2]}14\033[0;35m]\033[0;94m ${flech}${cor[3]}INSTALACION DE BBR (NO RECOMENDADO)"
 msg -bar3
-echo -e "\033[0;35m [${cor[2]}0\033[0;35m]\033[0;33m ${flech}${cor[3]} SALIR"
+echo -e "\033[0;35m [${cor[2]}0\033[0;35m]\033[0;94m ${flech}${cor[3]} SALIR"
 msg -bar3
 show_status
 echo && read -p "INGRESA DEL [0-14]: " num

@@ -476,11 +476,11 @@ clear
 	while :
 	do
 	clear
-		#col "5)" "\033[1;33mCONFIGURAR Trojan"
+		#col "5)" "\033[1;94mCONFIGURAR Trojan"
 		echo -e $barra
-		col "1)" "\033[1;33mRestaurar Copia"
+		col "1)" "\033[1;94mRestaurar Copia"
 		echo -e $barra
-		col "2)" "\033[1;33mCrear Copia"
+		col "2)" "\033[1;94mCrear Copia"
 		echo -e $barra
 		col "0)" "SALIR \033[0;31m|| $(blanco "Respaldos automaticos") $(on_off_res)"
 		echo -e $barra
@@ -502,13 +502,13 @@ clear
 	while :
 	do
 	clear
-		#col "5)" "\033[1;33mCONFIGURAR Trojan"
+		#col "5)" "\033[1;94mCONFIGURAR Trojan"
 		echo -e $barra
-		col "1)" "\033[1;33mReinstalar Servicio"
+		col "1)" "\033[1;94mReinstalar Servicio"
 		echo -e $barra
-		col "2)" "\033[1;33mReiniciar Servicio"
+		col "2)" "\033[1;94mReiniciar Servicio"
 		echo -e $barra
-		col "3)" "\033[1;33mEditar Manual ( nano )"
+		col "3)" "\033[1;94mEditar Manual ( nano )"
 		echo -e $barra
 		col "0)" "SALIR \033[0;31m|| $(blanco "Respaldos automaticos") $(on_off_res)"
 		echo -e $barra
@@ -544,11 +544,11 @@ clear
 	while :
 	do
 	clear
-		#col "5)" "\033[1;33mCONFIGURAR Trojan"
+		#col "5)" "\033[1;94mCONFIGURAR Trojan"
 		echo -e $barra
-		col "1)" "\033[1;33mMostrar fichero de CONFIG "
+		col "1)" "\033[1;94mMostrar fichero de CONFIG "
 		echo -e $barra
-		col "2)" "\033[1;33mEditar Config Manual ( Comando nano )"
+		col "2)" "\033[1;94mEditar Config Manual ( Comando nano )"
 		echo -e $barra
 		col "0)" "SALIR \033[0;31m|| $(blanco "Respaldos automaticos") $(on_off_res)"
 		echo -e $barra
@@ -693,15 +693,15 @@ main(){
 		col "2)" "\033[0;92mRENOVAR USUARIO "
 		col "3)" "\033[0;31mREMOVER USUARIO <->"
 		col "4)" "VER DATOS DE USUARIOS "
-		#col "5)" "\033[1;33mCONFIGURAR Trojan"
+		#col "5)" "\033[1;94mCONFIGURAR Trojan"
 		echo -e $barra
-	col "6)" "\033[1;33mEntrada Rapida $enrap"
+	col "6)" "\033[1;94mEntrada Rapida $enrap"
 		echo -e $barra
-		col "7)" "\033[1;33mMostrar/Editar Fichero interno"
-		col "8)" "\033[1;33mMenu Avanzado Trojan"
-		col "9)" "\033[1;33mCrear Copia de Config Trojan"	
+		col "7)" "\033[1;94mMostrar/Editar Fichero interno"
+		col "8)" "\033[1;94mMenu Avanzado Trojan"
+		col "9)" "\033[1;94mCrear Copia de Config Trojan"	
 		echo -e $barra
-		col "10)" "\033[1;33mMostrar Log del Trafico"
+		col "10)" "\033[1;94mMostrar Log del Trafico"
 		echo -e $barra
 		col "0)" "SALIR \033[0;31m|| $(blanco "Respaldos automaticos") $(on_off_res)"
 		echo -e $barra

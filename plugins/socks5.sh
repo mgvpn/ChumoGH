@@ -8,9 +8,9 @@ clear
 if [[ $1 == "" ]]
 then
 tittle
-echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;31m ➮ ${cor[3]}SOCKS5                ›   \033[1;32m$xsocks5 \033[1;33m"
-echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m ➮ ${cor[3]}SOCKS5 (Sockd)        ›   \033[1;32m$xsockd \033[1;33m"
-echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m ➮ ${cor[3]}SOCKS5 (Microsocks)   ›   \033[1;32m$xmicro \033[1;33m"
+echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;31m ➮ ${cor[3]}SOCKS5                ›   \033[1;32m$xsocks5 \033[1;94m"
+echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m ➮ ${cor[3]}SOCKS5 (Sockd)        ›   \033[1;32m$xsockd \033[1;94m"
+echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m ➮ ${cor[3]}SOCKS5 (Microsocks)   ›   \033[1;32m$xmicro \033[1;94m"
 echo -e "\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 read -p ": " opcao
 else

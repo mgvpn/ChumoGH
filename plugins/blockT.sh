@@ -2,7 +2,7 @@
 #19/12/19
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;33m" [4]="\033[1;32m" )
+declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;94m" [4]="\033[1;32m" )
 SCPfrm="/etc/adm-lite" && [[ ! -d ${SCPfrm} ]] && mkdir -p ${SCPfrm}
 SCPinst="/etc/adm-lite" && [[ ! -d ${SCPinst} ]] && mkdir -p ${SCPinst}
 

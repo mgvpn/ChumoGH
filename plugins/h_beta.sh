@@ -8,7 +8,7 @@
 		for pton in $(echo -e "$PT" | cut -d: -f2 | cut -d' ' -f1 | uniq); do
 			svcs=$(echo -e "$PT" | grep -w "$pton" | awk '{print $1}' | uniq)
 			[[ "$porta" = "$pton" ]] && {
-				echo -e "\n\033[1;31mPUERTO \033[1;33m$porta \033[1;31mOCUPADO POR \033[1;37m$svcs\033[0m"
+				echo -e "\n\033[1;31mPUERTO \033[1;94m$porta \033[1;31mOCUPADO POR \033[1;37m$svcs\033[0m"
 				sleep 0.5
 				return 0
 			}
@@ -30,16 +30,16 @@ echo $selection
 fun_openssh() {
 		clear
 		echo -e "\E[44;1;37m            OPENSSH             \E[0m\n"
-		echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mADICIONAR PORTA\033[1;31m
-[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mREMOVER PORTA\033[1;31m
-[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mVOLTAR\033[0m"
+		echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;94mADICIONAR PORTA\033[1;31m
+[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;94mREMOVER PORTA\033[1;31m
+[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;94mVOLTAR\033[0m"
 		echo ""
-		echo -ne "\033[1;32mOQUE DESEJA FAZER \033[1;33m?\033[1;37m "
+		echo -ne "\033[1;32mOQUE DESEJA FAZER \033[1;94m?\033[1;37m "
 		read resp
 		if [[ "$resp" = '1' ]]; then
 			clear
 			echo -e "\E[44;1;37m         ADICIONAR PORTA AO SSH         \E[0m\n"
-			echo -ne "\033[1;32mQUAL PORTA DESEJA ADICIONAR \033[1;33m?\033[1;37m "
+			echo -ne "\033[1;32mQUAL PORTA DESEJA ADICIONAR \033[1;94m?\033[1;37m "
 			read pt
 			[[ -z "$pt" ]] && {
 				echo -e "\n\033[1;31mPorta invalida!"
@@ -60,9 +60,9 @@ fun_openssh() {
 		elif [[ "$resp" = '2' ]]; then
 			clear
 			echo -e "\E[41;1;37m         REMOVER PORTA DO SSH         \E[0m"
-			echo -e "\n\033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mPORTA PADRAO \033[1;37m22 \033[1;33mCUIDADO !\033[0m"
-			echo -e "\n\033[1;33mPUERTAS SSH EN USO: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)\n"
-			echo -ne "\033[1;32mQUE PUERTO DESEAS REMOVER \033[1;33m?\033[1;37m "
+			echo -e "\n\033[1;94m[\033[1;31m!\033[1;94m] \033[1;32mPORTA PADRAO \033[1;37m22 \033[1;94mCUIDADO !\033[0m"
+			echo -e "\n\033[1;94mPUERTAS SSH EN USO: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)\n"
+			echo -ne "\033[1;32mQUE PUERTO DESEAS REMOVER \033[1;94m?\033[1;37m "
 			read pt
 			[[ -z "$pt" ]] && {
 				echo -e "\n\033[1;31mPUERTO INVALIDO!"
@@ -160,7 +160,7 @@ msg -ama "Limpieza Completa"
 SCPdir="/etc/adm-lite" 
 #SCPfrm="${SCPdir}" && [[ ! -d ${SCPfrm} ]] && exit 
 #SCPinst="${SCPdir}"&& [[ ! -d ${SCPinst} ]] && exit 
-#declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;33m" [4]="\033[1;32m" [5]="\e[1;36m" )
+#declare -A cor=( [0]="\033[1;37m" [1]="\033[1;34m" [2]="\033[1;31m" [3]="\033[1;94m" [4]="\033[1;32m" [5]="\e[1;36m" )
 
 #LISTA PORTAS
 mportas () {
@@ -179,16 +179,16 @@ comando="$1"
 _=$( $comando > /dev/null 2>&1 ) & > /dev/null 
 pid=$! 
 while [[ -d /proc/$pid ]]; do 
-echo -ne " \033[1;33m["    
+echo -ne " \033[1;94m["    
 for((i=0; i<20; i++)); do    
 echo -ne "\033[1;31m##"    
 sleep 0.5    
 done 
-echo -ne "\033[1;33m]" 
+echo -ne "\033[1;94m]" 
 sleep 1s 
 echo tput cuu1 tput dl1 
 done 
-echo -e " \033[1;33m[\033[1;31m########################################\033[1;33m] - \033[1;32m100%\033[0m" 
+echo -e " \033[1;94m[\033[1;31m########################################\033[1;94m] - \033[1;32m100%\033[0m" 
 sleep 1s 
 }  
 
@@ -235,16 +235,16 @@ clear&&clear
 [[ -e /etc/wireguard/params ]] && _wir="\e[32m[ ON ] " || _wir="\e[31m[ OFF ]" 
 [[ $(ps x | grep filebrowser | grep -v grep) ]] && file="\e[32m[ ON ] " || file="\e[31m[ OFF ]" 
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;33m PUERTO APACHE CUSTOM ${_apa}      "
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;33m LIMPIAR RAM && PAQUETES ANTIGUOS  "
-echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;33m ADD / REMOVE PORTS CUSTOM BADVPN  "
-echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;33m ADD / REMOVE PORTS CUSTOM OPENSSH "
-echo -e " \033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m${flech}\033[0;33m TROJAN GO - BETA                  "
-echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m${flech}\033[0;33m CREAR CERTIFICADO CON DOMINIO     "
-echo -e " \033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m${flech}\033[0;33m Modulo WireGuard VPN Client ${_wir}    "
-echo -e " \033[0;35m[\033[0;36m8\033[0;35m] \033[0;34m${flech}\033[0;33m FILEMANAGER WEB ${file}    "
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;94m PUERTO APACHE CUSTOM ${_apa}      "
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;94m LIMPIAR RAM && PAQUETES ANTIGUOS  "
+echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;94m ADD / REMOVE PORTS CUSTOM BADVPN  "
+echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;94m ADD / REMOVE PORTS CUSTOM OPENSSH "
+echo -e " \033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m${flech}\033[0;94m TROJAN GO - BETA                  "
+echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m${flech}\033[0;94m CREAR CERTIFICADO CON DOMINIO     "
+echo -e " \033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m${flech}\033[0;94m Modulo WireGuard VPN Client ${_wir}    "
+echo -e " \033[0;35m[\033[0;36m8\033[0;35m] \033[0;34m${flech}\033[0;94m FILEMANAGER WEB ${file}    "
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m➮\033[0;33m $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")  "
+echo -e " \033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m➮\033[0;94m $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")  "
 msg -bar3
   selection=$(selection_fun 8)
 case ${selection} in

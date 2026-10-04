@@ -78,11 +78,11 @@ totalporta=($portasx)
     unset PORT
     for ((i = 0; i < ${#totalporta[@]}; i++)); do
       [[ $(_puertas | grep "${totalporta[$i]}") = "" ]] && {
-        echo -ne " \033[1;33m BADVPN:\033[1;32m ${totalporta[$i]}"
+        echo -ne " \033[1;94m BADVPN:\033[1;32m ${totalporta[$i]}"
         PORT+="${totalporta[$i]}\n"
         screen -dmS badvpn $(which badvpn-udpgw) --listen-addr 127.0.0.1:${totalporta[$i]} --max-clients 1000 --max-connections-for-client 10 && echo -e "\033[1;32m [OK]" || echo -e "\033[1;31m [FAIL]"
       } || {
-        echo -e "\033[1;33m Puerto Escojido:\033[1;31m ${totalporta[$i]} FAIL"
+        echo -e "\033[1;94m Puerto Escojido:\033[1;31m ${totalporta[$i]} FAIL"
       }
     done
 } || echo -e "\033[1;31m [ SERVICE NO INSTALL ]"

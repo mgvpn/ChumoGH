@@ -27,7 +27,7 @@ msg -bar3
 echo -e "\033[1;37m Se borraran el servicio, el nucleo, la configuracion\n y los comandos v2ray/xray/x-ui (usuarios incluidos).\033[0m"
 msg -bar3
 read -p " Escriba S para confirmar: " _conf
-[[ ${_conf,,} != "s" ]] && { echo -e "\033[1;33m Cancelado\033[0m"; sleep 1; return 1; }
+[[ ${_conf,,} != "s" ]] && { echo -e "\033[1;94m Cancelado\033[0m"; sleep 1; return 1; }
 systemctl stop v2ray xray &>/dev/null
 systemctl disable v2ray xray &>/dev/null
 rm -f /etc/systemd/system/v2ray.service /etc/systemd/system/v2ray@.service
@@ -74,7 +74,7 @@ read -p " Enter para continuar" _foo
 # --- FIX Ubuntu 23+/24: comando v2ray (v2ray_util) para instaladores V2Ray ---
 fix_v2ray_util(){
 if ! command -v v2ray-util &>/dev/null; then
-    echo -e "\033[1;33m Instalando v2ray_util (comando v2ray)...\033[0m"
+    echo -e "\033[1;94m Instalando v2ray_util (comando v2ray)...\033[0m"
     command -v pip3 &>/dev/null || apt-get install -y python3-pip
     if pip3 install --help 2>/dev/null | grep -q -- "--break-system-packages"; then
         pip3 install -U v2ray_util --break-system-packages
@@ -111,10 +111,10 @@ command -v curl >/dev/null 2>&1 || apt-get install -y curl &>/dev/null &
 if ! declare -f msg >/dev/null 2>&1; then
     msg() {
         case "$1" in
-            -bar|-bar2|-bar3|-bar4|-blue|-br) echo -e "\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" ;;
+            -bar|-bar2|-bar3|-bar4|-blue|-br) echo -e "\033[1;94m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" ;;
             -verd|-nverd) echo -e "\033[1;32m${2}\033[0m" ;;
             -verm|-verm2|-verm3) echo -e "\033[1;31m${2}\033[0m" ;;
-            -ama|-nama) echo -e "\033[1;33m${2}\033[0m" ;;
+            -ama|-nama) echo -e "\033[1;94m${2}\033[0m" ;;
             -bra) echo -e "\033[1;37m${2}\033[0m" ;;
             *) echo -e "${2}" ;;
         esac
@@ -221,7 +221,7 @@ show_welcome() {
     echo -e "\e[1;36m
   ╔══════════════════════════════════════════════════╗
   ║                                                  ║
-  ║           \e[1;33mBIENVENIDO A ADMcgh SCRIPT\e[1;36m             ║
+  ║           \e[1;94mBIENVENIDO A ADMcgh SCRIPT\e[1;36m             ║
   ║                                                  ║
   ╠══════════════════════════════════════════════════╣
   ║                                                  ║
@@ -240,7 +240,7 @@ show_welcome() {
   ║  \e[1;35mEste mensaje solo aparecerá esta vez.\e[0m           \e[1;36m║
   ║  \e[1;35mComo agradecimiento por elegirnos    \e[0m           \e[1;36m║
   ║                                                  ║
-  ║  \e[1;33m[Presione ENTER para continuar o espere 10s...]\e[0m \e[1;36m║
+  ║  \e[1;94m[Presione ENTER para continuar o espere 10s...]\e[0m \e[1;36m║
   ║                                                  ║
   ╚══════════════════════════════════════════════════╝
 \e[0m"
@@ -282,7 +282,7 @@ export c_magenta="\033[1;35m"
 export c_cyan="\033[1;36m"
 export c_green="\033[1;32m"
 export c_red="\033[1;31m"
-export c_yellow="\033[1;33m"
+export c_yellow="\033[1;94m"
 
 anim=(
   "${c_blue}${t0gSl}${c_green}${t0gSl}${c_red}${t0gSl}${c_magenta}${t0gSl}    "
@@ -705,7 +705,7 @@ chmod 777 ./*
 echo -e "\e[1;36m
   ╔══════════════════════════════════════════════════╗
   ║                                                  ║
-  ║            \e[1;33mCONFIRMACIÓN DE ACTUALIZACIÓN\e[1;36m         ║
+  ║            \e[1;94mCONFIRMACIÓN DE ACTUALIZACIÓN\e[1;36m         ║
   ║                                                  ║
   ╠══════════════════════════════════════════════════╣
   ║                                                  ║
@@ -727,7 +727,7 @@ echo -e "\e[1;36m
 read -p "¿Desea continuar con la actualización? [s/N]: " respuesta
 if [[ "$respuesta" =~ ^[SsYy]$ ]]; then
     echo -e "\e[1;32m✔ Por favor copie exactamente este comando:\e[0m\n\n"
-    echo -e "\e[1;33mapt update -y; apt upgrade -y; wget -q https://raw.githubusercontent.com/ChumoGH/ScriptCGH/main/setup; chmod 777 setup; ./setup --ADMcgh\e[0m \n\n\n"
+    echo -e "\e[1;94mapt update -y; apt upgrade -y; wget -q https://raw.githubusercontent.com/ChumoGH/ScriptCGH/main/setup; chmod 777 setup; ./setup --ADMcgh\e[0m \n\n\n"
 else
     echo -e "\e[1;31m✖ Actualización cancelada por el usuario.\e[0m"
     exit 1
@@ -839,87 +839,87 @@ for porta in `echo -e "$PT" | cut -d: -f2 | cut -d' ' -f1 |sort -n | uniq`; do
 done
 
 for((i=1; i<$x; i++)); do
-[[ ! -z ${svcs[$i]} ]] && texto="\033[1;34m ${pPIniT} \033[1;37m${svcs[$i]}: \033[1;33m${porta[$i]}" || texto=''
-[[ ${svcs[$i]} = "apache2" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mAPACHE: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "nginx" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mWEB-NGinx: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "node" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mWebSocket: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "clash" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mClash: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "psiphond" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mPSIPHON: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "xray-v2-u" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "v2-ui" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mV2-UI/WEB: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "xray-linu" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "x-ui" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXUI/WEB: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "openvpn" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-TCP: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "squid" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "squid3" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "dropbear" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mDROPBEAR: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "python3" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON3: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "python" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "obfs-serv" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSR (OBFS): \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "ss-server" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSR (LIV): \033[1;33m${porta[$i]}"
+[[ ! -z ${svcs[$i]} ]] && texto="\033[1;34m ${pPIniT} \033[1;37m${svcs[$i]}: \033[1;94m${porta[$i]}" || texto=''
+[[ ${svcs[$i]} = "apache2" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mAPACHE: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "nginx" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mWEB-NGinx: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "node" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mWebSocket: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "clash" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mClash: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "psiphond" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mPSIPHON: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "xray-v2-u" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "v2-ui" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mV2-UI/WEB: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "xray-linu" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "x-ui" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXUI/WEB: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "openvpn" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-TCP: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "squid" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "squid3" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "dropbear" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mDROPBEAR: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "python3" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON3: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "python" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "obfs-serv" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSR (OBFS): \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "ss-server" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSR (LIV): \033[1;94m${porta[$i]}"
 [[ ${svcs[$i]} = "sshd" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSH: ${porta[$i]}"
 [[ ${svcs[$i]} = "ssh" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSH: ${porta[$i]}"
-[[ ${svcs[$i]} = "systemd-r" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSystem-DNS: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "stunnel4" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "stunnel" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "v2ray" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mV2RAY: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "xray" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXRAY: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "badvpn-ud" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mBadVPN: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "trojan" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mTrojan-GO: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "sslh" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSLH: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "nc.tradit" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mGenADM-Keys: \033[1;33m✔️"
-[[ ${svcs[$i]} = "filebrows" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mFileBrowser: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "rpcbind" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mRPCBind: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "snell-ser" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSNell: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "dns-serve" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "openvpn" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "udpServer" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "hysteria" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "UDP-Custo" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "php" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mAToken: \033[1;33m${porta[$i]}"
+[[ ${svcs[$i]} = "systemd-r" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSystem-DNS: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "stunnel4" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "stunnel" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "v2ray" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mV2RAY: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "xray" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mXRAY: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "badvpn-ud" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mBadVPN: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "trojan" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mTrojan-GO: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "sslh" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSSLH: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "nc.tradit" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mGenADM-Keys: \033[1;94m✔️"
+[[ ${svcs[$i]} = "filebrows" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mFileBrowser: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "rpcbind" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mRPCBind: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "snell-ser" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSNell: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "dns-serve" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "openvpn" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "udpServer" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "hysteria" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "UDP-Custo" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "php" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mAToken: \033[1;94m${porta[$i]}"
     i=$(($i+1))
-[[ ! -z ${svcs[$i]} ]] && texto_="\033[1;34m ${pPIniT} \033[1;37m${svcs[$i]}: \033[1;33m${porta[$i]}" || texto_=''
-[[ ${svcs[$i]} = "apache2" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mApache-WEB: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "nginx" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mWEB-NGinx: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "node" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mWebSocket: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "clash" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mClash: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "psiphond" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mPSIPHON: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "xray-v2-u" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "v2-ui" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mV2-UI/WEB: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "xray-linu" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "x-ui" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXUI/WEB: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "openvpn" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-TCP: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "squid" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "squid3" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "dropbear" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mDROPBEAR: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "python3" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON3: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "python" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "obfs-serv" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSR (OBFS): \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "ss-server" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSR (LIV): \033[1;33m${porta[$i]}"
+[[ ! -z ${svcs[$i]} ]] && texto_="\033[1;34m ${pPIniT} \033[1;37m${svcs[$i]}: \033[1;94m${porta[$i]}" || texto_=''
+[[ ${svcs[$i]} = "apache2" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mApache-WEB: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "nginx" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mWEB-NGinx: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "node" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mWebSocket: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "clash" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mClash: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "psiphond" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mPSIPHON: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "xray-v2-u" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "v2-ui" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mV2-UI/WEB: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "xray-linu" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXRAY/UI: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "x-ui" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXUI/WEB: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "openvpn" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-TCP: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "squid" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "squid3" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSQUID: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "dropbear" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mDROPBEAR: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "python3" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON3: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "python" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSOCKS/PYTHON: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "obfs-serv" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSR (OBFS): \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "ss-server" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSR (LIV): \033[1;94m${porta[$i]}"
 [[ ${svcs[$i]} = "sshd" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSH: ${porta[$i]}"
 [[ ${svcs[$i]} = "ssh" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSH: ${porta[$i]}"
-[[ ${svcs[$i]} = "systemd-r" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSystem-DNS: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "stunnel4" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "stunnel" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "v2ray" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mV2RAY: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "xray" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXRAY: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "badvpn-ud" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mBadVPN: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "trojan" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mTrojan-GO: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "sslh" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSLH: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "nc.tradit" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mGenADM-Keys: \033[1;33m✔️"
-[[ ${svcs[$i]} = "filebrows" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mFileBrowser: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "rpcbind" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mRPCBind: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "snell-ser" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSNell: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "dns-serve" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "openvpn" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "udpServer" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "hysteria" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "UDP-Custo" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;33m${porta[$i]}"
-[[ ${svcs[$i]} = "php" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mAToken: \033[1;33m${porta[$i]}"
+[[ ${svcs[$i]} = "systemd-r" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSystem-DNS: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "stunnel4" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "stunnel" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSL: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "v2ray" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mV2RAY: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "xray" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mXRAY: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "badvpn-ud" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mBadVPN: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "trojan" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mTrojan-GO: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "sslh" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSSLH: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "nc.tradit" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mGenADM-Keys: \033[1;94m✔️"
+[[ ${svcs[$i]} = "filebrows" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mFileBrowser: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "rpcbind" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mRPCBind: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "snell-ser" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSNell: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "dns-serve" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "openvpn" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "udpServer" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "hysteria" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "UDP-Custo" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;94m${porta[$i]}"
+[[ ${svcs[$i]} = "php" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mAToken: \033[1;94m${porta[$i]}"
 #[[ -z $texto_ ]] && {
-#[[ -z $(echo -e "${_ps}"| grep slowdns | grep -v grep) ]] || texto_="\033[1;34m ∘ \033[1;37mSlowDNS: \033[1;33m5300"
+#[[ -z $(echo -e "${_ps}"| grep slowdns | grep -v grep) ]] || texto_="\033[1;34m ∘ \033[1;37mSlowDNS: \033[1;94m5300"
 #					}
-#[[ -z $(echo -e "${_ps}"| grep slowdns | grep -v grep) ]] || texto="\033[1;34m ∘ \033[1;37mSlowDNS: \033[1;33m5300"
+#[[ -z $(echo -e "${_ps}"| grep slowdns | grep -v grep) ]] || texto="\033[1;34m ∘ \033[1;37mSlowDNS: \033[1;94m5300"
 puertos+="${texto}|${texto_}\n"
 done 
 local _PT=$(lsof -V -i UDP -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND"|grep -E 'openvpn|dns-serve|udpServer|hysteria|UDP-Custo|Hysteria2|ZipVPN')
@@ -931,19 +931,19 @@ for porta in `echo -e "$_PT" | cut -d: -f2 | cut -d' ' -f1 |sort -n | uniq`; do
 	let x++;
 done
 for((i=1; i<$x; i++)); do
-[[ ! -z ${_svcs[$i]} ]] && texto="\033[1;34m ${pPIniT} \033[1;37m${_svcs[$i]}: \033[1;33m${_porta[$i]}" || texto=''
-[[ ${_svcs[$i]} = "dns-serve" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "openvpn" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "udpServer" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "hysteria" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "UDP-Custo" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;33m${_porta[$i]}"
+[[ ! -z ${_svcs[$i]} ]] && texto="\033[1;34m ${pPIniT} \033[1;37m${_svcs[$i]}: \033[1;94m${_porta[$i]}" || texto=''
+[[ ${_svcs[$i]} = "dns-serve" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "openvpn" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "udpServer" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "hysteria" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "UDP-Custo" ]] && texto="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;94m${_porta[$i]}"
 i=$(($i+1))
-[[ ! -z ${_svcs[$i]} ]] && texto_="\033[1;34m ${pPIniT} \033[1;37m${_svcs[$i]}: \033[1;33m${_porta[$i]}" || texto_=''
-[[ ${_svcs[$i]} = "dns-serve" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "openvpn" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "udpServer" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "hysteria" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;33m${_porta[$i]}"
-[[ ${_svcs[$i]} = "UDP-Custo" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;33m${_porta[$i]}"
+[[ ! -z ${_svcs[$i]} ]] && texto_="\033[1;34m ${pPIniT} \033[1;37m${_svcs[$i]}: \033[1;94m${_porta[$i]}" || texto_=''
+[[ ${_svcs[$i]} = "dns-serve" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mSlowDNS: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "openvpn" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mOPENVPN-UDP: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "udpServer" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDPServer: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "hysteria" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mHysteriaUDP: \033[1;94m${_porta[$i]}"
+[[ ${_svcs[$i]} = "UDP-Custo" ]] && texto_="\033[1;34m ${pPIniT} \033[1;37mUDP-Custom: \033[1;94m${_porta[$i]}"
 puertos+="${texto}|${texto_}\n"
 done
 [[ $(echo -e "$puertos" | grep 'SSH:') ]] && {
@@ -965,10 +965,10 @@ unset svcs porta puertos i x
 [[ -z ${cor[2]} ]] && cor[2]="\033[1;32m"
 [[ -z ${cor[3]} ]] && cor[3]="\033[1;37m"
 [[ -z ${cor[4]} ]] && cor[4]="\033[1;36m"
-[[ -z ${cor[5]} ]] && cor[5]="\033[1;33m"
+[[ -z ${cor[5]} ]] && cor[5]="\033[1;94m"
 [[ -z ${cor[6]} ]] && cor[6]="\033[1;35m"
 
-[[ $v1 = $v2 ]] && vesaoSCT="\033[1;37m ADMcgh 】\033[0m\033[0;33m($v2)" || vesaoSCT="\033[1;37m ADMcgh 】\033[0m\033[0;33m($v2) ► \033[1;32m[$v1]\033[1;31m"
+[[ $v1 = $v2 ]] && vesaoSCT="\033[1;37m ADMcgh 】\033[0m\033[0;94m($v2)" || vesaoSCT="\033[1;37m ADMcgh 】\033[0m\033[0;94m($v2) ► \033[1;32m[$v1]\033[1;31m"
 local _srv_name=""
 if [[ -s /root/name ]]; then
     _srv_name=$(cat /root/name 2>/dev/null)
@@ -1016,25 +1016,25 @@ msg -bar3
 echo -e "${cor[2]} 🔐 ${cor[5]}ADMINISTRADOR DE USUARIOS SSH|SSL|DROPBEAR 🔐"
 echo -e "  ${cor[1]} ▸ M LIBRE: ${cor[2]}${mem_free}  ${cor[1]} ▸ USO DE CPU: ${cpu_used} "
 msg -bar3 
-echo -e "\033[0;35m [\033[0;32m01\033[0;35m]\033[0;33m ${flech}${cor[3]} AGREGAR USUARIO\033[0;31m(\033[0;33mHWID\033[0;31m/\033[0;33mNORMAL\033[0;31m/\033[0;33mTOKEN\033[0;31m) 📝" #   ${cor[2]}   [-] >${cor[3]} - "
-echo -e "\033[0;35m [\033[0;32m02\033[0;35m]\033[0;33m ${flech}${cor[3]} BORRAR 1/TODOS LOS USUARIO/s       🗑 " 
-echo -e "\033[0;35m [\033[0;32m03\033[0;35m]\033[0;33m ${flech}${cor[3]} EDITAR/RENOVAR USUARIOS            ♻ " 
-echo -e "\033[0;35m [\033[0;32m04\033[0;35m]\033[0;33m ${flech}${cor[3]} MOSTRAR USUARIOS REGISTRADOS       🛡 " 
-echo -e "\033[0;35m [\033[0;32m05\033[0;35m]\033[0;33m ${flech}${cor[3]} MOSTRAR USUARIOS CONECTADOS        👁️‍🗨 " #  ${cor[2]} [-] >${cor[3]} - "
-echo -e "\033[0;35m [\033[0;32m06\033[0;35m]\033[0;33m ${flech}${cor[3]} ADD/REMOVE BANNER ( SSH/DROPBEAR ) 🇪🇨 "
-echo -e "\033[0;35m [\033[0;32m07\033[0;35m]\033[0;33m ${flech}${cor[3]} LOG DE CONSUMO ( Artificial )      🥨 "
-echo -e "\033[0;35m [\033[0;32m08\033[0;35m]\033[0;33m ${flech}${cor[3]} BLOQUEAR USUARIOS $ul"
-echo -e "\033[0;35m [\033[0;32m09\033[0;35m]\033[0;33m ${flech}${cor[3]} BACKUP USUARIOS \033[0;32m(#OFFICIAL) 🔐"
-echo -e "\033[0;35m [\033[0;32m10\033[0;35m]\033[0;33m ${flech}${cor[3]} MENU CUENTAS SSR/SS \033[0;32m(#OFFICIAL)"
-echo -e "\033[0;35m [\033[0;32m11\033[0;35m]\033[0;33m ${flech}${cor[3]} BOT CLIENTES TELEGRAM [ $bt ]\033[0;33m(#BETA)"
-echo -e "\033[0;35m [\033[0;32m12\033[0;35m]\033[0;33m ${flech}${cor[3]} VERIFICADOR CLIENTES ( INDV ) " #\033[0;32m(#OFFICIAL)"
-echo -e "\033[0;35m [\033[0;32m13\033[0;35m]\033[0;33m ${flech}${cor[3]} ACTIVADOR CheckUser ( $var_sks1 ) " 
-echo -e "\033[0;35m [\033[0;32m14\033[0;35m]\033[0;33m ${flech}${cor[3]} CONTROL DE ADMINISTRACION MULTILOGINS ( $ ) " 
+echo -e "\033[0;35m [\033[0;32m01\033[0;35m]\033[0;94m ${flech}${cor[3]} AGREGAR USUARIO\033[0;31m(\033[0;94mHWID\033[0;31m/\033[0;94mNORMAL\033[0;31m/\033[0;94mTOKEN\033[0;31m) 📝" #   ${cor[2]}   [-] >${cor[3]} - "
+echo -e "\033[0;35m [\033[0;32m02\033[0;35m]\033[0;94m ${flech}${cor[3]} BORRAR 1/TODOS LOS USUARIO/s       🗑 " 
+echo -e "\033[0;35m [\033[0;32m03\033[0;35m]\033[0;94m ${flech}${cor[3]} EDITAR/RENOVAR USUARIOS            ♻ " 
+echo -e "\033[0;35m [\033[0;32m04\033[0;35m]\033[0;94m ${flech}${cor[3]} MOSTRAR USUARIOS REGISTRADOS       🛡 " 
+echo -e "\033[0;35m [\033[0;32m05\033[0;35m]\033[0;94m ${flech}${cor[3]} MOSTRAR USUARIOS CONECTADOS        👁️‍🗨 " #  ${cor[2]} [-] >${cor[3]} - "
+echo -e "\033[0;35m [\033[0;32m06\033[0;35m]\033[0;94m ${flech}${cor[3]} ADD/REMOVE BANNER ( SSH/DROPBEAR ) 🇪🇨 "
+echo -e "\033[0;35m [\033[0;32m07\033[0;35m]\033[0;94m ${flech}${cor[3]} LOG DE CONSUMO ( Artificial )      🥨 "
+echo -e "\033[0;35m [\033[0;32m08\033[0;35m]\033[0;94m ${flech}${cor[3]} BLOQUEAR USUARIOS $ul"
+echo -e "\033[0;35m [\033[0;32m09\033[0;35m]\033[0;94m ${flech}${cor[3]} BACKUP USUARIOS \033[0;32m(#OFFICIAL) 🔐"
+echo -e "\033[0;35m [\033[0;32m10\033[0;35m]\033[0;94m ${flech}${cor[3]} MENU CUENTAS SSR/SS \033[0;32m(#OFFICIAL)"
+echo -e "\033[0;35m [\033[0;32m11\033[0;35m]\033[0;94m ${flech}${cor[3]} BOT CLIENTES TELEGRAM [ $bt ]\033[0;94m(#BETA)"
+echo -e "\033[0;35m [\033[0;32m12\033[0;35m]\033[0;94m ${flech}${cor[3]} VERIFICADOR CLIENTES ( INDV ) " #\033[0;32m(#OFFICIAL)"
+echo -e "\033[0;35m [\033[0;32m13\033[0;35m]\033[0;94m ${flech}${cor[3]} ACTIVADOR CheckUser ( $var_sks1 ) " 
+echo -e "\033[0;35m [\033[0;32m14\033[0;35m]\033[0;94m ${flech}${cor[3]} CONTROL DE ADMINISTRACION MULTILOGINS ( $ ) " 
 msg -bar3
-echo -e " \033[0;35m [\033[0;32m0\033[0;35m]\033[0;33m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+echo -e " \033[0;35m [\033[0;32m0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 msg -bar3
-[[ -e /etc/adm-lite/modulos ]] && echo -ne " \033[0;33m(\033[0;32mCONTADOR :$_on\033[0;33m) " || echo -ne "\033[0;33m(\033[0;32mCONTADOR :$_off\033[0;33m) "
-[[ -e /etc/systemd/system/killadm.service ]] && echo -e "\033[0;33m(\033[1;31m \033[1;36mKILL MULTILOGUIN ${_on}\033[0;33m) " || echo -e "\033[0;33m(\033[1;36m ACTIVAR KILL MULTISESIONES\033[1;31m\033[1;36m ${_off}\033[0;33m)\033[0m"
+[[ -e /etc/adm-lite/modulos ]] && echo -ne " \033[0;94m(\033[0;32mCONTADOR :$_on\033[0;94m) " || echo -ne "\033[0;94m(\033[0;32mCONTADOR :$_off\033[0;94m) "
+[[ -e /etc/systemd/system/killadm.service ]] && echo -e "\033[0;94m(\033[1;31m \033[1;36mKILL MULTILOGUIN ${_on}\033[0;94m) " || echo -e "\033[0;94m(\033[1;36m ACTIVAR KILL MULTISESIONES\033[1;31m\033[1;36m ${_off}\033[0;94m)\033[0m"
 msg -bar3
 
 
@@ -1226,7 +1226,7 @@ function criarusuarioteste() {
     if ls /etc/usuariosteste/*.sh 1> /dev/null 2>&1; then
     local ux='1'
 		for testus in $(ls /etc/usuariosteste | sed 's/.sh//g'); do
-            echo -e " \033[0;35m[\033[0;36m${ux}\033[0;35m] \033[0;34m➮\033[0;33m $testus"
+            echo -e " \033[0;35m[\033[0;36m${ux}\033[0;35m] \033[0;34m➮\033[0;94m $testus"
 			let ux++
         done
     else
@@ -1371,7 +1371,7 @@ bb=$(printf '%-18s' "USO APROXIMADO")
 aa=$(printf '%-19s' "USUARIOS")
 cc=$(printf '%-18s' "CONSUMO TOTAL")
 msg -bar3
-echo -e "\033[1;33m $aa $bb $cc"
+echo -e "\033[1;94m $aa $bb $cc"
 msg -bar3
 while read u; do
 b=$(printf '%-18s' "$(($(echo $u | awk '{print $2}')/970)) - MB")
@@ -1494,14 +1494,14 @@ call_cleanput "22"
 msg -bar3
 echo -e " \033[0;50m       ⚜️   CREADOR DE CUENTAS TIPO  ⚜️ "
 msg -bar3
-echo -e " \033[0;35m[\033[0;32m01\033[0;35m] \033[0;33m >\033[0;33m SSH|DROPBEAR (DEMO) "
-echo -e " \033[0;35m[\033[0;32m02\033[0;35m] \033[0;33m >\033[0;33m SSH|DROPBEAR "
-echo -e " \033[0;35m[\033[0;32m03\033[0;35m] \033[0;33m >\033[0;33m HWID         "
-echo -e " \033[0;35m[\033[0;32m04\033[0;35m] \033[0;33m >\033[0;31m TOKEN "
+echo -e " \033[0;35m[\033[0;32m01\033[0;35m] \033[0;94m >\033[0;94m SSH|DROPBEAR (DEMO) "
+echo -e " \033[0;35m[\033[0;32m02\033[0;35m] \033[0;94m >\033[0;94m SSH|DROPBEAR "
+echo -e " \033[0;35m[\033[0;32m03\033[0;35m] \033[0;94m >\033[0;94m HWID         "
+echo -e " \033[0;35m[\033[0;32m04\033[0;35m] \033[0;94m >\033[0;31m TOKEN "
 msg -bar3
-echo -e " \033[0;35m[\033[0;32m05\033[0;35m] \033[0;33m >\033[0;31m MODIFICAR CONTRASEÑA TOKEN "
+echo -e " \033[0;35m[\033[0;32m05\033[0;35m] \033[0;94m >\033[0;31m MODIFICAR CONTRASEÑA TOKEN "
 msg -bar3
-echo -e " \033[0;35m[\033[1;32m00\033[0;35m] \033[0;33m ⇦ $(msg -bra "\e[3;33m[ VOLVER ]\e[0m")"
+echo -e " \033[0;35m[\033[1;32m00\033[0;35m] \033[0;94m ⇦ $(msg -bra "\e[3;94m[ VOLVER ]\e[0m")"
 msg -bar3
 selection=$(selection_fun 6)
 case ${selection} in
@@ -1901,7 +1901,7 @@ else
 		sleep 3
 fi
 [[ -e /etc/v2ray/config.json ]] && {
-echo -e "\033[1;41m DESEAS AÑADIR EL USUARIO EN VMESS ?\033[0;33m :v"
+echo -e "\033[1;41m DESEAS AÑADIR EL USUARIO EN VMESS ?\033[0;94m :v"
 echo -ne "\033[0;32m "
 read -p " Responde [ s | n ] : " -e -i "n" x
 tput cuu1 >&2 && tput dl1 >&2
@@ -1955,10 +1955,10 @@ call_cleanput "18"
 msg -bar3
 echo -e "${cor[4]} ELIMINAR USUARIOS"
 msg -bar3
-echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m >${cor[3]} 1 USER"
-echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m >${cor[3]} TODOS \033[0;33m(ITERATIVO 1x1) \033[0;32m[RECOMENDADO]  "
-echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;33m >${cor[3]} SOLO CADUCADOS"
-echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;33m >${cor[3]} TODOS \033[0;33m(SIN PREGUNTAR) \033[0;31m[NO RECOMENDADO] "
+echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m >${cor[3]} 1 USER"
+echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m >${cor[3]} TODOS \033[0;94m(ITERATIVO 1x1) \033[0;32m[RECOMENDADO]  "
+echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;94m >${cor[3]} SOLO CADUCADOS"
+echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;94m >${cor[3]} TODOS \033[0;94m(SIN PREGUNTAR) \033[0;31m[NO RECOMENDADO] "
 msg -bar3
 local selection=$(selection_fun 4)
 case ${selection} in
@@ -2401,7 +2401,7 @@ _cont=$(($_cont + 1))
 	}
 done
 msg -bar3
-echo -e " \033[1;32m 🔰 # TIENES \033[1;33m [ \033[1;36m${_cont}\033[1;33m ]\033[1;32m CLIENTES EN TU SERVIDOR 🔰 #"
+echo -e " \033[1;32m 🔰 # TIENES \033[1;94m [ \033[1;36m${_cont}\033[1;94m ]\033[1;32m CLIENTES EN TU SERVIDOR 🔰 #"
 msg -bar3
 unset txt_
 }
@@ -2483,23 +2483,23 @@ fi
 [[ -e $dir_user/${user} ]] && {
 
 [[ $(cat $dir_user/${user} | grep "limite" | awk '{print $2}') = "HWID" ]] && { 
-user="$(cat $dir_user/${user} | grep "senha" | awk '{print $2}') \033[1;33m[\033[1;34mHWID\033[1;33m]\033[1;32m"
-_limiter="/${_limTOP}\033[1;33m]\033[1;32m"
+user="$(cat $dir_user/${user} | grep "senha" | awk '{print $2}') \033[1;94m[\033[1;34mHWID\033[1;94m]\033[1;32m"
+_limiter="/${_limTOP}\033[1;94m]\033[1;32m"
 } || {
 [[ $(cat $dir_user/${user} | grep "limite" | awk '{print $2}') = "TOKEN" ]] && { 
-user="$(cat $dir_user/${user} | grep "senha" | awk '{print $2}') \033[1;33m[\033[1;35mTOKEN\033[1;33m]\033[1;32m"
-_limiter="/${_limTOP}\033[1;33m]\033[1;32m"												
+user="$(cat $dir_user/${user} | grep "senha" | awk '{print $2}') \033[1;94m[\033[1;35mTOKEN\033[1;94m]\033[1;32m"
+_limiter="/${_limTOP}\033[1;94m]\033[1;32m"												
 																				} 
 	} || {
-	_limiter="\033[1;32m/\033[1;31m$(cat $dir_user/${user} | grep "limit" | awk '{print $2}')\033[1;33m]\033[1;32m"
+	_limiter="\033[1;32m/\033[1;31m$(cat $dir_user/${user} | grep "limit" | awk '{print $2}')\033[1;94m]\033[1;32m"
 	}
-} || _limiter='/⚠️\033[1;33m]\033[1;32m'
+} || _limiter='/⚠️\033[1;94m]\033[1;32m'
 if [ "$conex" -gt "0" ]; then
 conex1+="${conex}+"
-#lim="\033[1;33m[\033[1;35m$(printf '%-7s' ${conex}${_limiter})"
+#lim="\033[1;94m[\033[1;35m$(printf '%-7s' ${conex}${_limiter})"
 #local users=" ${user},	$lim,	${timerr},	${cor[0]}"
 #echo -e "$users" | column -e -t -s ","
-lim="\033[1;33m[\033[1;35m${conex}${_limiter}"
+lim="\033[1;94m[\033[1;35m${conex}${_limiter}"
 users=$(printf '%-15s%-15s%-15s' "${user} "	" ${lim}	"	"${timerr}"	)
 echo -e "\033[0;35m [\033[0;36m$nU\033[0;35m]\033[0;31m-${cor[3]}$users ${cor[0]}"
 let nU++
@@ -2509,7 +2509,7 @@ conex1+="0"
 conex1=$(echo $conex1|bc)
 [[ "$conex1" = "" ]] &&  echo -e "\033[1;31m  ⚠️  NO TIENES USUARIOS CONECTADOS ! ⚠️ " 
 msg -bar3
-echo -e " \033[1;32m 🔰 # TIENES \033[1;33m [ \033[1;36m${conex1}\033[1;33m ]\033[1;32m USUARIOS CONECTADOS 🔰 #"
+echo -e " \033[1;32m 🔰 # TIENES \033[1;94m [ \033[1;36m${conex1}\033[1;94m ]\033[1;32m USUARIOS CONECTADOS 🔰 #"
 msg -bar3
 }
 
@@ -2569,11 +2569,11 @@ local="/etc/bannerssh"
 msg -bar3
 echo -e "\033[1;37m - BANNER CUSTOM EDITABLE -  \033[0m"
 msg -bar3
-echo -e "\033[1;37mSeleccione su Sistema:    Para Salir Ctrl + C o 0 Para Regresar\033[1;33m"
-echo -e " \033[1;31m[ !!! ]\033[1;33m PEGA AQUI TU BANNER   \033[1;31m\033[1;33m"
+echo -e "\033[1;37mSeleccione su Sistema:    Para Salir Ctrl + C o 0 Para Regresar\033[1;94m"
+echo -e " \033[1;31m[ !!! ]\033[1;94m PEGA AQUI TU BANNER   \033[1;31m\033[1;94m"
 msg -bar3
-echo -e " \033[1;31mLuego de Pegar tu banner Presiona Ctrl + O y Enter \033[1;33m \033[1;31m\033[1;33m"
-echo -e " \033[1;31m          Por Ultimo Ctrl + X  \033[1;33m \033[1;31m\033[1;33m"
+echo -e " \033[1;31mLuego de Pegar tu banner Presiona Ctrl + O y Enter \033[1;94m \033[1;31m\033[1;94m"
+echo -e " \033[1;31m          Por Ultimo Ctrl + X  \033[1;94m \033[1;31m\033[1;94m"
 echo -ne "\033[1;37m"
 read -p " Presiona Enter para Continuar "
 killall apt-get apt &>/dev/null
@@ -2607,10 +2607,10 @@ exit
 }
 
 txt_font () {
-echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m Letra Pequeña"
-echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m Letra Media"
-echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m Letra Grande"
-echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m Letra ExtraGrande"
+echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;94m Letra Pequeña"
+echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;94m Letra Media"
+echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;94m Letra Grande"
+echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;94m Letra ExtraGrande"
 echo ""
 echo -ne "\033[1;32mEscoje el Tamaño de Letra\033[1;31m ?\033[1;37m : "; read opc
 if [[ "$opc" = "1" ]] || [[ "$opc" = "01" ]]; then
@@ -2629,19 +2629,19 @@ echo -ne "\033[1;37m"
 read -p " INGRESA TU MENSAJE : " ban_ner2
 msg -bar3
 unset x
-echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;33m  :v"
+echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;94m  :v"
 echo ""
 echo -ne "\033[0;32m Responde [ s | n ] : " && read -e -i "s" x
 msg -bar3
 [[ "$x" = @(s|S|y|Y) ]] && echo -e '<p style="text-align: center;">' >> /etc/bannerssh
-echo -e " \033[1;31m[ 1 ]\033[1;33m > VERDE         \033[1;31m[ 9  ]\033[1;33m > AZUL PIZARRA OSCURO"
-echo -e " \033[1;31m[ 2 ]\033[1;33m > ROJO          \033[1;31m[ 10 ]\033[1;33m > MAGENTA"
-echo -e " \033[1;31m[ 3 ]\033[1;33m > AZUL          \033[1;31m[ 11 ]\033[1;33m > CHOCOLATE"
-echo -e " \033[1;31m[ 4 ]\033[1;33m > AMARILLO      \033[1;31m[ 12 ]\033[1;33m > VERDE CLARO"
-echo -e " \033[1;31m[ 5 ]\033[1;33m > PURPURA       \033[1;31m[ 13 ]\033[1;33m > GRIS"
-echo -e " \033[1;31m[ 6 ]\033[1;33m > Naranja       \033[1;31m[ 14 ]\033[1;33m > VERDE MAR"
-echo -e " \033[1;31m[ 7 ]\033[1;33m > Crema         \033[1;31m[ 15 ]\033[1;33m > CIAN OSCURO"
-echo -e " \033[1;31m[ 8 ]\033[1;33m > Cyano         \033[1;31m[ *  ]\033[1;33m > Negro"
+echo -e " \033[1;31m[ 1 ]\033[1;94m > VERDE         \033[1;31m[ 9  ]\033[1;94m > AZUL PIZARRA OSCURO"
+echo -e " \033[1;31m[ 2 ]\033[1;94m > ROJO          \033[1;31m[ 10 ]\033[1;94m > MAGENTA"
+echo -e " \033[1;31m[ 3 ]\033[1;94m > AZUL          \033[1;31m[ 11 ]\033[1;94m > CHOCOLATE"
+echo -e " \033[1;31m[ 4 ]\033[1;94m > AMARILLO      \033[1;31m[ 12 ]\033[1;94m > VERDE CLARO"
+echo -e " \033[1;31m[ 5 ]\033[1;94m > PURPURA       \033[1;31m[ 13 ]\033[1;94m > GRIS"
+echo -e " \033[1;31m[ 6 ]\033[1;94m > Naranja       \033[1;31m[ 14 ]\033[1;94m > VERDE MAR"
+echo -e " \033[1;31m[ 7 ]\033[1;94m > Crema         \033[1;31m[ 15 ]\033[1;94m > CIAN OSCURO"
+echo -e " \033[1;31m[ 8 ]\033[1;94m > Cyano         \033[1;31m[ *  ]\033[1;94m > Negro"
 read -p " Digite A Cor [ 1 ⇿ 15 ]: " ban_ner2_cor
 if [[ "$ban_ner2_cor" = "1" ]]; then
 echo '<h'$_size'><font color="green">' >> /etc/bannerssh
@@ -2760,10 +2760,10 @@ echo "Banner /etc/bannerssh" >> /etc/ssh/sshd_config
 local="/etc/bannerssh"
 fi
 msg -bar3
-echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m Letra Pequeña"
-echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m Letra Media"
-echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m Letra Grande"
-echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m Letra ExtraGrande"
+echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;94m Letra Pequeña"
+echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;94m Letra Media"
+echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;94m Letra Grande"
+echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;94m Letra ExtraGrande"
 echo ""
 echo -ne "\033[1;32mEscoje el Tamaño de Letra\033[1;31m ?\033[1;37m : "; read opc
 if [[ "$opc" = "1" ]] || [[ "$opc" = "01" ]]; then
@@ -2781,18 +2781,18 @@ msg -bar3
 echo -ne "\033[1;37m"
 read -p " INGRESA TU MENSAJE : " ban_ner
 msg -bar3
-echo -e " \033[1;31m[ 1 ]\033[1;33m > VERDE         \033[1;31m[ 9  ]\033[1;33m > AZUL PIZARRA OSCURO"
-echo -e " \033[1;31m[ 2 ]\033[1;33m > ROJO          \033[1;31m[ 10 ]\033[1;33m > MAGENTA"
-echo -e " \033[1;31m[ 3 ]\033[1;33m > AZUL          \033[1;31m[ 11 ]\033[1;33m > CHOCOLATE"
-echo -e " \033[1;31m[ 4 ]\033[1;33m > AMARILLO      \033[1;31m[ 12 ]\033[1;33m > VERDE CLARO"
-echo -e " \033[1;31m[ 5 ]\033[1;33m > PURPURA       \033[1;31m[ 13 ]\033[1;33m > GRIS"
-echo -e " \033[1;31m[ 6 ]\033[1;33m > Naranja       \033[1;31m[ 14 ]\033[1;33m > VERDE MAR"
-echo -e " \033[1;31m[ 7 ]\033[1;33m > Crema         \033[1;31m[ 15 ]\033[1;33m > CIAN OSCURO"
-echo -e " \033[1;31m[ 8 ]\033[1;33m > Cyano         \033[1;31m[ *  ]\033[1;33m > Negro"
+echo -e " \033[1;31m[ 1 ]\033[1;94m > VERDE         \033[1;31m[ 9  ]\033[1;94m > AZUL PIZARRA OSCURO"
+echo -e " \033[1;31m[ 2 ]\033[1;94m > ROJO          \033[1;31m[ 10 ]\033[1;94m > MAGENTA"
+echo -e " \033[1;31m[ 3 ]\033[1;94m > AZUL          \033[1;31m[ 11 ]\033[1;94m > CHOCOLATE"
+echo -e " \033[1;31m[ 4 ]\033[1;94m > AMARILLO      \033[1;31m[ 12 ]\033[1;94m > VERDE CLARO"
+echo -e " \033[1;31m[ 5 ]\033[1;94m > PURPURA       \033[1;31m[ 13 ]\033[1;94m > GRIS"
+echo -e " \033[1;31m[ 6 ]\033[1;94m > Naranja       \033[1;31m[ 14 ]\033[1;94m > VERDE MAR"
+echo -e " \033[1;31m[ 7 ]\033[1;94m > Crema         \033[1;31m[ 15 ]\033[1;94m > CIAN OSCURO"
+echo -e " \033[1;31m[ 8 ]\033[1;94m > Cyano         \033[1;31m[ *  ]\033[1;94m > Negro"
 read -p " [ 1 ⇿ 15 ]: " ban_ner_cor
 unset local 
 unset x
-echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;33m  :v"
+echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;94m  :v"
 echo ""
 echo -ne "\033[0;32m Responde [ s | n ] : " && read -e -i "s" x
 msg -bar3
@@ -3017,7 +3017,7 @@ EOF
         msg -bar3
         echo -e "\033[1;37m - BANNER CUSTOM EDITABLE -  \033[0m"
         msg -bar3
-        echo -e "\033[1;33m[INFO] Mantén los siguientes marcadores en tu banner:\033[0m"
+        echo -e "\033[1;94m[INFO] Mantén los siguientes marcadores en tu banner:\033[0m"
         echo -e "   • {{usuario}} → Nombre del usuario"
         echo -e "   • {{color}} → Color del texto del usuario"
         echo -e "   • {{fecha}} → Fecha de expiración"
@@ -3025,7 +3025,7 @@ EOF
         echo -e "   • {{menu_credito}} → Información del reseller"
         msg -bar3
         echo -e "\033[1;37mEdita el archivo en nano, no borres los placeholders anteriores.\033[0m"
-        echo -e "\033[1;33mPara salir: Ctrl+O, Enter, luego Ctrl+X\033[0m"
+        echo -e "\033[1;94mPara salir: Ctrl+O, Enter, luego Ctrl+X\033[0m"
         msg -bar3
         read -p " Presiona Enter para Continuar "
 
@@ -3074,7 +3074,7 @@ tput cuu1 && tput dl1
 tput cuu1 && tput dl1
 msg -bar3
 print_center '\e[97m\033[1;41m MENUS V2RAY REFACTORIZADOS\033[0m' 
-#\033[0;33m(#EXPERIMENTAL)"
+#\033[0;94m(#EXPERIMENTAL)"
 menu_item "MENU LITE  V2RAY  MultiCuentas  \033[0;32m(#OFICIAL)   " "V2RAY MENU CUSTOM MultiCuentas  \033[0;32m(#OFICIAL)" "MENU LITE   XRAY  MultiCuentas  \033[0;32m(#OFICIAL)   " "MENU LITE TROJAN MultiCuentas  \033[0;32m(#OFICIAL)"
 selection=$(selection_fun 4)
 case ${selection} in
@@ -3711,7 +3711,7 @@ echo -ne "\033[1;37m"
 read -p " INGRESA TU MENSAJE : " ban_ner2
 msg -bar3
 unset x
-echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;33m  :v"
+echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;94m  :v"
 echo ""
 echo -ne "\033[0;32m Responde [ s | n ] : " && read -e -i "s" x
 msg -bar3
@@ -3871,7 +3871,7 @@ echo -e " \033[1;31m[ 8 ]${cor[5]} > Cyano         \033[1;31m[ *  ]${cor[5]} > N
 read -p " [ 1 ⇿ 15 ]: " ban_ner_cor
 unset local 
 unset x
-echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;33m  :v"
+echo -e "\033[1;42m Deseas centrar el contenido del banner\033[0;94m  :v"
 echo ""
 echo -ne "\033[0;32m Responde [ s | n ] : " && read -e -i "s" x
 msg -bar3
@@ -4220,14 +4220,14 @@ function dropbearuniversal(){
 
     # --- 2. VERIFICACIÓN E INSTALACIÓN ---
     if ! dpkg -s dropbear >/dev/null 2>&1; then
-        echo -ne "\033[1;33m[ + ] INSTALANDO PAQUETES... "
+        echo -ne "\033[1;94m[ + ] INSTALANDO PAQUETES... "
         apt-get install dropbear -y > /dev/null 2>&1
         echo -e "${cor[2]} [OK]"
     fi
 
     # --- 3. GENERACIÓN DE LLAVES (SOLUCIÓN AL ERROR DE KEYS) ---
     # Esto soluciona el "Failed loading /etc/dropbear/dropbear_dss_host_key"
-    echo -ne "\033[1;33m[ + ] VERIFICANDO LLAVES... "
+    echo -ne "\033[1;94m[ + ] VERIFICANDO LLAVES... "
     [[ ! -d /etc/dropbear ]] && mkdir -p /etc/dropbear
     [[ ! -f /etc/dropbear/dropbear_rsa_host_key ]] && dropbearkey -t rsa -f /etc/dropbear/dropbear_rsa_host_key >/dev/null 2>&1
     [[ ! -f /etc/dropbear/dropbear_dss_host_key ]] && dropbearkey -t dss -f /etc/dropbear/dropbear_dss_host_key >/dev/null 2>&1
@@ -4262,11 +4262,11 @@ grep -q "/usr/sbin/nologin" /etc/shells || echo "/usr/sbin/nologin" >> /etc/shel
     for((i=0; i<${#TTOTAL[@]}; i++)); do
         # Verificamos puertos ocupados
         if [[ -z $(netstat -tlpn | grep -w ":${TTOTAL[$i]}" | grep -v "sshd") ]]; then
-            echo -e "\033[1;33m PUERTO ELEGIDO: \033[1;32m${TTOTAL[$i]} OK"
+            echo -e "\033[1;94m PUERTO ELEGIDO: \033[1;32m${TTOTAL[$i]} OK"
             ARGS_DROPBEAR="$ARGS_DROPBEAR -p ${TTOTAL[$i]}"
             MIS_PUERTOS="$MIS_PUERTOS ${TTOTAL[$i]}"
         else
-            echo -e "\033[1;33m PUERTO ELEGIDO: \033[1;31m${TTOTAL[$i]} FAIL (OCUPADO)"
+            echo -e "\033[1;94m PUERTO ELEGIDO: \033[1;31m${TTOTAL[$i]} FAIL (OCUPADO)"
         fi
     done
     msg -bar3
@@ -4400,8 +4400,8 @@ echo -e "${cor[5]} Squid no instalado"
 return
 fi
 msg -bar3 
-echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m${cor[3]} Añadir NUEEVO Host a Squid"
-echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m${cor[3]} Quitar 1 host de Squid"
+echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m${cor[3]} Añadir NUEEVO Host a Squid"
+echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m${cor[3]} Quitar 1 host de Squid"
 msg -bar3 
 read -p " | 1 - 2 |: " var_payload
 number_var $var_payload
@@ -5082,12 +5082,12 @@ fun_openssh() {
 		clear
 		header
 		menu_item "AGREGAR NUEVO PUERTO SSH" "REMOVER PUERTO OPENSSH"
-		echo -ne "\033[1;32mOPCION \033[1;33m:\033[1;37m "
+		echo -ne "\033[1;32mOPCION \033[1;94m:\033[1;37m "
 		read resp
 		if [[ "$resp" = '1' ]]; then
 			clear
 			echo -e "         ADICIONAR PUERTO OPENSSH         "
-			echo -ne " \033[1;32mQUE PUERTO DESEAS AÑADIR \033[1;33m?\033[1;37m "
+			echo -ne " \033[1;32mQUE PUERTO DESEAS AÑADIR \033[1;94m?\033[1;37m "
 			read pt
 			[[ -z "$pt" ]] && {
 				echo -e "\n\033[1;31mPUERTO INVALIDO!"
@@ -5108,9 +5108,9 @@ fun_openssh() {
 		elif [[ "$resp" = '2' ]]; then
 			clear
 			echo -e "\E[41;1;37m         ELIMINAR PUERTO OPENSSH         \E[0m"
-			echo -e "\n\033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mPUERTO DETENIDO \033[1;37m22 \033[1;33mCUIDADO !\033[0m"
-			echo -e "\n\033[1;33mPUERTAS SSH EN USO: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)\n"
-			echo -ne "\033[1;32mQUE PUERTO DESEAS REMOVER \033[1;33m?\033[1;37m "
+			echo -e "\n\033[1;94m[\033[1;31m!\033[1;94m] \033[1;32mPUERTO DETENIDO \033[1;37m22 \033[1;94mCUIDADO !\033[0m"
+			echo -e "\n\033[1;94mPUERTAS SSH EN USO: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)\n"
+			echo -ne "\033[1;32mQUE PUERTO DESEAS REMOVER \033[1;94m?\033[1;37m "
 			read pt
 			[[ -z "$pt" ]] && {
 				echo -e "\n\033[1;31mPUERTO INVALIDO!"
@@ -5262,9 +5262,9 @@ figlet " DROPBEAR " | boxes -d stone -p a2v1
 msg -bar3
 [[ -z $dropbearports ]] && echo -e "  DROPBEAR NO INSTALADO AUN" || echo -e "${cor[2]}DROPBEAR ACTIVO en Puertos: $dropbearports"  
 msg -bar3
-[[ -z $dropbearports ]] && echo -e "  \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m INSTALAR DROPBEAR  \033[0;32m(#OFICIAL)" || echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m REINSTALAR DROPBEAR  \033[0;32m(#OFICIAL)" 
-[[ -e /etc/default/dropbear ]] && echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m CERRAR PUERTO (S)   \033[0;32m(#OFICIAL)"
-[[ -e /etc/default/dropbear ]] && echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;31m Adicionar Port DROPBEAR   \033[0;33m(#EXPERIMENTAL)" && lim=3 || lim=2
+[[ -z $dropbearports ]] && echo -e "  \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m INSTALAR DROPBEAR  \033[0;32m(#OFICIAL)" || echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m REINSTALAR DROPBEAR  \033[0;32m(#OFICIAL)" 
+[[ -e /etc/default/dropbear ]] && echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m CERRAR PUERTO (S)   \033[0;32m(#OFICIAL)"
+[[ -e /etc/default/dropbear ]] && echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;31m Adicionar Port DROPBEAR   \033[0;94m(#EXPERIMENTAL)" && lim=3 || lim=2
 msg -bar3 
 selection=$(selection_fun $lim)
 case ${selection} in
@@ -5355,8 +5355,8 @@ trojan() {
 msg -bar3 
 echo -e "${cor[2]} Trojan-Go ACTIVO en Puertos: $trojanports "
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m CONTROL PANNEL \033[0;32m(#OFICIAL by @ChumoGH)" 
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m ELIMINAR TROJAN-GO (s)" 
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m CONTROL PANNEL \033[0;32m(#OFICIAL by @ChumoGH)" 
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m ELIMINAR TROJAN-GO (s)" 
 msg -bar3   
 selection=$(selection_fun 2)
 case ${selection} in
@@ -5391,8 +5391,8 @@ unset selection
 msg -bar3 
 echo -e "${cor[2]} Certificado SSL/TLS ( Default: ${state}\@ChumoGH ) " 
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;33m SSL - STUNNEL 4  \033[0;32m(#OFICIAL)" 
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;33m SSL - STUNNEL 5  \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;94m SSL - STUNNEL 4  \033[0;32m(#OFICIAL)" 
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;94m SSL - STUNNEL 5  \033[0;32m(#OFICIAL)"
 msg -bar3
 selection=$(selection_fun 2)
 case ${selection} in
@@ -5448,7 +5448,7 @@ function aguarde() {
 		done
 		tput cnorm
 	}
-	echo -ne "\033[1;37m INSTALACION OFICIAL DESDE \033[1;32m OOKLA \033[1;37m& \033[1;32mSPEEDTEST\033[1;32m.\033[1;33m.\033[1;31m. \033[1;33m"
+	echo -ne "\033[1;37m INSTALACION OFICIAL DESDE \033[1;32m OOKLA \033[1;37m& \033[1;32mSPEEDTEST\033[1;32m.\033[1;94m.\033[1;31m. \033[1;94m"
 	helice
 	echo -e "\e[1DOk"
 }
@@ -5610,7 +5610,7 @@ fail2ban-client -x start 2>/dev/null
 
 funTCP () {
 clear && header
-menu_item "\033[0;33m [!] \033[1;32mTCP KERNEL (BBR|BBRPlus)" "\033[0;33m [!] \033[0;31mTCP SPEED NORMAL ( BBR ) "
+menu_item "\033[0;94m [!] \033[1;32mTCP KERNEL (BBR|BBRPlus)" "\033[0;94m [!] \033[0;31mTCP SPEED NORMAL ( BBR ) "
 selection=$(selection_fun 2)
 	case ${selection} in
 		0)
@@ -5712,9 +5712,9 @@ header "ports_"
 msg -bar3 
 echo -e "${cor[2]} SSL / TLS -> STUNNEL4 ACTIVOS : $sslports "
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m ADICIONAR + PUERTO SSL    \033[0;32m(#OFICIAL)" 
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;31m SSL Cert - STRACK ZEROSSL \033[0;33m(#EXPERIMENTAL)"
-echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;33m CERRAR PUERTO(s) SSL" 
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m ADICIONAR + PUERTO SSL    \033[0;32m(#OFICIAL)" 
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;31m SSL Cert - STRACK ZEROSSL \033[0;94m(#EXPERIMENTAL)"
+echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;94m CERRAR PUERTO(s) SSL" 
 msg -bar3  
 selection=$(selection_fun 3)
 case ${selection} in
@@ -5820,14 +5820,14 @@ figlet " SSL / TLS " | boxes -d stone -p a2v1
 msg -bar3 
 echo -e "${cor[2]} Certificado SSL/TLS ( ${state}\@ChumoGH ) " 
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;33m Crear Su Certificado SSL  \033[0;32m(#OFICIAL)" 
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;33m Certificado AUTOMATICO    \033[0;32m(#OFICIAL)"
-echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;31m Cargar Certificado WEB    \033[0;33m(#EXPERIMENTAL)"
-echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;33m Certificado con DOMINIO   \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;94m Crear Su Certificado SSL  \033[0;32m(#OFICIAL)" 
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;94m Certificado AUTOMATICO    \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;31m Cargar Certificado WEB    \033[0;94m(#EXPERIMENTAL)"
+echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;94m Certificado con DOMINIO   \033[0;32m(#OFICIAL)"
 msg -bar3 
-echo -e " \033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m<\033[0;31m SSL Cert - STRACK ZEROSSL \033[0;33m(#EXPERIMENTAL)"
+echo -e " \033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m<\033[0;31m SSL Cert - STRACK ZEROSSL \033[0;94m(#EXPERIMENTAL)"
 msg -bar3 
-echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m<\033[0;31m SSL Cert - By @KillShito  \033[0;33m(#EXPERIMENTAL)"
+echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m<\033[0;31m SSL Cert - By @KillShito  \033[0;94m(#EXPERIMENTAL)"
 msg -bar3
 selection=$(selection_fun 6)
 case ${selection} in
@@ -6204,8 +6204,8 @@ header "ports_"
 msg -bar3
 echo -e "${cor[2]} SSL / TLS -> STUNNEL5 ACTIVOS : $sslports "
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m ADICIONAR + PUERTO SSL (STUNNEL5)  \033[0;32m(#OFICIAL)" 
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m CERRAR TODOS LOS PUERTO(s) SSL" 
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m ADICIONAR + PUERTO SSL (STUNNEL5)  \033[0;32m(#OFICIAL)" 
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m CERRAR TODOS LOS PUERTO(s) SSL" 
 msg -bar3  
 selection=$(selection_fun 2)
 case ${selection} in
@@ -6295,7 +6295,7 @@ unset lang
 figlet " STUNNEL5 " | boxes -d stone -p a2v1
 msg -bar3 
 echo -e "${cor[2]} Certificado SSL/TLS ( ${state}\@ChumoGH ) " 
-menu_item "\033[0;33m Certificado AUTOMATICO    \033[0;32m(#OFICIAL)" "\033[0;33m Certificado con DOMINIO   \033[0;32m(#OFICIAL)" "\033[0;33m Cargar con ZIP URL        \033[0;32m(#OFICIAL)"
+menu_item "\033[0;94m Certificado AUTOMATICO    \033[0;32m(#OFICIAL)" "\033[0;94m Certificado con DOMINIO   \033[0;32m(#OFICIAL)" "\033[0;94m Cargar con ZIP URL        \033[0;32m(#OFICIAL)"
 selection=$(selection_fun 4)
 case ${selection} in
 1)
@@ -6593,7 +6593,7 @@ function psix(){
 clear
 tittle
 echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;31m${flech} ${cor[3]}PSIPHON OFICIAL "
-echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m${flech} ${cor[3]}PSIPHON HTTP CUSTOM ( \033[0;33mNEW\033[0m )"
+echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m${flech} ${cor[3]}PSIPHON HTTP CUSTOM ( \033[0;94mNEW\033[0m )"
 echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;31m${flech} ${cor[3]}INICIAR PSIPHON "
 echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;31m${flech} ${cor[3]}DETENER PSIPHON"
 echo -e "\033[0;35m [\033[0;36m5\033[0;35m]\033[0;31m${flech} ${cor[3]}DETENER PSIPHON"
@@ -7037,7 +7037,7 @@ title ' RESTRUCTURA DE INSTALACION DE SERVICIO X-UI WEB'
 [[ ! -d /data ]] && mkdir /data
 red='\033[0;31m'
 green='\033[0;32m'
-yellow='\033[0;33m'
+yellow='\033[0;94m'
 plain='\033[0m'
 last_version=$(curl -Ls "https://api.github.com/repos/vaxilu/x-ui/releases/latest" | grep 'V' | sed -E 's/.*"([^"]+)".*/\1/')
 msg -bar3
@@ -7121,12 +7121,12 @@ print_center -verm2 "SELECCIONA UN METODO DE CERTIFICACION \nRECUERDA TENER EL P
 msg -bar3
 print_center -verm "READ THE INSTRUCTIONS CAREFULLY BEFORE CONTINUING....."
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;33m  Certificado AUTOMATICO    \033[0;32m(#OFICIAL)" 
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;33m  Crear Su Certificado SSL  \033[0;32m(#OFICIAL)"
-echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;33m  Cargar Certificado WEB    \033[0;33m(#EXPERIMENTAL)"
-echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;33m  Certificado con DOMINIO   \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;94m  Certificado AUTOMATICO    \033[0;32m(#OFICIAL)" 
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;94m  Crear Su Certificado SSL  \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;94m  Cargar Certificado WEB    \033[0;94m(#EXPERIMENTAL)"
+echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;94m  Certificado con DOMINIO   \033[0;32m(#OFICIAL)"
 msg -bar3 
-echo -e " \033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m<\033[0;33m Regresar"
+echo -e " \033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m<\033[0;94m Regresar"
 msg -bar3
 echo -ne "${cor[6]}"
 read -p " Opcion : " varread
@@ -7203,14 +7203,14 @@ v2ray-socket() {
 msg -bar3
 echo -e "MOTOR DE INSTALACION DE PANNEL WEB Y CONSOLA DE V2RAY Y XRAY"
 msg -bar3
-echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;33m  MENU LITE  V2RAY  @ChumoGH MultiCuentas  \033[0;32m(#OFICIAL)   " #\033[0;33m(#EXPERIMENTAL)"
-echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;33m  V2RAY.MENU CUSTOM @ChumoGH MultiCuentas  \033[0;32m(#OFICIAL)"
-echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;33m  MENU LITE   XRAY  @ChumoGH MultiCuentas  \033[0;32m(#OFICIAL)   " #\033[0;33m(#EXPERIMENTAL)"
-echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;33m  Original (Todo en Consola)               \033[0;32m(#OFICIAL)" 
-echo -e " \033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m${flech}\033[0;33m  Pannel WEB ( X-UI RAY ) TRADUCIDO        \033[0;32m(#OFICIAL)"
-echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m${flech}\033[0;33m  Pannel WEB ( 3X-UI )         \033[0;32m(#OFICIAL)"
-echo -e " \033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m${flech}\033[0;33m  DESINSTALAR V2RAY ( TODOS MENUS ) "
-#echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m${flech}\033[0;33m  FIX PARA INSTALLS FAILS DE V2RAY  "
+echo -e " \033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m${flech}\033[0;94m  MENU LITE  V2RAY  @ChumoGH MultiCuentas  \033[0;32m(#OFICIAL)   " #\033[0;94m(#EXPERIMENTAL)"
+echo -e " \033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m${flech}\033[0;94m  V2RAY.MENU CUSTOM @ChumoGH MultiCuentas  \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m${flech}\033[0;94m  MENU LITE   XRAY  @ChumoGH MultiCuentas  \033[0;32m(#OFICIAL)   " #\033[0;94m(#EXPERIMENTAL)"
+echo -e " \033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m${flech}\033[0;94m  Original (Todo en Consola)               \033[0;32m(#OFICIAL)" 
+echo -e " \033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m${flech}\033[0;94m  Pannel WEB ( X-UI RAY ) TRADUCIDO        \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m${flech}\033[0;94m  Pannel WEB ( 3X-UI )         \033[0;32m(#OFICIAL)"
+echo -e " \033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m${flech}\033[0;94m  DESINSTALAR V2RAY ( TODOS MENUS ) "
+#echo -e " \033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m${flech}\033[0;94m  FIX PARA INSTALLS FAILS DE V2RAY  "
 msg -bar3 
 selection=$(selection_fun 7)
 case ${selection} in
@@ -7304,7 +7304,7 @@ source <(curl -sSL https://www.dropbox.com/s/q5kvrcbjwcmcsut/openvpn.sh)
 BlockADS() {
 clear && header
 [[ -e /etc/.hosts.original ]] && _ADS="\033[0;31m[\033[0;32mON\033[0;31m]" || _ADS="\033[1;31m[OFF]"
-menu_item "\033[0;33m [!] \033[1;32mINSTALAR BLOQUEADOR DE ADS $_ADS" "\033[0;33m [!] \033[0;31mREMOVER BLOQUEADOR DE ADS "
+menu_item "\033[0;94m [!] \033[1;32mINSTALAR BLOQUEADOR DE ADS $_ADS" "\033[0;94m [!] \033[0;31mREMOVER BLOQUEADOR DE ADS "
 	selection=$(selection_fun 2)
 	case ${selection} in
 		0)
@@ -7370,7 +7370,7 @@ header
 tput cuu1 >&2 && tput dl1 >&2
 meu_ip
 [[ $(ps x | grep filebrowser | grep -v grep) ]] && file="\e[32m[ ON ] " || file="\e[31m[ OFF ]" 
-menu_item "\033[0;33mCOLOCAR ARCHIVO ONLINE  \033[0;32m(#)" "\033[0;33mREMOVER ARCHIVO ONLINE  \033[0;32m(#)" "\033[0;31mVER MIS ARCHIVOS ONLINE \033[0;33m(#)" "\033[0;31mDESINATALAR APACHE (FTP) \033[0;33m(#)" "\033[0;31mCAMBIAR PUERTO APACHE (FTP) ${portFTP} \033[0;33m(#)" "CAMBIAR DE APACHE2 A NGINX" "INSTALAR APACHE2 ( FTP )" "FILEMANAGER WEB ${file}"
+menu_item "\033[0;94mCOLOCAR ARCHIVO ONLINE  \033[0;32m(#)" "\033[0;94mREMOVER ARCHIVO ONLINE  \033[0;32m(#)" "\033[0;31mVER MIS ARCHIVOS ONLINE \033[0;94m(#)" "\033[0;31mDESINATALAR APACHE (FTP) \033[0;94m(#)" "\033[0;31mCAMBIAR PUERTO APACHE (FTP) ${portFTP} \033[0;94m(#)" "CAMBIAR DE APACHE2 A NGINX" "INSTALAR APACHE2 ( FTP )" "FILEMANAGER WEB ${file}"
 selection=$(selection_fun 6)
 case ${selection} in
 0)
@@ -7384,7 +7384,7 @@ for my_arqs in `ls /var/www/html`; do
 if [ "$my_arqs" != "index.html" ]; then
  if [ ! -d "$my_arqs" ]; then
 select_arc[$_cont]="$my_arqs"
-echo -e "\033[0;35m [\033[0;36m$_cont\033[0;35m]\033[0;33m ➮ ${cor[3]} $my_arqs => \033[1;36mhttp://$IP:${portFTP}/$my_arqs\033[0m"
+echo -e "\033[0;35m [\033[0;36m$_cont\033[0;35m]\033[0;94m ➮ ${cor[3]} $my_arqs => \033[1;36mhttp://$IP:${portFTP}/$my_arqs\033[0m"
 _cont=$(($_cont + 1))
  fi
 fi
@@ -7417,7 +7417,7 @@ msg -bar3
 for my_arqs in `ls $HOME`; do
 if [ ! -d "$my_arqs" ]; then
 select_arc[$_cont]="$my_arqs"
-echo -e "\033[0;35m [\033[0;36m$_cont\033[0;35m]\033[0;33m ➮ ${cor[3]}$my_arqs"
+echo -e "\033[0;35m [\033[0;36m$_cont\033[0;35m]\033[0;94m ➮ ${cor[3]}$my_arqs"
 _cont=$(($_cont + 1))
 fi
 done
@@ -7883,7 +7883,7 @@ work=$1
 		done
 		tput cnorm
 	}
-	echo -ne "\033[1;37mBuscando Binario \033[1;32mBadVPN \033[1;37me \033[1;32mSWAP\033[1;32m.\033[1;33m.\033[1;31m. \033[1;33m"
+	echo -ne "\033[1;37mBuscando Binario \033[1;32mBadVPN \033[1;37me \033[1;32mSWAP\033[1;32m.\033[1;94m.\033[1;31m. \033[1;94m"
 	helice
 	echo -e "\e[1DOk"
 }
@@ -8111,7 +8111,7 @@ local ssssrr=`ps -ef |grep -v grep | grep server.py |awk '{print $2}'`
 [[ ! -z "${ssssrr}" ]] && cc="\033[1;32m" || cc="\033[1;31m"
 [[ -d /usr/local/shadowsocksr ]] && { 
 local user_info=$(cd /usr/local/shadowsocksr &> /dev/null  && python mujson_mgr.py -l )
-local user_t="\033[1;33m$(echo "${user_info}"|wc -l) Cts" 
+local user_t="\033[1;94m$(echo "${user_info}"|wc -l) Cts" 
 } || user_t="\033[1;31m[OFF]"
 [[ `grep -c "^#ADM" /etc/sysctl.conf` -eq 0 ]] && _tcpd="\033[1;31m[OFF]" || _tcpd="${_on} "
 [[ "$(cat /etc/pam.d/common-password | grep ChumoGH | wc -l)" != '0' ]] && _fv="${_on}" || _fv="\033[1;31m[OFF]"
@@ -8123,28 +8123,28 @@ msg -bar3
 #tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2
 echo -e "${cor[5]} ${h0nG} INSTALACION DE PROTOCOLOS ( ${country}) ${h0nG} "
 msg -bar3 #SHADOWSOCKS   $user_t
-echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m${flech} ${cor[3]}OpenSSH       $pSSH  \033[0;35m [\033[0;36m11\033[0;35m]\033[0;33m${flech} ${cor[3]}PSIPHON SERVER $pps"
-echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m${flech} ${cor[3]}DROPBEAR      $dropb \033[0;35m [\033[0;36m12\033[0;35m]\033[0;33m${flech} ${cor[3]}TCP DNS        \033[0;33m(#BETA)"
-echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;33m${flech} ${cor[3]}OPENVPN       $openvpn \033[0;35m [\033[0;36m13\033[0;35m]\033[0;33m${flech} ${cor[3]}WEBMIN         $webminn"
-echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;33m${flech} ${cor[3]}SSL/TLS       $stunel \033[0;35m [\033[0;36m14\033[0;35m]\033[0;33m${flech} ${cor[3]}SlowDNS        $P1"
-echo -e "\033[0;35m [\033[0;36m5\033[0;35m]\033[0;33m${flech} ${cor[3]}SHADOWSOCKS-R $shadow \033[0;35m [\033[0;36m15\033[0;35m]\033[0;33m${flech} ${cor[3]}SSL->PYTHON    ${socksA}" #\033[0;33m(#BETA)"
-echo -e "\033[0;35m [\033[0;36m6\033[0;35m]\033[0;33m${flech} ${cor[3]}SQUID         $squid \033[0;35m [\033[0;36m16\033[0;35m]\033[0;33m${flech} ${cor[3]}SSLH Multiplex $sslh"
-echo -e "\033[0;35m [\033[0;36m7\033[0;35m]\033[0;33m${flech} ${cor[3]}PROXY PYTHON  $socks \033[0;35m [\033[0;36m17\033[0;35m]\033[0;33m${flech} ${cor[3]}OVER WEBSOCKET \033[0;33m(#BETA)"
-echo -e "\033[0;35m [\033[0;36m8\033[0;35m]\033[0;33m${flech} ${cor[3]}V2RAY SWITCH  $v2ray \033[0;35m [\033[0;36m18\033[0;35m]\033[0;33m${flech} ${cor[3]}SOCKS5         \033[0;33m(#BETA)"
-echo -e "\033[0;35m [\033[0;36m9\033[0;35m]\033[0;33m${flech} ${cor[3]}CFA ( CLASH ) $xclash\033[0;35m  [\033[0;36m19\033[0;35m]\033[0;33m${flech} ${cor[3]}Protocolos UDP  $_pidUDP"
-echo -e "\033[0;35m [\033[0;36m10\033[0;35m]\033[0;33m${flech} ${cor[3]}TROJAN-GO    $pTROJ \033[0;35m [\033[0;36m20\033[0;35m]\033[0;33m${flech} ${cor[5]}FUNCIONES EN DISEÑO!"
+echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m${flech} ${cor[3]}OpenSSH       $pSSH  \033[0;35m [\033[0;36m11\033[0;35m]\033[0;94m${flech} ${cor[3]}PSIPHON SERVER $pps"
+echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m${flech} ${cor[3]}DROPBEAR      $dropb \033[0;35m [\033[0;36m12\033[0;35m]\033[0;94m${flech} ${cor[3]}TCP DNS        \033[0;94m(#BETA)"
+echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;94m${flech} ${cor[3]}OPENVPN       $openvpn \033[0;35m [\033[0;36m13\033[0;35m]\033[0;94m${flech} ${cor[3]}WEBMIN         $webminn"
+echo -e "\033[0;35m [\033[0;36m4\033[0;35m]\033[0;94m${flech} ${cor[3]}SSL/TLS       $stunel \033[0;35m [\033[0;36m14\033[0;35m]\033[0;94m${flech} ${cor[3]}SlowDNS        $P1"
+echo -e "\033[0;35m [\033[0;36m5\033[0;35m]\033[0;94m${flech} ${cor[3]}SHADOWSOCKS-R $shadow \033[0;35m [\033[0;36m15\033[0;35m]\033[0;94m${flech} ${cor[3]}SSL->PYTHON    ${socksA}" #\033[0;94m(#BETA)"
+echo -e "\033[0;35m [\033[0;36m6\033[0;35m]\033[0;94m${flech} ${cor[3]}SQUID         $squid \033[0;35m [\033[0;36m16\033[0;35m]\033[0;94m${flech} ${cor[3]}SSLH Multiplex $sslh"
+echo -e "\033[0;35m [\033[0;36m7\033[0;35m]\033[0;94m${flech} ${cor[3]}PROXY PYTHON  $socks \033[0;35m [\033[0;36m17\033[0;35m]\033[0;94m${flech} ${cor[3]}OVER WEBSOCKET \033[0;94m(#BETA)"
+echo -e "\033[0;35m [\033[0;36m8\033[0;35m]\033[0;94m${flech} ${cor[3]}V2RAY SWITCH  $v2ray \033[0;35m [\033[0;36m18\033[0;35m]\033[0;94m${flech} ${cor[3]}SOCKS5         \033[0;94m(#BETA)"
+echo -e "\033[0;35m [\033[0;36m9\033[0;35m]\033[0;94m${flech} ${cor[3]}CFA ( CLASH ) $xclash\033[0;35m  [\033[0;36m19\033[0;35m]\033[0;94m${flech} ${cor[3]}Protocolos UDP  $_pidUDP"
+echo -e "\033[0;35m [\033[0;36m10\033[0;35m]\033[0;94m${flech} ${cor[3]}TROJAN-GO    $pTROJ \033[0;35m [\033[0;36m20\033[0;35m]\033[0;94m${flech} ${cor[5]}FUNCIONES EN DISEÑO!"
 msg -bar3 
 echo -e "${cor[5]} ${h0nG}  INSTALACION DE HERRAMIENTAS Y SERVICIOS ${h0nG} "
 msg -bar3
-echo -e "\033[0;35m [\033[0;36m21\033[0;35m]\033[0;33m ${flech} ${cor[3]}BLOCK TORRENT        \033[0;35m [\033[0;36m22\033[0;35m]\033[0;33m ${flech} ${cor[3]}BadVPN   $_badvpn"
-echo -e "\033[0;35m [\033[0;36m23\033[0;35m]\033[0;33m ${flech} ${cor[3]}TCP (BBR|Plus) $_tcpd \033[0;35m [\033[0;36m24\033[0;35m]\033[0;33m ${flech} ${cor[3]}FAILBAN  $fail_b"
-echo -e "\033[0;35m [\033[0;36m25\033[0;35m]\033[0;33m ${flech} ${cor[3]}ARCHIVO ONLINE \033[0;31m[\033[0;32m${portFTP}\033[0;31m]  \033[0;35m [\033[0;36m26\033[0;35m]\033[0;33m ${flech} ${cor[3]}UP|DOWN SpeedTest " #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;33m ⇦ $(msg -bra "\e[3;33m[ SALIR ]\e[0m")"
-echo -e "\033[0;35m [\033[0;36m27\033[0;35m]\033[0;33m ${flech} ${cor[3]}DETALLES DEL VPS     \033[0;35m [\033[0;36m28\033[0;35m]\033[0;33m ${flech} ${cor[3]}Block ADS $_ADS" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;33m ⇦ $(msg -bra "\e[3;33m[ SALIR ]\e[0m")"
-echo -e "\033[0;35m [\033[0;36m29\033[0;35m]\033[0;33m ${flech} ${cor[3]}DNS CUSTOM (NETFLIX) \033[0;35m [\033[0;36m30\033[0;35m]\033[0;33m ${flech} ${cor[3]}HERRAMIENTAS EXTRAS" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;33m ⇦ $(msg -bra "\e[3;33m[ SALIR ]\e[0m")"
-echo -e "\033[0;35m [\033[0;36m31\033[0;35m]\033[0;33m ${flech} ${cor[3]}REINICIAR SERVICIOS  \033[0;35m [\033[0;36m32\033[0;35m]\033[0;33m ${flech} ${cor[3]}Brook Server $_ADS"
-echo -e "\033[0;35m [\033[0;36m33\033[0;35m]\033[0;33m ${flech} ${cor[3]}FIREWALL (IPTABLES)  \033[0;35m [\033[0;36m34\033[0;35m]\033[0;31m ${flech} ${cor[3]}Enable/Change PASSWD ROOT"
-echo -e "\033[0;35m [\033[0;36m35\033[0;35m]\033[0;33m ${flech} ${cor[3]}AToken [APP's Mods]  \033[0;35m [\033[0;36m36\033[0;35m]\033[0;31m ${flech} ${cor[3]} BHTTP [APP's Mods] $_bttp" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
-echo -e "\033[0;35m [\033[0;36m37\033[0;35m]\033[0;33m ${flech} ${cor[3]}HCR [HTTP Custom] $_hcr  \033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+echo -e "\033[0;35m [\033[0;36m21\033[0;35m]\033[0;94m ${flech} ${cor[3]}BLOCK TORRENT        \033[0;35m [\033[0;36m22\033[0;35m]\033[0;94m ${flech} ${cor[3]}BadVPN   $_badvpn"
+echo -e "\033[0;35m [\033[0;36m23\033[0;35m]\033[0;94m ${flech} ${cor[3]}TCP (BBR|Plus) $_tcpd \033[0;35m [\033[0;36m24\033[0;35m]\033[0;94m ${flech} ${cor[3]}FAILBAN  $fail_b"
+echo -e "\033[0;35m [\033[0;36m25\033[0;35m]\033[0;94m ${flech} ${cor[3]}ARCHIVO ONLINE \033[0;31m[\033[0;32m${portFTP}\033[0;31m]  \033[0;35m [\033[0;36m26\033[0;35m]\033[0;94m ${flech} ${cor[3]}UP|DOWN SpeedTest " #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;94m ⇦ $(msg -bra "\e[3;94m[ SALIR ]\e[0m")"
+echo -e "\033[0;35m [\033[0;36m27\033[0;35m]\033[0;94m ${flech} ${cor[3]}DETALLES DEL VPS     \033[0;35m [\033[0;36m28\033[0;35m]\033[0;94m ${flech} ${cor[3]}Block ADS $_ADS" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;94m ⇦ $(msg -bra "\e[3;94m[ SALIR ]\e[0m")"
+echo -e "\033[0;35m [\033[0;36m29\033[0;35m]\033[0;94m ${flech} ${cor[3]}DNS CUSTOM (NETFLIX) \033[0;35m [\033[0;36m30\033[0;35m]\033[0;94m ${flech} ${cor[3]}HERRAMIENTAS EXTRAS" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;94m ⇦ $(msg -bra "\e[3;94m[ SALIR ]\e[0m")"
+echo -e "\033[0;35m [\033[0;36m31\033[0;35m]\033[0;94m ${flech} ${cor[3]}REINICIAR SERVICIOS  \033[0;35m [\033[0;36m32\033[0;35m]\033[0;94m ${flech} ${cor[3]}Brook Server $_ADS"
+echo -e "\033[0;35m [\033[0;36m33\033[0;35m]\033[0;94m ${flech} ${cor[3]}FIREWALL (IPTABLES)  \033[0;35m [\033[0;36m34\033[0;35m]\033[0;31m ${flech} ${cor[3]}Enable/Change PASSWD ROOT"
+echo -e "\033[0;35m [\033[0;36m35\033[0;35m]\033[0;94m ${flech} ${cor[3]}AToken [APP's Mods]  \033[0;35m [\033[0;36m36\033[0;35m]\033[0;31m ${flech} ${cor[3]} BHTTP [APP's Mods] $_bttp" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+echo -e "\033[0;35m [\033[0;36m37\033[0;35m]\033[0;94m ${flech} ${cor[3]}HCR [HTTP Custom] $_hcr  \033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 msg -bar3 
 selection=$(selection_fun 37)
 case ${selection} in
@@ -8431,15 +8431,15 @@ msg -bar3
 echo -e "${cor[1]} ∘${cor[5]} TOTAL: ${cor[2]}${mem_total}${cor[1]} ∘ ${cor[5]} M|LIBRE:${cor[2]} ${mem_free} ${cor[1]} ∘ ${cor[5]} EN USO:${cor[2]} ${mem_used}"
 echo -e "${cor[1]} ∘${cor[5]} U/RAM: ${cor[2]}${mem_used_percent} ${cor[1]} ∘${cor[5]} U/CPU:${cpu_used} ${cor[1]} ∘${cor[5]} BUFFER:${cor[2]} ${mem_cache}" # $CPU"%"
 msg -bar3
-echo -e "\033[0;35m [${cor[2]}01\033[0;35m]\033[0;33m ${flech}${cor[3]} CONTROL USUARIOS (SSH/SSL/VMESS) "
-#echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;33m ${flech}${cor[3]} HERRAMIENTAS BASE (\033[0;34mBadVPN$_badvpn${cor[3]})"
-echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;33m ${flech}\033[0;33m [!]${cor[3]} OPTIMIZAR VPS $_opti "
-echo -e "\033[0;35m [${cor[2]}03\033[0;35m]\033[0;33m ${flech}${cor[3]} CONTADOR ONLINE USERS $VERIFICAR_PID"
-#echo -e "\033[0;35m [${cor[2]}04\033[0;35m]\033[0;33m ${flech} \e[3;32mHERRAMIENTAS BETA\e[0m \033[0;33m (#EXPERIMENTAL)"
-echo -e "\033[0;35m [${cor[2]}04\033[0;35m]\033[0;33m ${flech}${cor[3]} AUTOINICIAR SCRIPT $_autorun"
-echo -e "\033[0;35m [${cor[2]}05\033[0;35m]\033[0;33m ${flech}${cor[3]} INSTALADOR DE PROTOCOLOS"
+echo -e "\033[0;35m [${cor[2]}01\033[0;35m]\033[0;94m ${flech}${cor[3]} CONTROL USUARIOS (SSH/SSL/VMESS) "
+#echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;94m ${flech}${cor[3]} HERRAMIENTAS BASE (\033[0;34mBadVPN$_badvpn${cor[3]})"
+echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;94m ${flech}\033[0;94m [!]${cor[3]} OPTIMIZAR VPS $_opti "
+echo -e "\033[0;35m [${cor[2]}03\033[0;35m]\033[0;94m ${flech}${cor[3]} CONTADOR ONLINE USERS $VERIFICAR_PID"
+#echo -e "\033[0;35m [${cor[2]}04\033[0;35m]\033[0;94m ${flech} \e[3;32mHERRAMIENTAS BETA\e[0m \033[0;94m (#EXPERIMENTAL)"
+echo -e "\033[0;35m [${cor[2]}04\033[0;35m]\033[0;94m ${flech}${cor[3]} AUTOINICIAR SCRIPT $_autorun"
+echo -e "\033[0;35m [${cor[2]}05\033[0;35m]\033[0;94m ${flech}${cor[3]} INSTALADOR DE PROTOCOLOS"
 msg -bar3
-echo -ne "\033[0;35m [${cor[2]}06\033[0;35m]\033[0;33m ${flech}\033[0;33m [!] ${cor[2]}UPDATE / \033[0;31mREMOVE${cor[3]}  |" && echo -e " \033[0;35m [${cor[2]}0\033[0;35m]\033[0;33m ⇦ $(msg -bra "\e[3;33m[ SALIR ]\e[0m")"
+echo -ne "\033[0;35m [${cor[2]}06\033[0;35m]\033[0;94m ${flech}\033[0;94m [!] ${cor[2]}UPDATE / \033[0;31mREMOVE${cor[3]}  |" && echo -e " \033[0;35m [${cor[2]}0\033[0;35m]\033[0;94m ⇦ $(msg -bra "\e[3;94m[ SALIR ]\e[0m")"
 msg -bar3 
 
 #------------------------------------------------
@@ -8611,7 +8611,7 @@ export PATH=$PATH:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/bin:/
 #msg -bar3
 #[[ -e /root/name ]] && figlet -p -f smslant < /root/name | lolcat || echo -e "\033[7;49;35m   =====>>►► 🐲 ChumoGH 💥 Plus 🐲 ◄◄<<=====     \033[0m"
 clear && header
-menu_item "\033[0;33m[!] ${cor[2]}ACTUALIZAR SCRIPT \033[0;33m($v2) ► ${cor[2]}[$v1] " "\033[0;33m[!] \033[0;31mDESINSTALAR SCRIPT "
+menu_item "\033[0;94m[!] ${cor[2]}ACTUALIZAR SCRIPT \033[0;94m($v2) ► ${cor[2]}[$v1] " "\033[0;94m[!] \033[0;31mDESINSTALAR SCRIPT "
 	selection=$(selection_fun 2)
 	case ${selection} in
 		1)
@@ -9441,13 +9441,13 @@ menu_item(){
   local opciones=("$@")
   local i=1
   msg -bar3
-  #echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;33m ${flech} $(msg -bra "\033[1;43m[ REGRESAR ]\e[0m")"
+  #echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;43m[ REGRESAR ]\e[0m")"
   for item in "${opciones[@]}"; do
-    echo -e "\033[0;35m [\033[0;36m${i}\033[0;35m]\033[0;33m ${flech} ${cor[3]}${item}"
+    echo -e "\033[0;35m [\033[0;36m${i}\033[0;35m]\033[0;94m ${flech} ${cor[3]}${item}"
     ((i++))
   done
   msg -bar3
-  echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;33m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+  echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
   msg -bar3
 }
 
@@ -9459,7 +9459,7 @@ do
 clear
 msg -bar3
 echo -e "${cor[2]}  ☯  MENU DE HERRAMIENTAS BETA ( EXPERIMENTALES)  ☯ "
-menu_item "MENU DE REINICIO/REMOVER PROTOCOLOS" "OPTIMIZACIONES AUTOMATICAS ${_opti}" "HABILITAR CLAVE/ACCESO ROOT." "#- Soporte TLS 1.3# \033[0;33m( #EXPERIMENTAL )" "Memoria SWAP Particion \033[0;33m( #BETA )" "\033[1;35mKILL MULTILOGIN \033[0;33m(#BETA)  $lmt" "\033[1;36mFIX SSH -> DROPBEAR ( PORTA :${cor[1]} 22\033[1;36m ) \033[0;32m(#OFICIAL)" "Script TROJAN (directo) \033[0;32m(#OFICIAL)" "\033[1;36mFIX CONTRASEÑA ROOT EN AMAZON & GG CLOUD" "Mostrar Trafico Total de VPS \033[0;32m(#OFICIAL)" "CONFIGURAR ZONA HORARIA  \033[0;32m(#OFICIAL)" "Instalar Go Lang \033[0;32m(#OFICIAL)" "Creador de Payloads By \033[1;31m@RealStrategy  \033[0;33m(#BETA)" "TCP Aceleración (BBR/Plus) \033[0;33m(#BETA)" "FUNCIONES TESTE  \033[0;33m(#BETA) " "CAMBIAR NOMBRE SERVIDOR / RESELLER \033[0;32m(#OFICIAL)"
+menu_item "MENU DE REINICIO/REMOVER PROTOCOLOS" "OPTIMIZACIONES AUTOMATICAS ${_opti}" "HABILITAR CLAVE/ACCESO ROOT." "#- Soporte TLS 1.3# \033[0;94m( #EXPERIMENTAL )" "Memoria SWAP Particion \033[0;94m( #BETA )" "\033[1;35mKILL MULTILOGIN \033[0;94m(#BETA)  $lmt" "\033[1;36mFIX SSH -> DROPBEAR ( PORTA :${cor[1]} 22\033[1;36m ) \033[0;32m(#OFICIAL)" "Script TROJAN (directo) \033[0;32m(#OFICIAL)" "\033[1;36mFIX CONTRASEÑA ROOT EN AMAZON & GG CLOUD" "Mostrar Trafico Total de VPS \033[0;32m(#OFICIAL)" "CONFIGURAR ZONA HORARIA  \033[0;32m(#OFICIAL)" "Instalar Go Lang \033[0;32m(#OFICIAL)" "Creador de Payloads By \033[1;31m@RealStrategy  \033[0;94m(#BETA)" "TCP Aceleración (BBR/Plus) \033[0;94m(#BETA)" "FUNCIONES TESTE  \033[0;94m(#BETA) " "CAMBIAR NOMBRE SERVIDOR / RESELLER \033[0;32m(#OFICIAL)"
 selection=$(selection_fun 20)
 case ${selection} in
 	0)clear&&clear && break;;

@@ -170,20 +170,20 @@ comando[0]="$1"
 ${comando[0]} -y > /dev/null 2>&1
 touch $HOME/fim
  ) > /dev/null 2>&1 &
-echo -ne "\033[1;33m ["
+echo -ne "\033[1;94m ["
 while true; do
    for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m##"
    sleep 0.1s
    done
    [[ -e $HOME/fim ]] && rm $HOME/fim && break
-   echo -e "\033[1;33m]"
+   echo -e "\033[1;94m]"
    sleep 0.5s
    tput cuu1
    tput dl1
-   echo -ne "\033[1;33m ["
+   echo -ne "\033[1;94m ["
 done
-echo -e "\033[1;33m]\033[1;31m -\033[1;32m 100%\033[1;37m"
+echo -e "\033[1;94m]\033[1;31m -\033[1;32m 100%\033[1;37m"
 }
 
 msg -bar3
@@ -245,7 +245,7 @@ export c_magenta="\033[1;35m"
 export c_cyan="\033[1;36m"
 export c_green="\033[1;32m"
 export c_red="\033[1;31m"
-export c_yellow="\033[1;33m"
+export c_yellow="\033[1;94m"
 
 anim=(
   "${c_blue}${t0gSl}${c_green}${t0gSl}${c_red}${t0gSl}${c_magenta}${t0gSl}    "
@@ -488,7 +488,7 @@ downloader_files() {
         verificar_arq "${arqx}"
     done
 }
-echo -ne "\033[1;37m COMPILANDO ARCHIVOS\033[1;32m \033[1;37mDEL SISTEMA \033[1;32m.\033[1;33m.\033[1;31m. \033[1;33m"
+echo -ne "\033[1;37m COMPILANDO ARCHIVOS\033[1;32m \033[1;37mDEL SISTEMA \033[1;32m.\033[1;94m.\033[1;31m. \033[1;94m"
 helice
 echo -e "\e[1DOk"
 msg -bar3

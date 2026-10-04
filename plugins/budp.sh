@@ -23,7 +23,7 @@ work=$1
 		done
 		tput cnorm
 	}
-	echo -ne "\033[1;37mBuscando Binario \033[1;32mBadVPN \033[1;37me \033[1;32mSWAP\033[1;32m.\033[1;33m.\033[1;31m. \033[1;33m"
+	echo -ne "\033[1;37mBuscando Binario \033[1;32mBadVPN \033[1;37me \033[1;32mSWAP\033[1;32m.\033[1;94m.\033[1;31m. \033[1;94m"
 	helice
 	echo -e "\e[1DOk"
 }

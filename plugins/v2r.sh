@@ -77,8 +77,8 @@ bar=("--------------------"
 "]=------------------"
 "=-------------------"
 "--------------------");
-in="\033[1;33m$in\033[0m"
-en="\033[1;33m$en\033[0m"
+in="\033[1;94m$in\033[0m"
+en="\033[1;94m$en\033[0m"
 full_in="\033[1;31m$full_in"
 full_en="\033[1;32m$full_en\033[0m"
 _=$(
@@ -1350,9 +1350,9 @@ col "1)" "Respaldar Ahora"
 col "2)" "\033[1;92mRestaurar Respaldo"
 col "3)" "\033[0;31mEliminiar Respaldos"
 col "4)" "\033[1;34mRespaldo en linea $PID"
-col "5)" "\033[1;33mRespaldos automatico $(on_off_res)"
+col "5)" "\033[1;94mRespaldos automatico $(on_off_res)"
 msg -bar3
-col "6)" "\033[1;33m RESTAURAR Online PORT :81 "
+col "6)" "\033[1;94m RESTAURAR Online PORT :81 "
 msg -bar3
 col "0)" "VOLVER"
 msg -bar3
@@ -1376,7 +1376,7 @@ sed -i 's/autBackup 1/autBackup 0/' $v2rdir/conf
 fi;;
 6)
 clear
-echo -e "\033[0;33m
+echo -e "\033[0;94m
 ESTA FUNCION EXPERIMENTAL
 Una vez que se descarge tu Fichero, Escoje el BackOnline
 + OJO +
@@ -1682,10 +1682,10 @@ done
 _lo_un(){
 clear
 msg -bar3
-echo -e "\033[0;35m [${cor[2]}1\033[0;35m]\033[0;33m ${flech}\033[0;33m [!] BLOQUEAR USUARIO V2RAY "
-echo -e "\033[0;35m [${cor[2]}2\033[0;35m]\033[0;33m ${flech}\033[0;33m [!] DESBLOQUEAR USUARIO V2RAY "
+echo -e "\033[0;35m [${cor[2]}1\033[0;35m]\033[0;94m ${flech}\033[0;94m [!] BLOQUEAR USUARIO V2RAY "
+echo -e "\033[0;35m [${cor[2]}2\033[0;35m]\033[0;94m ${flech}\033[0;94m [!] DESBLOQUEAR USUARIO V2RAY "
 msg -bar3
-echo -e " \033[0;35m[${cor[2]}0\033[0;35m]\033[0;33m ${flech} $(msg -bra "\033[1;43m[ Salir ]\e[0m")"
+echo -e " \033[0;35m[${cor[2]}0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;43m[ Salir ]\e[0m")"
 msg -bar3
 selection=$(selection_fun 2)
 case ${selection} in
@@ -1784,11 +1784,11 @@ col "3)" "\033[0;31mREMOVER USUARIO"
 col "4)" "VER DATOS DE USUARIOS \033[1;32m ( ${_v2Reg} )"
 col "5)" "VER USUARIOS CONECTADOS"
 msg -bar3
-col "6)" "\033[1;33mCONFIGURAR V2RAY $_v2"
+col "6)" "\033[1;94mCONFIGURAR V2RAY $_v2"
 msg -bar3
-col "7)" "\033[1;33mEntrada Rapida $enrap"
+col "7)" "\033[1;94mEntrada Rapida $enrap"
 msg -bar3
-col "8)" "\033[1;33mFIXEAR V2RAY ( SOLO USUARIOS )"
+col "8)" "\033[1;94mFIXEAR V2RAY ( SOLO USUARIOS )"
 msg -bar3
 col "9)" "LOCK/UNLOCK USUARIO \033[1;32m ( ${_v2LOCK} )"
 msg -bar3

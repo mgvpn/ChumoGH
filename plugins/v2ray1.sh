@@ -17,7 +17,7 @@ temp="/etc/v2ray/temp.json"
 # ===== FIX @karl1999x: Ubuntu 23+/24, arranque del servicio y desinstalacion local =====
 fix_v2ray_util(){
 if ! command -v v2ray-util &>/dev/null; then
-    echo -e "\033[1;33m Instalando v2ray_util (comando v2ray)...\033[0m"
+    echo -e "\033[1;94m Instalando v2ray_util (comando v2ray)...\033[0m"
     command -v pip3 &>/dev/null || apt-get install -y python3-pip
     if pip3 install --help 2>/dev/null | grep -q -- "--break-system-packages"; then
         pip3 install -U v2ray_util --break-system-packages
@@ -47,7 +47,7 @@ msg -bar3
 echo -e "\033[1;37m Se borraran el servicio, el nucleo, la configuracion\n y los comandos v2ray/xray (usuarios incluidos).\033[0m"
 msg -bar3
 read -p " Escriba S para confirmar: " _conf
-[[ ${_conf,,} != "s" ]] && { echo -e "\033[1;33m Cancelado\033[0m"; sleep 1; return 1; }
+[[ ${_conf,,} != "s" ]] && { echo -e "\033[1;94m Cancelado\033[0m"; sleep 1; return 1; }
 systemctl stop v2ray xray &>/dev/null
 systemctl disable v2ray xray &>/dev/null
 rm -f /etc/systemd/system/v2ray.service /etc/systemd/system/v2ray@.service
@@ -901,8 +901,8 @@ dell_user(){
 _delUSR () {
 clear&&clear
 msg -bar3
-echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m  BORRAR POR UUID DE USUARIO\033[1;32m "
-echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m  BORRAR POR NUMERO DE USUARIO \033[1;32m "
+echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m  BORRAR POR UUID DE USUARIO\033[1;32m "
+echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m  BORRAR POR NUMERO DE USUARIO \033[1;32m "
 msg -bar3
 selection=$(selection_fun 2)
 case ${selection} in
@@ -1051,8 +1051,8 @@ _UNLOCK(){
 __menLU () {
 clear&&clear
 msg -bar3
-echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m  BLOQUEAR USUARIO UNICO UUID\033[1;32m "
-echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m  DESBLOQUEAR USUARIO UNICO UUID \033[1;32m "
+echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m  BLOQUEAR USUARIO UNICO UUID\033[1;32m "
+echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m  DESBLOQUEAR USUARIO UNICO UUID \033[1;32m "
 msg -bar3
 selection=$(selection_fun 2)
 case ${selection} in
@@ -1400,7 +1400,7 @@ v2ray="\033[1;31m[OFF]"
 msg -ama "      PANNEL V2RAY.MENU  ChumoGH ${vesaoSCT} "
 msg -bar3
 ## INSTALADOR
-echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m  INSTALAR V2RAY         $v2ray"
+echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m  INSTALAR V2RAY         $v2ray"
 echo -ne "$(msg -bar3)\n\033[1;32m [0] > " && msg -bra "\e[97m\033[1;41m VOLVER \033[1;37m"
 msg -bar3
 pid_inst () {
@@ -1419,13 +1419,13 @@ esac
 PID_GEN=$(ps x|grep -v grep|grep "limv2ray")
 [[ ! $PID_GEN ]] && PID_GEN="\e[91m [ OFF ] " || PID_GEN="\e[92m [ ON ] "
 statgen="$(echo $PID_GEN)"
-[[ $(cat /etc/v2ray/config.json | jq '.inbounds[].streamSettings.security') = '"tls"' ]] && _tlsN=" \033[1;32m [ \033[0;34m ACTIVO \033[1;32m ]" || _tlsN=" \033[1;32m [ \033[0;33m CERRADO\033[1;32m ]"
+[[ $(cat /etc/v2ray/config.json | jq '.inbounds[].streamSettings.security') = '"tls"' ]] && _tlsN=" \033[1;32m [ \033[0;34m ACTIVO \033[1;32m ]" || _tlsN=" \033[1;32m [ \033[0;94m CERRADO\033[1;32m ]"
 [[ -e /etc/v2ray/config.json ]] && _netW="$(cat /etc/v2ray/config.json | jq '.inbounds[].streamSettings.network')" || _netW="\033[0;32mnull"
 [[ -e /etc/v2ray/config.json ]] && _v2Reg="$(cat /etc/v2ray/config.json | jq .inbounds[].settings.clients[].email|wc -l)" || _v2Reg="\033[0;32mnull"
 _v2RegE=$(cat $user_confEX | wc -l)
 v1=$(cat /bin/ejecutar/v-new.log)
 v2=$(cat /etc/adm-lite/v-local.log)
-[[ $v1 = $v2 ]] && vesaoSCT="\033[0;33m ($v2)" || vesaoSCT="\033[0;33m($v2) ${TOP} \033[1;32m($v1)\033[1;31m"
+[[ $v1 = $v2 ]] && vesaoSCT="\033[0;94m ($v2)" || vesaoSCT="\033[0;94m($v2) ${TOP} \033[1;32m($v1)\033[1;31m"
 v2rayports=`netstat -tunlp | grep v2ray | grep LISTEN | grep -vE '127.0.0.1' | awk '{print substr($4,4); }' > /tmp/v2.txt && echo | cat /tmp/v2.txt | tr '\n' ' ' > /etc/adm-lite/v2ports.txt && cat /etc/adm-lite/v2ports.txt`;
 [[ -z $(echo "$v2rayports" | awk {'print $1'}) ]] && _v2rayports="null" || _v2rayports=$(echo "$v2rayports" | awk {'print $1'})
 _tconex=$(netstat -nap | grep "$_v2rayports" | grep v2ray | grep ESTABLISHED |grep tcp6| awk {'print $5'} | awk -F ":" '{print $1}' | sort | uniq | wc -l)
@@ -1437,27 +1437,27 @@ msg -bar3
 bg=0
 ## INSTALADOR
 [[ $(v2ray info |grep Group | wc -l) > 0 ]] || {
-echo -e "\033[0;35m[\033[0;36m12\033[0;35m] \033[0;34m<\033[0;33m V2RAY BUGEADO \033[1;32m [ \033[0;34mFIX INSTALL \033[1;32m ]" 
+echo -e "\033[0;35m[\033[0;36m12\033[0;35m] \033[0;34m<\033[0;94m V2RAY BUGEADO \033[1;32m [ \033[0;34mFIX INSTALL \033[1;32m ]" 
 bg=1
 } 
 [[ -e ${configLOCK} ]] && _v2LOCK="$(cat ${configLOCK} | jq .inbounds[].settings.clients[].email|wc -l)" || _v2LOCK=0
 [[ $bg = 0 ]] && {
-echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;33m  CAMBIAR PROTOCOLO  -> \033[1;32m [ \033[0;34m${_netW} \033[1;32m ]" 
-echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;33m  TLS ESTADO : -> ${_tlsN}"
-echo -e "\033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;33m  CAMBIAR PUERTO V2RAY \033[1;32m [ \033[0;32m$_v2rayports \033[1;32m]\n$(msg -bar3) "
+echo -e "\033[0;35m[\033[0;36m1\033[0;35m] \033[0;34m<\033[0;94m  CAMBIAR PROTOCOLO  -> \033[1;32m [ \033[0;34m${_netW} \033[1;32m ]" 
+echo -e "\033[0;35m[\033[0;36m2\033[0;35m] \033[0;34m<\033[0;94m  TLS ESTADO : -> ${_tlsN}"
+echo -e "\033[0;35m[\033[0;36m3\033[0;35m] \033[0;34m<\033[0;94m  CAMBIAR PUERTO V2RAY \033[1;32m [ \033[0;32m$_v2rayports \033[1;32m]\n$(msg -bar3) "
 ## CONTROLER \033[0;31m [\033[0;32mON\033[0;31m] 
-echo -e "\033[0;35m[\033[0;36mb\033[0;35m] \033[0;34m<\033[0;33m  LOCK/UNLOCK USUARIOS "
-echo -e "\033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m<\033[0;33m  AGREGAR USUARIO UUID "
-#echo -e "\033[0;35m[\033[0;36mG\033[0;35m] \033[0;34m<\033[0;33m  AGREGAR USUARIO POR GRUPOS "
-echo -e "\033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m<\033[0;33m  ELIMINAR N°/UUID"
-echo -e "\033[0;35m[\033[0;36mb\033[0;35m] \033[0;34m<\033[0;33m  LOCK/UNLOCK USUARIO \033[1;32m ( ${_v2LOCK} )"
-echo -e "\033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m<\033[0;33m  RENOVAR USUARIO \033[1;32m ( ${_v2RegE} )"
-echo -e "\033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m<\033[0;33m  USUARIOS REGISTRADOS \033[1;32m ( ${_v2Reg} )"
-echo -e "\033[0;35m[\033[0;36m8\033[0;35m] \033[0;34m<\033[0;33m  INFORMACION DE CUENTAS "
-#echo -e "\033[0;35m[\033[0;36m9\033[0;35m] \033[0;34m<\033[0;33m  ESTADISTICAS DE CONSUMO "
-echo -e "\033[0;35m[\033[0;36m9\033[0;35m] \033[0;34m<\033[0;33m  USUARIOS CONECTADOS "
-#echo -ne "\033[1;32m [10] > " && msg -azu " LIMITADOR POR CONSUMO \033[1;33m( #BETA )"
-echo -e "\033[0;35m[\033[0;36m10\033[0;35m] \033[0;34m<\033[0;33m  LIMPIADOR DE EXPIRADOS $statgen"
+echo -e "\033[0;35m[\033[0;36mb\033[0;35m] \033[0;34m<\033[0;94m  LOCK/UNLOCK USUARIOS "
+echo -e "\033[0;35m[\033[0;36m4\033[0;35m] \033[0;34m<\033[0;94m  AGREGAR USUARIO UUID "
+#echo -e "\033[0;35m[\033[0;36mG\033[0;35m] \033[0;34m<\033[0;94m  AGREGAR USUARIO POR GRUPOS "
+echo -e "\033[0;35m[\033[0;36m5\033[0;35m] \033[0;34m<\033[0;94m  ELIMINAR N°/UUID"
+echo -e "\033[0;35m[\033[0;36mb\033[0;35m] \033[0;34m<\033[0;94m  LOCK/UNLOCK USUARIO \033[1;32m ( ${_v2LOCK} )"
+echo -e "\033[0;35m[\033[0;36m6\033[0;35m] \033[0;34m<\033[0;94m  RENOVAR USUARIO \033[1;32m ( ${_v2RegE} )"
+echo -e "\033[0;35m[\033[0;36m7\033[0;35m] \033[0;34m<\033[0;94m  USUARIOS REGISTRADOS \033[1;32m ( ${_v2Reg} )"
+echo -e "\033[0;35m[\033[0;36m8\033[0;35m] \033[0;34m<\033[0;94m  INFORMACION DE CUENTAS "
+#echo -e "\033[0;35m[\033[0;36m9\033[0;35m] \033[0;34m<\033[0;94m  ESTADISTICAS DE CONSUMO "
+echo -e "\033[0;35m[\033[0;36m9\033[0;35m] \033[0;34m<\033[0;94m  USUARIOS CONECTADOS "
+#echo -ne "\033[1;32m [10] > " && msg -azu " LIMITADOR POR CONSUMO \033[1;94m( #BETA )"
+echo -e "\033[0;35m[\033[0;36m10\033[0;35m] \033[0;34m<\033[0;94m  LIMPIADOR DE EXPIRADOS $statgen"
 } || {
 clear&&clear
 	title "   V2RAY CON UN BUG - PARA FIXEAR"
@@ -1465,18 +1465,18 @@ clear&&clear
 	echo -e " y recuerda leer las indicaciones que sugiere\n"
 	echo -e "  LUEGO DE ESTO, DEBERAS RECONFIGURAR TU METODO\n\033[0m"
 	msg -bar3
-echo -e "\033[0;35m[\033[0;36m12\033[0;35m] \033[0;34m<\033[0;33m V2RAY BUGEADO \033[1;32m [ \033[0;34mFIX INSTALL \033[1;32m ]" 
+echo -e "\033[0;35m[\033[0;36m12\033[0;35m] \033[0;34m<\033[0;94m V2RAY BUGEADO \033[1;32m [ \033[0;34mFIX INSTALL \033[1;32m ]" 
 }
 ## DESISNTALAR
-echo -ne "\033[0;35m[\033[0;36m11\033[0;35m] \033[0;34m<\033[1;31m DESINSTALAR V2RAY  \033[0;33m| "
-echo -ne "\033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m<\033[0;33m " && msg -bra "\e[97m\033[1;41m VOLVER \033[1;37m"
+echo -ne "\033[0;35m[\033[0;36m11\033[0;35m] \033[0;34m<\033[1;31m DESINSTALAR V2RAY  \033[0;94m| "
+echo -ne "\033[0;35m[\033[0;36m0\033[0;35m] \033[0;34m<\033[0;94m " && msg -bra "\e[97m\033[1;41m VOLVER \033[1;37m"
 msg -bar3
 pid_inst () {
 [[ $1 = "" ]] && echo -e "\033[1;31m[OFF]" && return 0
 unset portas
 portas_var=$(lsof -V -i -P -n | grep -v "ESTABLISHED" |grep -v "COMMAND" | grep $1)
-[[ -e $config ]] && echo -ne "\033[1;33m[ \033[1;32mINSTALADO \033[1;33m+" || echo -ne "\033[1;33m[ \033[1;31mNO INSTALADO \033[1;33m+"
-[[ -z ${portas_var} ]] && echo -e "\033[1;31m INACTIVO \033[1;33m]" || echo -e "\033[1;32m ACTIVO \033[1;33m]" 
+[[ -e $config ]] && echo -ne "\033[1;94m[ \033[1;32mINSTALADO \033[1;94m+" || echo -ne "\033[1;94m[ \033[1;31mNO INSTALADO \033[1;94m+"
+[[ -z ${portas_var} ]] && echo -e "\033[1;31m INACTIVO \033[1;94m]" || echo -e "\033[1;32m ACTIVO \033[1;94m]" 
 }
 echo -e "     \e[97mEstado actual: $(pid_inst v2ray)"
 

@@ -8,7 +8,7 @@ declare -A cor=(
 [0]="\033[1;37m" 
 [1]="\033[1;34m" 
 [2]="\033[1;31m" 
-[3]="\033[1;33m" 
+[3]="\033[1;94m" 
 [4]="\033[1;32m" 
 [5]="\e[1;36m" )  
 
@@ -27,21 +27,21 @@ fun_bar () {
 comando="$1"  _=$( $comando > /dev/null 2>&1 ) & > /dev/null 
 pid=$! 
 while [[ -d /proc/$pid ]]; do 
-echo -ne " \033[1;33m["    
+echo -ne " \033[1;94m["    
 for((i=0; i<20; i++)); do    
 echo -ne "\033[1;31m##"    
 sleep 0.5    
 done 
-echo -ne "\033[1;33m]" 
+echo -ne "\033[1;94m]" 
 sleep 1s 
 echo tput cuu1 tput dl1 
 done 
-echo -e " \033[1;33m[\033[1;31m########################################\033[1;33m] - \033[1;32m100%\033[0m" 
+echo -e " \033[1;94m[\033[1;31m########################################\033[1;94m] - \033[1;32m100%\033[0m" 
 sleep 1s 
 }  
 ssl_stunel () { 
 [[ $(mportas|grep stunnel4|head -1) ]] && { 
-echo -e "\033[1;33m Deteniendo Stunnel"
+echo -e "\033[1;94m Deteniendo Stunnel"
 msg -bar3
 service stunnel4 stop > /dev/null 2>&1 
 rm -rf /etc/stunnel/stunnel.conf 
@@ -49,14 +49,14 @@ apt-get purge stunnel4 -y &>/dev/null && echo -e "\e[31m DETENIENDO SERVICIO SSL
 apt-get purge stunnel4 &>/dev/null 
 apt-get remove stunnel4 &>/dev/null 
 msg -bar3
-echo -e "\033[1;33m Detenido Con Exito!"
+echo -e "\033[1;94m Detenido Con Exito!"
 msg -bar3
 return 0 
 } 
 clear 
 msg -bar3
-echo -e "\033[1;33m Seleccione una puerta de redirección interna."
-echo -e "\033[1;33m Un puerto SSH/DROPBEAR/SQUID/OPENVPN/PYTHON"
+echo -e "\033[1;94m Seleccione una puerta de redirección interna."
+echo -e "\033[1;94m Un puerto SSH/DROPBEAR/SQUID/OPENVPN/PYTHON"
 msg -bar3
          while true; do
          echo -ne "\033[1;37m"
@@ -73,7 +73,7 @@ msg -bar3
          done
 msg -bar3
 DPORT="$(mportas|grep $portserv|awk '{print $2}'|head -1)" 
-echo -e "\033[1;33m Ahora Que Puerto sera SSL"
+echo -e "\033[1;94m Ahora Que Puerto sera SSL"
 msg -bar3    
 while true; do
     echo -e " Ingresa el Puerto SSl/TLS "
@@ -82,12 +82,12 @@ while true; do
 	PortSSL=`netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w $SSLPORT`
 	[[ -n "$PortSSL" ]] || break
     prococup=`netstat -tlpn | awk -F '[: ]+' '$5=="$SSLPORT"{print $9}'`
-    echo -e "\033[1;33m  EL PUERTO SE ENCUENTRA OCUPADO POR $prococup"
+    echo -e "\033[1;94m  EL PUERTO SE ENCUENTRA OCUPADO POR $prococup"
 	echo -e "$barra"
 	return
     done
 msg -bar3
-echo -e "\033[1;33m Instalando SSL"
+echo -e "\033[1;94m Instalando SSL"
 msg -bar3
 fun_bar "apt-get install stunnel4 -y" 
 apt-get install stunnel4 -y > /dev/null 2>&1 
@@ -101,7 +101,7 @@ mv stunnel.pem /etc/stunnel/
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4 
 service stunnel4 restart > /dev/null 2>&1 
 msg -bar3
-echo -e "\033[1;33m INSTALADO CON EXITO"
+echo -e "\033[1;94m INSTALADO CON EXITO"
 msg -bar3
 rm -rf /etc/adm-lite/stunnel.crt > /dev/null 2>&1 
 rm -rf /etc/adm-lite/stunnel.key > /dev/null 2>&1 
@@ -113,8 +113,8 @@ return 0
 ssl_stunel_2 () { 
 echo -e "\033[1;32m              AGREGAR MAS PUERTOS SSL"
 msg -bar3
-echo -e "\033[1;33m Seleccione una puerta de redirecciÃ³n interna."
-echo -e "\033[1;33m Un puerto SSH/DROPBEAR/SQUID/OPENVPN/PYTHON"
+echo -e "\033[1;94m Seleccione una puerta de redirecciÃ³n interna."
+echo -e "\033[1;94m Un puerto SSH/DROPBEAR/SQUID/OPENVPN/PYTHON"
 msg -bar3
          while true; do
          echo -ne "\033[1;37m"
@@ -131,7 +131,7 @@ msg -bar3
          done
 msg -bar3
 DPORT="$(mportas|grep $portserv|awk '{print $2}'|head -1)" 
-echo -e "\033[1;33m Ahora Que Puerto sera SSL"
+echo -e "\033[1;94m Ahora Que Puerto sera SSL"
 msg -bar3    
 while true; do
     echo -e " Ingresa el Puerto SSl/TLS "
@@ -140,12 +140,12 @@ while true; do
 	PortSSL=`netstat -tlpn | awk -F '[: ]+' '$1=="tcp"{print $5}' | grep -w $SSLPORT`
 	[[ -n "$PortSSL" ]] || break
     prococup=`netstat -tlpn | awk -F '[: ]+' '$5=="$SSLPORT"{print $9}'`
-    echo -e "\033[1;33m  EL PUERTO SE ENCUENTRA OCUPADO POR $prococup"
+    echo -e "\033[1;94m  EL PUERTO SE ENCUENTRA OCUPADO POR $prococup"
 	echo -e "$barra"
 	return
     done
 msg -bar3
-echo -e "\033[1;33m Instalando SSL"
+echo -e "\033[1;94m Instalando SSL"
 msg -bar3
 fun_bar "apt-get install stunnel4 -y" 
 echo -e "client = no\n[SSL+]\ncert = /etc/stunnel/stunnel.pem\naccept = ${SSLPORT}\nconnect = 127.0.0.1:${DPORT}" >> /etc/stunnel/stunnel.conf 
@@ -220,7 +220,7 @@ echo -ne " Desea Continuar? [S/N]: "; read seg
 clear 
 ####Cerrificado ssl/tls##### 
 msg -bar3
-echo -e "\e[1;33mðŸ‘‡ LINK DEL CERTIFICADO.zip ðŸ‘‡           \n     \e[0m" 
+echo -e "\e[1;94mðŸ‘‡ LINK DEL CERTIFICADO.zip ðŸ‘‡           \n     \e[0m" 
 echo -e "\e[1;36m LINK \e[37m: \e[34m\c " 
 #extraer certificado.zip 
 read linkd 
@@ -259,7 +259,7 @@ echo "Listen 80  <IfModule ssl_module>
 		 } 
 clear 
 msg -bar3
-insapa2 &>/dev/null && echo -e " \e[1;33mAGREGANDO RECURSOS " | pv -qL 10 
+insapa2 &>/dev/null && echo -e " \e[1;94mAGREGANDO RECURSOS " | pv -qL 10 
 msg -bar3
 echo -e "\e[1;37m Verificar dominio \e[0m" 
 msg -bar3
@@ -277,7 +277,7 @@ msg -bar3
 read -p " ENTER PARA CONTINUAR" 
 clear
 msg -bar3
-echo -e "\e[1;33mðŸ‘‡ LINK DEL CERTIFICADO ðŸ‘‡       \n     \e[0m" 
+echo -e "\e[1;94mðŸ‘‡ LINK DEL CERTIFICADO ðŸ‘‡       \n     \e[0m" 
 echo -e "\e[1;36m LINK \e[37m: \e[34m\c" 
 read link 
 
@@ -291,7 +291,7 @@ service stunnel restart &>/dev/null
 service stunnel4 restart &>/dev/null 
 } 
 
-incertis &>/dev/null && echo -e " \e[1;33mEXTRAYENDO CERTIFICADO " | pv -qL 10 
+incertis &>/dev/null && echo -e " \e[1;94mEXTRAYENDO CERTIFICADO " | pv -qL 10 
 msg -bar3
 echo -e "${cor[4]} CERTIFICADO INSTALADO \e[0m"  
 msg -bar3 

@@ -143,8 +143,8 @@ cocolon=${srvip}
 cp /root/.config/clash/config.yaml /var/www/html/$cocolon.yaml && chmod +x /var/www/html/$cocolon.yaml
 [[ $(dpkg --get-selections|grep -w "apache2"|head -1) ]] && service apache2 restart &>/dev/null
 [[ $(dpkg --get-selections|grep -w "nginx"|head -1) ]] && service nginx restart &>/dev/null
-echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
-echo -e "\033[1;33mClash Server Instalado"
+echo -e "[\033[1;31m-\033[1;94m]\033[1;31m \033[1;94m"
+echo -e "\033[1;94mClash Server Instalado"
 echo -e "-------------------------------------------------------"
 echo -e "		\033[4;31mNOTA importante\033[0m"
 echo -e "Recuerda Descargar el Fichero, o cargarlo como URL!!"
@@ -481,14 +481,14 @@ done
 [[ ${yesno} = @(s|S|y|Y) ]] &&  { 
 unset yesno
 foc=$(($foc + 1))
-echo -ne "\033[1;33m ➣ PERFIL TROJAN CLASH "
+echo -ne "\033[1;94m ➣ PERFIL TROJAN CLASH "
 read -p ": " nameperfil
 msg -bar3
 [[ -z ${UUID} ]] && view_usert || { 
 echo -e " USER ${Usr} : ${UUID}"
 msg -bar3
 }
-echo -ne "\033[1;33m ➣ SNI o HOST "
+echo -ne "\033[1;94m ➣ SNI o HOST "
 read -p ": " trosni
 msg -bar3
 proxyTRO ${nameperfil} ${UUID} ${trosni}
@@ -569,14 +569,14 @@ done
 [[ ${yesno} = @(s|S|y|Y) ]] &&  { 
 unset yesno
 foc=$(($foc + 1))
-echo -ne "\033[1;33m ➣ PERFIL V2RAY CLASH "
+echo -ne "\033[1;94m ➣ PERFIL V2RAY CLASH "
 read -p ": " nameperfil
 msg -bar3
 [[ -z ${uid} ]] && view_user || { 
 echo -e " USER ${ps}"
 msg -bar3
 }
-echo -ne "\033[1;33m ➣ SNI o HOST "
+echo -ne "\033[1;94m ➣ SNI o HOST "
 read -p ": " trosni
 msg -bar3
 
@@ -613,14 +613,14 @@ done
 [[ ${yesno} = @(s|S|y|Y) ]] &&  { 
 unset yesno
 foc=$(($foc + 1))
-echo -ne "\033[1;33m ➣ PERFIL XRAY CLASH "
+echo -ne "\033[1;94m ➣ PERFIL XRAY CLASH "
 read -p ": " nameperfilX
 msg -bar3
 [[ -z ${uidX} ]] && _view_userXR || { 
 echo -e " USER ${ps} XRAY"
 msg -bar3
 }
-echo -ne "\033[1;33m ➣ SNI o HOST "
+echo -ne "\033[1;94m ➣ SNI o HOST "
 read -p ": " trosniX
 msg -bar3
 		psX=$(jq .inbounds[].settings.clients[$opcion].email $config) && [[ $ps = null ]] && ps="default"
@@ -2396,7 +2396,7 @@ echo -e "\033[1;37m ${TTcent} Ficheros Online:	$fileon  ${TTcent} Ficheros Local
 msg -bar3
 echo -e "\033[1;37m - Menu Iterativo Clash for Android - ChumoGH \033[0m"
 msg -bar3
-echo -e "\033[1;37m Para Salir Ctrl + C o N Para SALIR\033[1;33m"
+echo -e "\033[1;37m Para Salir Ctrl + C o N Para SALIR\033[1;94m"
 unset yesno
 msg -bar3
 echo -e " DESEAS CONTINUAR CON LA CARGA DE CONFIG CLASH?"
@@ -2408,8 +2408,8 @@ done
 if [[ ${yesno} = @(s|S|y|Y) ]]; then
 unset yesno numwt
 #[[ -e /root/name ]] && figlet -p -f slant < /root/name || echo -e "\033[7;49;35m    =====>>â–ºâ–º ðŸ² New ChumoGHðŸ’¥VPS ðŸ² â—„â—„<<=====      \033[0m"
-#echo -e "[\033[1;31m-\033[1;33m]\033[1;31m \033[1;33m"
-#echo -e "\033[1;33m ${TTcent} Ingresa tu Whatsapp junto a tu codigo de Pais"
+#echo -e "[\033[1;31m-\033[1;94m]\033[1;31m \033[1;94m"
+#echo -e "\033[1;94m ${TTcent} Ingresa tu Whatsapp junto a tu codigo de Pais"
 #read -p " Ejemplo: +593987072611 : " numwt
 #if [[ -z $numwt ]]; then
 #numwt='+593987072611'
@@ -2420,8 +2420,8 @@ print_center -verd '  \e[97m\033[1;41m NOMBRE DE FICHERO WEB FILE\033[0m'
 msg -bar3
 print_center -verm2 ' Este nombre saldra como SELECTOR \n en la APP Clash For Android (META) \n Recuerda no colocar Espacios, ya que \n tambien sera el nombre del fichero WEB'
 msg -bar3
-echo -ne "[\033[1;31m${TTcent}\033[1;33m]\033[1;31m \033[1;33m"
-echo -e "\033[1;33mINGRESA NOMBRE DEL FICHERO ( UsuarioXYZ ) "
+echo -ne "[\033[1;31m${TTcent}\033[1;94m]\033[1;31m \033[1;94m"
+echo -e "\033[1;94mINGRESA NOMBRE DEL FICHERO ( UsuarioXYZ ) "
 msg -bar3
 read -p " Ejemplo: ChumoGH : " srvip
 [[ -z $srvip ]] && srvip='NewADM'
@@ -2438,9 +2438,9 @@ read -p " Ejemplo: ChumoGH : " srvip
 		echo -e " SINO CONOCES DE ESTO, ESCOJE 2 "
 		echo -e "  "
 		msg -bar3
-		echo -e "\033[0;35m [${cor[2]}01\033[0;35m]\033[0;33m ${flech}${cor[3]} SELECTOR RULES         \033[0;31m[ $(msg -verm2 'On Bugs') \033[0;31m]" 
-		echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;33m ${flech}${cor[3]} SELECTOR GLOBAL        \033[0;31m[ $(msg -verd 'NO Bugs') \033[0;31m]" 
-		echo -e "\033[0;35m [${cor[2]}03\033[0;35m]\033[0;33m ${flech}${cor[3]} SELECTOR AUTOMATICO    \033[0;31m[ $(msg -verd 'NO Bugs') \033[0;31m]" 
+		echo -e "\033[0;35m [${cor[2]}01\033[0;35m]\033[0;94m ${flech}${cor[3]} SELECTOR RULES         \033[0;31m[ $(msg -verm2 'On Bugs') \033[0;31m]" 
+		echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;94m ${flech}${cor[3]} SELECTOR GLOBAL        \033[0;31m[ $(msg -verd 'NO Bugs') \033[0;31m]" 
+		echo -e "\033[0;35m [${cor[2]}03\033[0;35m]\033[0;94m ${flech}${cor[3]} SELECTOR AUTOMATICO    \033[0;31m[ $(msg -verd 'NO Bugs') \033[0;31m]" 
 		msg -bar3
 		echo -ne "$(msg -verd "  [0]") $(msg -verm2 "=>>") " && msg -bra "\033[1;41m SALIR "
 		msg -bar3

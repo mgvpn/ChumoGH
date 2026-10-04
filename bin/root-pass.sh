@@ -11,7 +11,7 @@ rootpass () {
 clear
 [[ "$(whoami)" != "root" ]] && {
 	clear
-	echo -e "\033[1;31mEXECULTE COMO USUARIO ROOT, \033[1;32m(\033[1;33msudo -i\033[1;32m)\033[0m"
+	echo -e "\033[1;31mEXECULTE COMO USUARIO ROOT, \033[1;32m(\033[1;94msudo -i\033[1;32m)\033[0m"
 	exit
 }
 unset yesno
@@ -40,7 +40,7 @@ echo " RESPALDANDO AJUSTES PREVIOS "
 echo '#######CONFIG NATURAL' >> /bin/ejecutar/sshd_config
 cat /etc/ssh/sshd_config >> /bin/ejecutar/sshd_config
 #Inicia Procedimentos
-echo -e "\033[1;33mAPLICANDO CONFIGURACIONES"
+echo -e "\033[1;94mAPLICANDO CONFIGURACIONES"
 fun_bar
 #[[ $(uname -m 2> /dev/null) != x86_64 ]] && 
 apt purge netfilter-persistent -y &> /dev/null

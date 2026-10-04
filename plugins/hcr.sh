@@ -62,7 +62,7 @@ EOF
 
 generate_cert() {
     if [[ ! -f "$CERT_PATH" || ! -f "$KEY_PATH" ]]; then
-        echo -e "\033[0;33m Generando certificado TLS auto-firmado...\033[0m"
+        echo -e "\033[0;94m Generando certificado TLS auto-firmado...\033[0m"
         if ! command -v openssl &> /dev/null; then
             echo -e "\033[0;36m Instalando OpenSSL...\033[0m"
             apt-get update -y > /dev/null 2>&1
@@ -151,7 +151,7 @@ install_hcr() {
         rm -f "$BIN_PATH"
     fi
 
-    echo -e "\033[0;33m Descargando binario de HCR...\033[0m"
+    echo -e "\033[0;94m Descargando binario de HCR...\033[0m"
     if [[ -f "/root/ChumoGH/bin/x86_64/HCR" ]]; then
         cp -f "/root/ChumoGH/bin/x86_64/HCR" "$BIN_PATH"
         chmod +x "$BIN_PATH"
@@ -168,16 +168,16 @@ install_hcr() {
     MAX_SESSIONS="32"
 
     echo ""
-    read -p "$(echo -e "\033[0;33m Puerto de inyección [Default 8880]: \033[0m")" input_port
+    read -p "$(echo -e "\033[0;94m Puerto de inyección [Default 8880]: \033[0m")" input_port
     LISTEN_PORT=${input_port:-8880}
 
-    read -p "$(echo -e "\033[0;33m Puerto de redireccionamiento [Default 22]: \033[0m")" input_target
+    read -p "$(echo -e "\033[0;94m Puerto de redireccionamiento [Default 22]: \033[0m")" input_target
     TARGET_PORT=${input_target:-22}
 
-    echo -e "\033[0;33m Modo de transporte:\033[0m"
-    echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m Plain (Recomendado)"
-    echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m TLS (Generará certificados)"
-    read -p "$(echo -e "\033[0;33m Seleccione opción [Default 1]: \033[0m")" t_opt
+    echo -e "\033[0;94m Modo de transporte:\033[0m"
+    echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m Plain (Recomendado)"
+    echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m TLS (Generará certificados)"
+    read -p "$(echo -e "\033[0;94m Seleccione opción [Default 1]: \033[0m")" t_opt
     case $t_opt in
         2) TRANSPORT_MODE="tls" ;;
         1|*) TRANSPORT_MODE="plain" ;;
@@ -233,21 +233,21 @@ show_menu() {
         msg -bar3 2>/dev/null || echo "======================================================"
         
         # Formato de 2 columnas estilo Matriz
-        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m ${flech} ${cor[3]}Puerto Inyección \033[0;32m[${LISTEN_PORT}]\033[0;33m \033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m ${flech} ${cor[3]}Puerto Destino \033[0;32m[${TARGET_PORT}]\033[0m"
-        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;33m ${flech} ${cor[3]}Max DL Frame \033[0;32m[${MAX_DL_FRAME}]\033[0;33m     \033[0;35m [\033[0;36m4\033[0;35m]\033[0;33m ${flech} ${cor[3]}Poll TimeOut \033[0;32m[${DL_POLL_TIMEOUT}]\033[0m"
-        echo -e "\033[0;35m [\033[0;36m5\033[0;35m]\033[0;33m ${flech} ${cor[3]}Modo: \033[0;32m[${TRANSPORT_MODE}]\033[0;33m          \033[0;35m [\033[0;36m6\033[0;35m]\033[0;33m ${flech} ${cor[3]}Iniciar/Detener \033[0m"
-        echo -e "\033[0;35m [\033[0;36m7\033[0;35m]\033[0;33m ${flech} ${cor[3]}Desinstalar HCR          \033[0;35m [\033[0;36m8\033[0;35m]\033[0;33m ${flech} ${cor[3]}Ver Logs (Real-time)\033[0m"
+        echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m ${flech} ${cor[3]}Puerto Inyección \033[0;32m[${LISTEN_PORT}]\033[0;94m \033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m ${flech} ${cor[3]}Puerto Destino \033[0;32m[${TARGET_PORT}]\033[0m"
+        echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;94m ${flech} ${cor[3]}Max DL Frame \033[0;32m[${MAX_DL_FRAME}]\033[0;94m     \033[0;35m [\033[0;36m4\033[0;35m]\033[0;94m ${flech} ${cor[3]}Poll TimeOut \033[0;32m[${DL_POLL_TIMEOUT}]\033[0m"
+        echo -e "\033[0;35m [\033[0;36m5\033[0;35m]\033[0;94m ${flech} ${cor[3]}Modo: \033[0;32m[${TRANSPORT_MODE}]\033[0;94m          \033[0;35m [\033[0;36m6\033[0;35m]\033[0;94m ${flech} ${cor[3]}Iniciar/Detener \033[0m"
+        echo -e "\033[0;35m [\033[0;36m7\033[0;35m]\033[0;94m ${flech} ${cor[3]}Desinstalar HCR          \033[0;35m [\033[0;36m8\033[0;35m]\033[0;94m ${flech} ${cor[3]}Ver Logs (Real-time)\033[0m"
         
         # Opción Salir
         echo -e "\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m" 2>/dev/null || echo "\033[1;41m[ REGRESAR ]\e[0m")"
         msg -bar3 2>/dev/null || echo "======================================================"
         
-        read -p "$(echo -e "\033[0;33m Seleccione una opción: \033[0m")" opt
+        read -p "$(echo -e "\033[0;94m Seleccione una opción: \033[0m")" opt
 
         case $opt in
             1)
                 echo ""
-                read -p "$(echo -e "\033[0;33m Ingrese nuevo puerto de inyección: \033[0m")" new_port
+                read -p "$(echo -e "\033[0;94m Ingrese nuevo puerto de inyección: \033[0m")" new_port
                 if [[ -n "$new_port" ]]; then
                     manage_iptables "remove" "$LISTEN_PORT"
                     LISTEN_PORT="$new_port"
@@ -257,7 +257,7 @@ show_menu() {
                 ;;
             2)
                 echo ""
-                read -p "$(echo -e "\033[0;33m Ingrese nuevo puerto destino: \033[0m")" new_target
+                read -p "$(echo -e "\033[0;94m Ingrese nuevo puerto destino: \033[0m")" new_target
                 if [[ -n "$new_target" ]]; then
                     TARGET_PORT="$new_target"
                     apply_changes
@@ -265,7 +265,7 @@ show_menu() {
                 ;;
             3)
                 echo ""
-                echo -e "\033[0;33m Ingrese Max DL Frame (ej. 16384, 32768, 65536): \033[0m"
+                echo -e "\033[0;94m Ingrese Max DL Frame (ej. 16384, 32768, 65536): \033[0m"
                 read -p " Valor: " new_frame
                 if [[ -n "$new_frame" ]]; then
                     MAX_DL_FRAME="$new_frame"
@@ -274,7 +274,7 @@ show_menu() {
                 ;;
             4)
                 echo ""
-                echo -e "\033[0;33m Ingrese Poll TimeOut (ej. 5s, 8s, 10s): \033[0m"
+                echo -e "\033[0;94m Ingrese Poll TimeOut (ej. 5s, 8s, 10s): \033[0m"
                 read -p " Valor: " new_timeout
                 if [[ -n "$new_timeout" ]]; then
                     DL_POLL_TIMEOUT="$new_timeout"
@@ -283,10 +283,10 @@ show_menu() {
                 ;;
             5)
                 echo ""
-                echo -e "\033[0;33m Seleccione el modo de transporte:\033[0m"
-                echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;33m Plain"
-                echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;33m TLS"
-                read -p "$(echo -e "\033[0;33m Opción: \033[0m")" m_opt
+                echo -e "\033[0;94m Seleccione el modo de transporte:\033[0m"
+                echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m Plain"
+                echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m TLS"
+                read -p "$(echo -e "\033[0;94m Opción: \033[0m")" m_opt
                 case $m_opt in
                     2) TRANSPORT_MODE="tls" ;;
                     1|*) TRANSPORT_MODE="plain" ;;
