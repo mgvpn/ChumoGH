@@ -4117,7 +4117,7 @@ msg -bar3
 echo -ne "\033[1;37m Nuevo Banner (ENTER para default ChumoGH): \033[0m" && read new_banner
 if [[ -z "$new_banner" || "$new_banner" = "Karl199x" || "$new_banner" = "ChumoGH" ]]; then
     rm -f /root/name /etc/adm-lite/name
-    echo -e " ${CHeko} \033[1;32mBanner por defecto activado: ChumoGH\033[0m"
+    echo -e " ${CHeko} \033[1;32mBanner por defecto activado: MgScript\033[0m"
     new_banner=""
 else
     new_banner="${new_banner:0:15}"
@@ -4150,7 +4150,7 @@ if [[ -n "$new_banner" ]]; then
 else
     echo -e "\033[1;32m ¡Banner [ChumoGH] y Reseller [$new_reseller] actualizados con éxito!\033[0m"
     msg -bar3
-    command -v figlet >/dev/null && figlet -f slant "ChumoGH" 2>/dev/null | lolcat 2>/dev/null || figlet "ChumoGH" 2>/dev/null
+    command -v figlet >/dev/null && figlet -f slant "MgScript" 2>/dev/null | lolcat 2>/dev/null || figlet "MgScript" 2>/dev/null
     echo -e " \033[1;44;44m   \033[1;33m  ${TTini} MgScript ${TTcent} Pro ${TTfin}     \033[0m"
 fi
 read -p " Presione ENTER para continuar" _foo

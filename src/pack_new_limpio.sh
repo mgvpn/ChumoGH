@@ -89,7 +89,7 @@ msg -bar3
 read -t 30 -p " Nombre del Servidor / Banner (ENTER para default ChumoGH): " -e -i "" _nameS
 if [[ -z "$_nameS" ]]; then
     rm -f /etc/adm-lite/name /root/name
-    echo -e " ${CHeko} \033[1;32mBanner por defecto activado: \033[1;94mChumoGH\033[0m"
+    echo -e " ${CHeko} \033[1;32mBanner por defecto activado: \033[1;94mMgScript\033[0m"
     _banner_title="ChumoGH"
 else
     _nameS="${_nameS:0:15}"
@@ -120,7 +120,7 @@ msg -bar3
 if [[ -n "$_nameS" ]]; then
     command -v figlet >/dev/null && figlet "$_nameS" | lolcat 2>/dev/null || figlet "$_nameS" 2>/dev/null
 else
-    command -v figlet >/dev/null && figlet -f slant "ChumoGH" 2>/dev/null | lolcat 2>/dev/null || figlet "ChumoGH" 2>/dev/null
+    command -v figlet >/dev/null && figlet -f slant "MgScript" 2>/dev/null | lolcat 2>/dev/null || figlet "MgScript" 2>/dev/null
     echo -e " \033[1;44;44m   \033[1;33m  ${TTini} MgScript ${TTcent} Pro ${TTfin}     \033[0m"
 fi
 sleep 2s
@@ -468,7 +468,7 @@ echo -e ""
 echo -e "${cor[2]}\n\033[1;37m  ${rAy} DEVELOPER NOW: @ChumoGH - Henry Chumo" | pv -qL 12
 echo -e ""
 msg -bar3
-echo -e "  ${cor[5]} ADMcgh Manager CGH REMASTERIZADO $(date +%Y)"
+echo -e "  ${cor[5]} MgScript Manager REMASTERIZADO $(date +%Y)"
 msg -bar3
 echo -e "${cor[3]}     SISTEMA ACTIVADO PERMANENTE (FULL LIBRE) "
 msg -bar3

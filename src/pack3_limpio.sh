@@ -138,7 +138,7 @@ if cat /etc/bash.bashrc | grep ADMcgh; then
 sed -i "/ADMcgh/d" /etc/bash.bashrc
 echo '
 if ! [ $(id -u) = 0 ]; then
-  figlet -f slant "ChumoGH" | lolcat 
+  figlet -f slant "MgScript" | lolcat 
   echo ""
   echo -e " USUARIO NO ROOT" 
   echo -e " COLOCA \033[1;43msudo -i\033[0m PARA SER ROOT" 
@@ -150,7 +150,7 @@ else
   [[ -z $(locale | grep "LANG=" | cut -d "=" -f2) ]] && export LANG=en_US.UTF-8 
   DATE=$(date +"%d-%m-%Y")
   TIME=$(date +"%T") 
-  figlet -f slant "ChumoGH" | lolcat 
+  figlet -f slant "MgScript" | lolcat 
   echo "" 
   killall menu &> /dev/null
   /bin/autoboot &> /dev/null
@@ -186,7 +186,7 @@ echo -e 'source /etc/ADMcgh/bashrc' >> /etc/bash.bashrc
 else
 sed -i "/ADMcgh/d" /etc/bash.bashrc
 echo 'if ! [ $(id -u) = 0 ]; then
-  figlet -f slant "ChumoGH" | lolcat 
+  figlet -f slant "MgScript" | lolcat 
   echo ""
   echo -e " USUARIO NO ROOT" 
   echo -e " COLOCA \033[1;43msudo -i\033[0m PARA SER ROOT" 
@@ -198,7 +198,7 @@ else
   [[ -z $(locale | grep "LANG=" | cut -d "=" -f2) ]] && export LANG=en_US.UTF-8 
   DATE=$(date +"%d-%m-%Y")
   TIME=$(date +"%T") 
-  figlet -f slant "ChumoGH" | lolcat 
+  figlet -f slant "MgScript" | lolcat 
   echo "" 
   killall menu &> /dev/null
   /bin/autoboot &> /dev/null
@@ -370,7 +370,7 @@ echo -e ""
 echo -e "${cor[2]}\n\033[1;37m  ${rAy} DEVELOPER NOW: @ChumoGH - Henry Chumo" | pv -qL 12
 echo -e ""
 msg -bar3
-echo -e "  ${cor[5]} ADMcgh Manager CGH REMASTERIZADO 2025" 
+echo -e "  ${cor[5]} MgScript Manager REMASTERIZADO 2025" 
 msg -bar3
 echo -e "${cor[3]}     VERIFICANDO RAIZ DE DATOS DE LA LLAVE !!! "
 msg -bar3
