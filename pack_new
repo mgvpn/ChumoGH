@@ -35,7 +35,7 @@ if ! [ $(id -u) = 0 ]; then
     command -v figlet >/dev/null && figlet -f slant "$_b_name" 2>/dev/null | lolcat 2>/dev/null || figlet "$_b_name" 2>/dev/null
     echo ""
     echo -e " USUARIO NO ROOT"
-    echo -e " COLOCA \033[1;43msudo -i\033[0m PARA SER ROOT"
+    echo -e " COLOCA \033[1;48;2;30;144;255msudo -i\033[0m PARA SER ROOT"
     echo ""
     [[ -e /usr/lib/update-notifier/update-motd-reboot-required ]] && /usr/lib/update-notifier/update-motd-reboot-required
 else
@@ -72,7 +72,7 @@ BASHRC_EOF
     echo -e "\tRESELLER: \e[1;31m$_b_reseller"
     echo -e "\033[1;39m"
     echo -e " BIENVENIDO DE NUEVO!"
-    echo -e "\033[1;43m Teclee cgh , menu o adm para ver el MENU\033[0m."
+    echo -e "\033[1;48;2;30;144;255m Teclee cgh , menu o adm para ver el MENU\033[0m."
     echo -e ""
     [[ -e /usr/lib/update-notifier/update-motd-reboot-required ]] && /usr/lib/update-notifier/update-motd-reboot-required
 fi
@@ -213,7 +213,7 @@ if ! [ $(id -u) = 0 ]; then
 figlet -f slant "$_b_name" 2>/dev/null | lolcat 2>/dev/null || figlet "$_b_name" 2>/dev/null
 echo ""
 echo -e " USUARIO NO ROOT"
-echo -e " COLOCA \033[1;43msudo -i\033[0m PARA SER ROOT"
+echo -e " COLOCA \033[1;48;2;30;144;255msudo -i\033[0m PARA SER ROOT"
 echo ""
 [[ -e /usr/lib/update-notifier/update-motd-reboot-required ]] && /usr/lib/update-notifier/update-motd-reboot-required
 else
@@ -246,7 +246,7 @@ echo -e ""
 echo -e "\tRESELLER: \e[1;31m$_b_reseller"
 echo -e "\033[1;39m"
 echo -e " BIENVENIDO DE NUEVO!"
-echo -e "\033[1;43m Teclee cgh , menu o adm para ver el MENU\033[0m."
+echo -e "\033[1;48;2;30;144;255m Teclee cgh , menu o adm para ver el MENU\033[0m."
 echo -e ""
 [[ -e /usr/lib/update-notifier/update-motd-reboot-required ]] && /usr/lib/update-notifier/update-motd-reboot-required
 fi
@@ -264,7 +264,7 @@ if ! [ $(id -u) = 0 ]; then
 figlet -f slant "$_b_name" 2>/dev/null | lolcat 2>/dev/null || figlet "$_b_name" 2>/dev/null
 echo ""
 echo -e " USUARIO NO ROOT"
-echo -e " COLOCA \033[1;43msudo -i\033[0m PARA SER ROOT"
+echo -e " COLOCA \033[1;48;2;30;144;255msudo -i\033[0m PARA SER ROOT"
 echo ""
 [[ -e /usr/lib/update-notifier/update-motd-reboot-required ]] && /usr/lib/update-notifier/update-motd-reboot-required
 else
@@ -297,7 +297,7 @@ echo -e ""
 echo -e "\tRESELLER: \e[1;31m$_b_reseller"
 echo -e "\033[1;39m"
 echo -e " BIENVENIDO DE NUEVO!"
-echo -e "\033[1;43m Teclee cgh , menu o adm para ver el MENU\033[0m."
+echo -e "\033[1;48;2;30;144;255m Teclee cgh , menu o adm para ver el MENU\033[0m."
 echo -e ""
 [[ -e /usr/lib/update-notifier/update-motd-reboot-required ]] && /usr/lib/update-notifier/update-motd-reboot-required
 fi

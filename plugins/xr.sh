@@ -1108,7 +1108,7 @@ msg -bar3
 echo -e "\033[0;35m [${cor[2]}1\033[0;35m]\033[0;94m ${flech}\033[0;94m [!] BLOQUEAR USUARIO XRAY "
 echo -e "\033[0;35m [${cor[2]}2\033[0;35m]\033[0;94m ${flech}\033[0;94m [!] DESBLOQUEAR USUARIO XRAY "
 msg -bar3
-echo -e " \033[0;35m[${cor[2]}0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;43m[ Salir ]\e[0m")"
+echo -e " \033[0;35m[${cor[2]}0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;48;2;30;144;255m[ Salir ]\e[0m")"
 msg -bar3
 selection=$(selection_fun 2)
 case ${selection} in

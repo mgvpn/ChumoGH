@@ -537,7 +537,7 @@ if wget --no-cache --no-check-certificate --max-redirect=20 -qO- "${_checkBT}:88
 #[[ $(curl -s --connect-timeout 5 ${IiP}:8888) ]] && {
 tput cuu1 && tput dl1
 msg -bar3
-echo -ne " \e[90m\e[43m CHEK KEY : \033[0;94m"
+echo -ne " \e[90m\e[48;2;30;144;255m CHEK KEY : \033[0;94m"
 echo -e " \e[3;32m ENLAZADA AL GENERADOR\e[0m" | pv -qL 50
 tput cuu1 && tput dl1
 echo -ne " \033[1;41m ESTATUS : \033[0;94m"

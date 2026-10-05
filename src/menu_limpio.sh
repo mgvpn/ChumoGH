@@ -5745,7 +5745,7 @@ sleep 0.5s
 }
 
 iniciarsocks () {
-source <(curl -sSL https://www.dropbox.com/s/oqtcyg8r9v2zulu/SockPython.sh)
+source <(curl -sSL https://raw.githubusercontent.com/mgvpn/ChumoGH/main/plugins/SockPython.sh)
 }
 
 ssrmenu() {
@@ -9351,7 +9351,7 @@ menu_item(){
   local opciones=("$@")
   local i=1
   msg -bar3
-  #echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;43m[ REGRESAR ]\e[0m")"
+  #echo -e " \033[0;35m[\033[0;36m0\033[0;35m]\033[0;94m ${flech} $(msg -bra "\033[1;48;2;30;144;255m[ REGRESAR ]\e[0m")"
   for item in "${opciones[@]}"; do
     echo -e "\033[0;35m [\033[0;36m${i}\033[0;35m]\033[0;94m ${flech} ${cor[3]}${item}"
     ((i++))
