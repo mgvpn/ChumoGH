@@ -96,7 +96,7 @@ tittle () {
 [[ -z $1 ]] && rt='adm-lite' || rt='ADMcgh'
     clear&&clear
     msg -bar
-    echo -e "\033[1;44;44m     \033[1;38;2;30;144;255m=====>>►► 🐲 SCRIPT-V6 🐲 ◄◄<<=====    \033[0m \033[38;2;30;144;255m[MgScript]"
+    echo -e "\033[1;44;44m     \033[1;38;2;30;144;255m=====>>►► 🐲 SCRIPT-V6 🐲 ◄◄<<=====    \033[0m \033[38;2;30;144;255m[mgvpn]"
     msg -bar
 }
 in_opcion(){
@@ -271,7 +271,7 @@ del(){
 
 
 [[ -d /bin/ejecutar ]] && {
-[[ -e /bin/ejecutar/msg ]] || wget -q -O /bin/ejecutar/msg https://raw.githubusercontent.com/joaquin1444/MgScript/main/script-v6/Otros/msg 
+[[ -e /bin/ejecutar/msg ]] || wget -q -O /bin/ejecutar/msg https://raw.githubusercontent.com/joaquin1444/mgvpn/main/script-v6/Otros/msg 
 } || mkdir /bin/ejecutar
 cor[0]="\033[0m"
 cor[1]="\033[1;34m"
@@ -481,7 +481,7 @@ msg -bar3
         py="python3"
         IP=$(fun_ip)
     elif [[ $conect = "PGet" ]]; then
-        echo "master=MgScript" > ${ADM_tmp}/pwd.pwd
+        echo "master=mgvpn" > ${ADM_tmp}/pwd.pwd
         while read service; do
             [[ -z $service ]] && break
             echo "127.0.0.1:$(echo $service|cut -d' ' -f2)=$(echo $service|cut -d' ' -f1)" >> ${ADM_tmp}/pwd.pwd
@@ -493,7 +493,7 @@ msg -bar3
         py="python"
     fi
 #[[ -z ${texto_soket} ]] && texto_soket='<span style=color: #ff0000;><strong><span style="color: #ff0000;">C</span><span style="color: #ff9900;">h</span><span style="color: #008000;">u</span><span style="color: #0000ff;">m</span><span style="color: #ff0000;">o</span><span style="color: #ff9900;">G</span><span style="color: #008000;">H</span><span style="color: #0000ff;">°</span><span style="color: #ff0000;">P</span><span style="color: #ff9900;">l</span><span style="color: #008000;">u</span><span style="color: #0000ff;">s</span></strong></span>'
-[[ -z ${texto_soket} ]] && texto_soket='<font color="#00FFFF"><strong>MgScript</strong></font>'
+[[ -z ${texto_soket} ]] && texto_soket='<font color="#00FFFF"><strong>mgvpn</strong></font>'
 
 
 
@@ -510,7 +510,7 @@ msg -ama "      BINARIO OFICIAL DE Epro Dev Team "
 sleep 2s && tput cuu1 && tput dl1
 [[ -e ${ADM_inst}/PDirect ]] && {
 echo -e "[Unit]
-Description=WS-Epro Service by @MgScript
+Description=WS-Epro Service by @mgvpn
 After=network.target
 StartLimitIntervalSec=0
 
@@ -533,7 +533,7 @@ listen:
   listen_port: ${porta_socket}" > ${ADM_inst}/PDirect
   
 echo -e "[Unit]
-Description=WS-Epro Service by @MgScript
+Description=WS-Epro Service by @mgvpn
 After=network.target
 StartLimitIntervalSec=0
 
@@ -554,7 +554,7 @@ WantedBy=multi-user.target" > /etc/systemd/system/python.$porta_socket.service
     if [[ $conect = "PGet" ]]; then
         [[ "$(ps x | grep "PGet.py" | grep -v "grep" | awk -F "pts" '{print $1}')" ]] && {
             print_center -verd "Gettunel Iniciado com Exito"
-            print_center -azu   "Su Contraseña Gettunel es: $(msg -ama "MgScript")"
+            print_center -azu   "Su Contraseña Gettunel es: $(msg -ama "mgvpn")"
             msg -bar3
         } || {
             print_center -verm2 "Gettunel no fue iniciado"
@@ -851,7 +851,7 @@ def main(host=LISTENING_ADDR, port=LISTENING_PORT):
     print "\033[0;34m${p1t0}"*8,"\033[1;32m PROXY PYTHON WEBSOCKET","\033[0;34m${p1t0}"*8,"\n"
     print "\033[1;38;2;30;144;255mIP:\033[1;32m " + LISTENING_ADDR
     print "\033[1;38;2;30;144;255mPORTA:\033[1;32m " + str(LISTENING_PORT) + "\n"
-    print "\033[0;34m${p1t0}"*10,"\033[1;32m MgScript BY MgScript","\033[0;34m${p1t0}\033[1;37m"*11,"\n"
+    print "\033[0;34m${p1t0}"*10,"\033[1;32m mgvpn BY mgvpn","\033[0;34m${p1t0}\033[1;37m"*11,"\n"
     
     
     server = Server(LISTENING_ADDR, LISTENING_PORT)
@@ -876,7 +876,7 @@ PYTHON
 chmod +x ${ADM_inst}/$1.py
 
 echo -e "[Unit]
-Description=$1 Parametizado Service by @MgScript
+Description=$1 Parametizado Service by @mgvpn
 After=network.target
 StartLimitIntervalSec=0
 
@@ -1191,7 +1191,7 @@ def main(host=LISTENING_ADDR, port=LISTENING_PORT):
     print "\033[0;34m${p1t0}"*8,"\033[1;32m PROXY PYTHON WEBSOCKET","\033[0;34m${p1t0}"*8,"\n"
     print "\033[1;38;2;30;144;255mIP:\033[1;32m " + LISTENING_ADDR
     print "\033[1;38;2;30;144;255mPORTA:\033[1;32m " + str(LISTENING_PORT) + "\n"
-    print "\033[0;34m${p1t0}"*10,"\033[1;32m MgScript","\033[0;34m${p1t0}\033[1;37m"*11,"\n"
+    print "\033[0;34m${p1t0}"*10,"\033[1;32m mgvpn","\033[0;34m${p1t0}\033[1;37m"*11,"\n"
     
     server = Server(LISTENING_ADDR, LISTENING_PORT)
     server.start()
@@ -1526,7 +1526,7 @@ def main(host=LISTENING_ADDR, port=LISTENING_PORT):
     print("\033[0;34m${p1t0}"*8,"\033[1;32m PROXY PYTHON3 WEBSOCKET","\033[0;34m${p1t0}"*8,"\n")
     print("\033[1;38;2;30;144;255mIP:\033[1;32m " + LISTENING_ADDR)
     print("\033[1;38;2;30;144;255mPORTA:\033[1;32m " + str(LISTENING_PORT) + "\n")
-    print("\033[0;34m${p1t0}"*10,"\033[1;32m MgScript","\033[0;34m${p1t0}\033[1;37m"*11,"\n")
+    print("\033[0;34m${p1t0}"*10,"\033[1;32m mgvpn","\033[0;34m${p1t0}\033[1;37m"*11,"\n")
 
     server = Server(LISTENING_ADDR, LISTENING_PORT)
     server.start()
@@ -1638,7 +1638,7 @@ pidproxy3=$(echo -e "$_ps" | grep "PDirect" | grep -v "grep" | awk -F "pts" '{pr
 pidproxy4=$(echo -e "$_ps" | grep -w  "POpen.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy4 ]] && P4="\033[1;32m[ON]" || P4="\033[1;31m[OFF]"
 pidproxy5=$(echo -e "$_ps" | grep "PGet.py" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy5 ]] && P5="\033[1;32m[ON]" || P5="\033[1;31m[OFF]"
 pidproxy6=$(echo -e "$_ps" | grep "scktcheck" | grep -v "grep" | awk -F "pts" '{print $1}') && [[ ! -z $pidproxy6 ]] && P6="\033[1;32m[ON]" || P6="\033[1;31m[OFF]"
-echo -e "\e[91m\e[44m   ====  SCRIPT MOD MgScript|EDICION  ====  [MgScript]  \033[0m \033[38;2;30;144;255m"
+echo -e "\e[91m\e[44m   ====  SCRIPT MOD mgvpn|EDICION  ====  [mgvpn]  \033[0m \033[38;2;30;144;255m"
 
 [[ ${_PT} ]] && {
 msg -bar3
