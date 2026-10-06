@@ -1021,7 +1021,7 @@ echo -e "\033[0;35m [\033[0;32m02\033[0;35m]\033[0;94m ${flech}${cor[3]} BORRAR 
 echo -e "\033[0;35m [\033[0;32m03\033[0;35m]\033[0;94m ${flech}${cor[3]} EDITAR/RENOVAR USUARIOS            ♻ " 
 echo -e "\033[0;35m [\033[0;32m04\033[0;35m]\033[0;94m ${flech}${cor[3]} MOSTRAR USUARIOS REGISTRADOS       🗒 " 
 echo -e "\033[0;35m [\033[0;32m05\033[0;35m]\033[0;94m ${flech}${cor[3]} MOSTRAR USUARIOS CONECTADOS        🟢 " #  ${cor[2]} [-] >${cor[3]} - "
-echo -e "\033[0;35m [\033[0;32m06\033[0;35m]\033[0;94m ${flech}${cor[3]} ADD/REMOVE BANNER ( SSH/DROPBEAR ) 🎨 "
+echo -e "\033[0;35m [\033[0;32m06\033[0;35m]\033[0;94m ${flech}${cor[3]} EDITAR BANNER ( SSH/Dropbear ) 🎨 "
 echo -e "\033[0;35m [\033[0;32m07\033[0;35m]\033[0;94m ${flech}${cor[3]} LOG DE CONSUMO ( Artificial )      💥 "
 echo -e "\033[0;35m [\033[0;32m08\033[0;35m]\033[0;94m ${flech}${cor[3]} BLOQUEAR USUARIOS $ul"
 echo -e "\033[0;35m [\033[0;32m09\033[0;35m]\033[0;94m ${flech}${cor[3]} BACKUP USUARIOS \033[0;32m(#OFFICIAL) 🔐"
