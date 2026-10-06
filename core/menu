@@ -8143,7 +8143,7 @@ BadVPN
 msg -bar3
 clear&&clear
 msg -bar3
-toilet -f pagga "ChumoGH-UDP" | lolcat
+toilet -f pagga "Mg Script" | lolcat
 msg -bar3
 print_center -verd  "ACTIVADO CON EXITO" 
 msg -bar3
