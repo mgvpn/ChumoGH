@@ -8238,7 +8238,7 @@ IFS=$'\n' read -r -d '' country region state <<< $(curl -sSL ipinfo.io | grep -E
 clear&&clear
 msg -bar3
 #tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2 && tput cuu1 >&2 && tput dl1 >&2
-echo -e "${cor[5]} ${h0nG} INSTALACION DE PROTOCOLOS ( ${country}) ${h0nG} "
+echo -e "${cor[5]} 💻 INSTALACION DE PROTOCOLOS 💻 "
 msg -bar3 #SHADOWSOCKS   $user_t
 echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;94m${flech} ${cor[3]}OpenSSH       $pSSH  \033[0;35m [\033[0;36m11\033[0;35m]\033[0;94m${flech} ${cor[3]}PSIPHON SERVER $pps"
 echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;94m${flech} ${cor[3]}DROPBEAR      $dropb \033[0;35m [\033[0;36m12\033[0;35m]\033[0;94m${flech} ${cor[3]}TCP DNS        \033[0;94m(#BETA)"
