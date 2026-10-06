@@ -8251,7 +8251,7 @@ echo -e "\033[0;35m [\033[0;36m8\033[0;35m]\033[0;94m${flech} ${cor[3]}V2RAY SWI
 echo -e "\033[0;35m [\033[0;36m9\033[0;35m]\033[0;94m${flech} ${cor[3]}CFA ( CLASH ) $xclash\033[0;35m  [\033[0;36m19\033[0;35m]\033[0;94m${flech} ${cor[3]}Protocolos UDP  $_pidUDP"
 echo -e "\033[0;35m [\033[0;36m10\033[0;35m]\033[0;94m${flech} ${cor[3]}TROJAN-GO    $pTROJ \033[0;35m [\033[0;36m20\033[0;35m]\033[0;94m${flech} ${cor[5]}FUNCIONES EN DISEÑO!"
 msg -bar3 
-echo -e "${cor[5]} ${h0nG}  INSTALACION DE HERRAMIENTAS Y SERVICIOS ${h0nG} "
+echo -e "${cor[5]} 💻  INSTALACION DE HERRAMIENTAS Y SERVICIOS 💻 "
 msg -bar3
 echo -e "\033[0;35m [\033[0;36m21\033[0;35m]\033[0;94m ${flech} ${cor[3]}BLOCK TORRENT        \033[0;35m [\033[0;36m22\033[0;35m]\033[0;94m ${flech} ${cor[3]}BadVPN   $_badvpn"
 echo -e "\033[0;35m [\033[0;36m23\033[0;35m]\033[0;94m ${flech} ${cor[3]}TCP (BBR|Plus) $_tcpd \033[0;35m [\033[0;36m24\033[0;35m]\033[0;94m ${flech} ${cor[3]}FAILBAN  $fail_b"
