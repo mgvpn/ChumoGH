@@ -2088,8 +2088,125 @@ msg -bar3
 echo -e "\033[0;35m [\033[0;36m1\033[0;35m]\033[0;31m >${cor[3]} LIMITADOR DEL CLIENTE \033[0;36m$nameFX"
 echo -e "\033[0;35m [\033[0;36m2\033[0;35m]\033[0;31m >${cor[3]} RENOVAR CLIENTE \033[0;36m$nameFX"
 echo -e "\033[0;35m [\033[0;36m3\033[0;35m]\033[0;31m >${cor[3]} CLAVE DEL CLIENTE \033[0;36m$nameFX"
+echo -e "033[0;35m [033[0;36m4033[0;35m]033[0;31m >${cor[3]} EDITAR HWID DE         033[0;36m$nameFX"
 msg -bar3
 read -p " SELECCIONA UNA OPC : " _opt
+[[ "$_opt" = "4" ]] && {
+    clear
+    # Limpiar la pantalla para una mejor interfaz
+    for i in {1..7}; do tput cuu1 && tput dl1; done
+
+    # 1. Verificar si el usuario es de tipo HWID
+    local user_type=$(grep "limite:" "$dir_user/$namer" | awk '{print $2}')
+    if [ "$user_type" != "HWID" ]; then
+        echo -e "${cor[5]} ⚠️ El usuario seleccionado no es de tipo HWID. ⚠️${cor[0]}"
+        msg -bar
+        return
+    fi
+
+    # 2. Obtener datos del usuario antiguo
+    local old_hwid_user="$namer"
+    local friendly_name=$(grep "senha:" "$dir_user/$old_hwid_user" | awk '{print $2}')
+    local expiration_date=$(grep "data:" "$dir_user/$old_hwid_user" | awk '{print $2}')
+    local old_full_hwid=$(grep "hwid_full:" "$dir_user/$old_hwid_user" | awk '{print $2}')
+
+    echo -e "${cor[5]} Editando HWID para el usuario: \033[1;36m$friendly_name\033[0m"
+    echo -e "${cor[3]} HWID Actual: $old_full_hwid"
+    msg -bar
+
+    # 3. Solicitar el nuevo HWID
+    read -p " Ingrese el nuevo HWID: " new_hwid
+    new_hwid=$(echo "$new_hwid" | tr -d '[:space:]')
+    if [[ -z "$new_hwid" ]]; then
+        echo -e "${cor[5]} ⚠️ No se ingresó un nuevo HWID. Operación cancelada. ⚠️${cor[0]}"
+        return
+    fi
+
+    # Usar HWID completo (soporta 32+ caracteres)
+    local new_hwid_user="$new_hwid"
+
+    # 4. Validar que el nuevo HWID no exista en el sistema
+    if id -u "$new_hwid_user" >/dev/null 2>&1 || grep -q "^${new_hwid_user}:" /etc/passwd 2>/dev/null; then
+        echo -e "${cor[5]} ⚠️ ¡Error! Ya existe un usuario en el sistema con ese HWID. ⚠️${cor[0]}"
+        return
+    fi
+
+    local create_ok=false
+
+    # Intentar useradd si es corto (≤32)
+    if [[ ${#new_hwid_user} -le 32 ]]; then
+        if useradd -M -s /bin/false "$new_hwid_user" -e "$expiration_date" 2>/dev/null; then
+            echo "$new_hwid_user:$new_hwid_user" | chpasswd 2>/dev/null
+            create_ok=true
+        fi
+    fi
+
+    # Método manual para HWIDs largos o si useradd falló
+    if [[ "$create_ok" != true ]]; then
+        local uid
+        uid=$(awk -F: '$3>=2000 && $3<60000 {print $3}' /etc/passwd 2>/dev/null | sort -n | tail -1)
+        uid=$(( ${uid:-1999} + 1 ))
+        [[ "$uid" -lt 2000 ]] && uid=2000
+        local gid="$uid"
+
+        local hash_pass
+        hash_pass=$(openssl passwd -6 "$new_hwid_user" 2>/dev/null)
+        [[ -z "$hash_pass" ]] && hash_pass=$(mkpasswd -m sha-512 "$new_hwid_user" 2>/dev/null || echo "")
+        if [[ -z "$hash_pass" ]]; then
+            echo -e "${cor[5]} ⚠️ ERROR: no se pudo generar hash de contraseña ⚠️${cor[0]}"
+            return
+        fi
+
+        # Calcular expire epoch desde la fecha de expiración
+        local expira_epoch=""
+        if [[ -n "$expiration_date" ]]; then
+            expira_epoch=$(date -d "$expiration_date" +%s 2>/dev/null)
+            [[ -n "$expira_epoch" ]] && expira_epoch=$(( expira_epoch / 86400 ))
+        fi
+
+        echo "${new_hwid_user}:x:${gid}:" >> /etc/group
+        echo "${new_hwid_user}:x:${uid}:${gid}::/home/${new_hwid_user}:/bin/false" >> /etc/passwd
+
+        local dias_creacion=$(( $(date +%s) / 86400 ))
+        if [[ -n "$expira_epoch" ]]; then
+            echo "${new_hwid_user}:${hash_pass}:${dias_creacion}:0:99999:7:::${expira_epoch}" >> /etc/shadow
+        else
+            echo "${new_hwid_user}:${hash_pass}:${dias_creacion}:0:99999:7:::" >> /etc/shadow
+        fi
+        chmod 640 /etc/shadow 2>/dev/null
+
+        if id -u "$new_hwid_user" &>/dev/null || grep -q "^${new_hwid_user}:" /etc/passwd; then
+            create_ok=true
+        fi
+    fi
+
+    if [[ "$create_ok" == true ]]; then
+        # Crear el nuevo archivo de configuración del usuario
+        echo "senha: $friendly_name" > "$dir_user/$new_hwid_user"
+        echo "limite: HWID" >> "$dir_user/$new_hwid_user"
+        echo "data: $expiration_date" >> "$dir_user/$new_hwid_user"
+        echo "hwid_full: $new_hwid" >> "$dir_user/$new_hwid_user"
+
+        # 6. Eliminar el usuario antiguo
+        userdel --force "$old_hwid_user" >/dev/null 2>&1
+        # Limpieza extra por si fue creado manualmente
+        sed -i "/^${old_hwid_user}:/d" /etc/passwd /etc/shadow /etc/group 2>/dev/null
+        rm -f "$dir_user/$old_hwid_user"
+
+        # 7. Mostrar mensaje de éxito
+        msg -bar
+        echo -e " ✅ \033[1;32m¡HWID actualizado con éxito!\033[0m ✅"
+        msg -bar
+        echo -e "${cor[5]} Usuario    : ${cor[4]}$friendly_name"
+        echo -e "${cor[5]} Nuevo HWID : ${cor[4]}$new_hwid"
+        echo -e "${cor[5]} Expira el  : ${cor[4]}$(date -d "$expiration_date - 1 day" "+%d/%m/%Y" 2>/dev/null || echo "$expiration_date")"
+        msg -bar
+    else
+        echo -e "${cor[5]} ⚠️ Error al crear el nuevo usuario del sistema. ⚠️${cor[0]}"
+    fi
+    return
+}
+
 # RENUEVA LIMITE DE CONEXIONES #
 [[ "$_opt" = "1" ]] && {
 tput cuu1 && tput dl1
@@ -8142,8 +8259,8 @@ echo -e "\033[0;35m [\033[0;36m25\033[0;35m]\033[0;94m ${flech} ${cor[3]}ARCHIVO
 echo -e "\033[0;35m [\033[0;36m27\033[0;35m]\033[0;94m ${flech} ${cor[3]}DETALLES DEL VPS     \033[0;35m [\033[0;36m28\033[0;35m]\033[0;94m ${flech} ${cor[3]}Block ADS $_ADS" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;94m ⇦ $(msg -bra "\e[3;94m[ SALIR ]\e[0m")"
 echo -e "\033[0;35m [\033[0;36m29\033[0;35m]\033[0;94m ${flech} ${cor[3]}DNS CUSTOM (NETFLIX) \033[0;35m [\033[0;36m30\033[0;35m]\033[0;94m ${flech} ${cor[3]}HERRAMIENTAS EXTRAS" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;94m ⇦ $(msg -bra "\e[3;94m[ SALIR ]\e[0m")"
 echo -e "\033[0;35m [\033[0;36m31\033[0;35m]\033[0;94m ${flech} ${cor[3]}REINICIAR SERVICIOS  \033[0;35m [\033[0;36m32\033[0;35m]\033[0;94m ${flech} ${cor[3]}Brook Server $_ADS"
-echo -e "\033[0;35m [\033[0;36m33\033[0;35m]\033[0;94m ${flech} ${cor[3]}FIREWALL (IPTABLES)  \033[0;35m [\033[0;36m34\033[0;35m]\033[0;31m ${flech} ${cor[3]}Enable/Change PASSWD ROOT"
-echo -e "\033[0;35m [\033[0;36m35\033[0;35m]\033[0;94m ${flech} ${cor[3]}AToken [APP's Mods]  \033[0;35m [\033[0;36m36\033[0;35m]\033[0;31m ${flech} ${cor[3]} BHTTP [APP's Mods] $_bttp" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
+echo -e "\033[0;35m [\033[0;36m33\033[0;35m]\033[0;94m ${flech} ${cor[3]}FIREWALL (IPTABLES)  \033[0;35m [\033[0;36m34\033[0;35m]\033[0;31m ${flech} ${cor[3]}Cambiar PASSWD ROOT"
+echo -e "\033[0;35m [\033[0;36m35\033[0;35m]\033[0;94m ${flech} ${cor[3]}AToken [APP's Mods]  \033[0;35m [\033[0;36m36\033[0;35m]\033[0;31m ${flech} ${cor[3]} BHTTP [Mods] $_bttp" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 echo -e "\033[0;35m [\033[0;36m37\033[0;35m]\033[0;94m ${flech} ${cor[3]}HCR [HTTP Custom] $_hcr  \033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 msg -bar3 
 selection=$(selection_fun 37)
