@@ -1,4 +1,12 @@
 #!/bin/bash
+mg_info_usuarios(){
+  local tot hy px vc on h
+  h=$(( $(date +%s) / 86400 ))
+  read -r tot hy px vc <<< "$(awk -F: -v h="$h" 'NR==FNR{if($3>=1000&&$1!="nobody")u[$1]=1;next} ($1 in u){t++;if($8!=""){d=$8-h;if(d<0)v++;else if(d==0)y++;else if(d<=3)p++}} END{printf "%d %d %d %d",t,y,p,v}' /etc/passwd /etc/shadow)"
+  on=$(ps -eo user:32,comm | awk '($2=="sshd"||$2=="dropbear")&&$1!="root"&&$1!="sshd"{print $1}' | sort -u | wc -l)
+  echo -e " \033[1;36m∘ \033[1;37mUSUARIOS: \033[1;32m${tot}   \033[1;36m∘ \033[1;37mCONECTADOS: \033[1;32m${on}\033[0m"
+  echo -e " \033[1;36m∘ \033[1;37mVENCEN HOY: \033[1;33m${hy}   \033[1;36m∘ \033[1;37mEN 3 DIAS: \033[1;33m${px}   \033[1;36m∘ \033[1;37mVENCIDOS: \033[1;31m${vc}\033[0m"
+}
 # NUNCA  DEJES DE APRENDER
 # POWER BY @CHUMOGH
 
@@ -8537,8 +8545,8 @@ echo -e "${cor[1]} ${pPIniT} ${cor[5]}IP: \033[0;37m${IP} ${cor[1]} ${pPIniT} ${
 
 local _cur_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null)
 _cur_reseller="$(echo "$_cur_reseller" | xargs)"
-[[ -z "$_cur_reseller" ]] && _cur_reseller="Karl199x"
-echo -e "${vesaoSCT}   \033[1;37mRESELLER: \033[1;32m${_cur_reseller}\033[0m"
+[[ -z "$_cur_reseller" ]] && _cur_reseller="MgScript"
+echo -e " ${cor[1]}∘ ${cor[5]}VERSION: ${cor[2]}MgScript V4   ${cor[1]}∘ ${cor[5]}RESELLER: ${cor[2]}${_cur_reseller}\033[0m"
 ports_
 ##
 [[ $(cat /etc/crontab | grep 'bash /bin/') ]] && _opti="\033[0;31m [\033[0;32mON\033[0;31m]" || _opti="\033[0;31m [OFF]"
@@ -8547,6 +8555,8 @@ ports_
 msg -bar3
 echo -e "${cor[1]} ∘${cor[5]} TOTAL: ${cor[2]}${mem_total}${cor[1]} ∘ ${cor[5]} M|LIBRE:${cor[2]} ${mem_free} ${cor[1]} ∘ ${cor[5]} EN USO:${cor[2]} ${mem_used}"
 echo -e "${cor[1]} ∘${cor[5]} U/RAM: ${cor[2]}${mem_used_percent} ${cor[1]} ∘${cor[5]} U/CPU:${cpu_used} ${cor[1]} ∘${cor[5]} BUFFER:${cor[2]} ${mem_cache}" # $CPU"%"
+msg -bar3
+mg_info_usuarios
 msg -bar3
 echo -e "\033[0;35m [${cor[2]}01\033[0;35m]\033[0;94m ${flech}${cor[3]} CONTROL USUARIOS (SSH/SSL/VMESS) "
 #echo -e "\033[0;35m [${cor[2]}02\033[0;35m]\033[0;94m ${flech}${cor[3]} HERRAMIENTAS BASE (\033[0;34mBadVPN$_badvpn${cor[3]})"
@@ -9199,7 +9209,7 @@ else
 fi
 local _cur_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null || echo "MgScript")
 _cur_reseller="$(echo "$_cur_reseller" | xargs)"
-[[ -z "$_cur_reseller" ]] && _cur_reseller="Karl199x"
+[[ -z "$_cur_reseller" ]] && _cur_reseller="MgScript"
 echo -e "\033[1;37m  【  ★ Reseller : ${_cur_reseller} ★  】\033[0m"
 msg -bar3
 vnstat
