@@ -8540,13 +8540,14 @@ header
 msg -bar3
 [[ -e /etc/adm-lite/modulos ]] && echo -e "${cor[1]} ${pPIniT} ${cor[5]}ONLINES: ${cor[2]}${_onlin}${cor[2]} ${pPIniT} \033[1;37mEXP: ${_userexp} ${cor[2]}${pPIniT}\033[1;37m KILL: $ukk ${cor[2]}${pPIniT}\033[1;37m TOTAL: ${_tuser}"
 #[[ -e /etc/adm-lite/modulos ]] && /etc/check_users
-echo -e "${cor[1]} ${pPIniT} ${cor[5]}S.O: \033[1;37m${_os} ${cor[1]} ${pPIniT} ${cor[5]}Base:\033[1;37m${cpu_model}${cor[1]} ${pPIniT} ${cor[5]}CPU's:\033[1;37m${cpu_core} "
-echo -e "${cor[1]} ${pPIniT} ${cor[5]}IP: \033[0;37m${IP} ${cor[1]} ${pPIniT} ${cor[5]}FECHA: \033[1;37m$(date +"%d/%m/%Y")-$(date +"%H:%M")" 
+echo -e "${cor[1]} ${pPIniT} ${cor[5]}S.O: \033[1;37m$(printf '%-16s' "${_os}")${cor[1]} ${pPIniT} ${cor[5]}CPU's: \033[1;37m${cpu_core}"
+echo -e "${cor[1]} ${pPIniT} ${cor[5]}IP: \033[0;37m$(printf '%-17s' "${IP}")${cor[1]} ${pPIniT} ${cor[5]}FECHA: \033[1;37m$(date +"%d/%m/%Y")-$(date +"%H:%M")"
 
 local _cur_reseller=$(head -1 /etc/adm-lite/menu_credito 2>/dev/null || head -1 /bin/ejecutar/menu_credito 2>/dev/null)
 _cur_reseller="$(echo "$_cur_reseller" | xargs)"
 [[ -z "$_cur_reseller" ]] && _cur_reseller="MgScript"
-echo -e " ${cor[1]}∘ ${cor[5]}VERSION: ${cor[2]}MgScript V4   ${cor[1]}∘ ${cor[5]}RESELLER: ${cor[2]}${_cur_reseller}\033[0m"
+echo -e "${cor[1]} ${pPIniT} ${cor[5]}VERSION: \033[1;37m$(printf '%-12s' "MgScript V4")${cor[1]} ${pPIniT} ${cor[5]}RESELLER: ${cor[2]}${_cur_reseller}\033[0m"
+msg -bar3
 ports_
 ##
 [[ $(cat /etc/crontab | grep 'bash /bin/') ]] && _opti="\033[0;31m [\033[0;32mON\033[0;31m]" || _opti="\033[0;31m [OFF]"
