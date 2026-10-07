@@ -100,6 +100,7 @@ msg -bar3
 echo -e "\033[0;35m [${cor[2]:-\033[0;32m}01\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESPALDAR USUARIOS   \033[0;31m[ $(msg -verm2 ' ONLINE') \033[0;31m]" 
 echo -e "\033[0;35m [${cor[2]:-\033[0;32m}02\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' ONLINE') \033[0;31m]" 
 echo -e "\033[0;35m [${cor[2]:-\033[0;32m}03\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' LOCAL') \033[0;31m]" 
+echo -e "\033[0;35m [${cor[2]:-\033[0;32m}04\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} BACKUP TELEGRAM      \033[0;31m[ $(crontab -l 2>/dev/null | grep -q mg_backup.sh && msg -verd ' ON' || msg -verm2 ' OFF') \033[0;31m]" 
 msg -bar3
 echo -e " \033[0;35m [${cor[2]:-\033[0;32m}0\033[0;35m]\033[0;94m ${flech:-➮} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 msg -bar3
@@ -300,6 +301,27 @@ done
 
 }
 
+mg_backup_tg(){
+  local conf=/etc/mgvpn/backup.conf t c
+  [ -x /usr/local/bin/mg_backup.sh ] || { echo " Falta /usr/local/bin/mg_backup.sh"; sleep 2; return; }
+  mkdir -p /etc/mgvpn
+  [ -f $conf ] || printf 'TG_TOKEN=""\nTG_CHAT=""\nEXTRA="/etc/adm-lite/userDIR"\n' > $conf
+  chmod 600 $conf; . $conf
+  if [ -z "$TG_TOKEN" ] || [ -z "$TG_CHAT" ]; then
+    read -rsp " Token del bot: " t; echo
+    read -rp " Chat ID: " c
+    [ -n "$t" ] && [ -n "$c" ] || { echo " Cancelado"; sleep 1; return; }
+    sed -i "s|^TG_TOKEN=.*|TG_TOKEN=\"$t\"|; s|^TG_CHAT=.*|TG_CHAT=\"$c\"|" $conf
+  fi
+  if crontab -l 2>/dev/null | grep -q mg_backup.sh; then
+    crontab -l | grep -v mg_backup.sh | crontab -
+    echo " Backup Telegram DESACTIVADO"
+  else
+    (crontab -l 2>/dev/null; echo "0 4 * * * /usr/local/bin/mg_backup.sh") | crontab -
+    /usr/local/bin/mg_backup.sh && echo " Backup Telegram ACTIVADO (envio de prueba, diario 4 AM)"
+  fi
+  sleep 2
+}
 case "$option" in
     1|01)
         backup_de_usuarios
@@ -316,6 +338,9 @@ case "$option" in
         ;;
     3|03)
         _resLOC
+        ;;
+    4|04)
+        mg_backup_tg
         ;;
     0|*)
         exit 0
