@@ -101,6 +101,7 @@ echo -e "\033[0;35m [${cor[2]:-\033[0;32m}01\033[0;35m]\033[0;94m ${flech:-➮}$
 echo -e "\033[0;35m [${cor[2]:-\033[0;32m}02\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' ONLINE') \033[0;31m]" 
 echo -e "\033[0;35m [${cor[2]:-\033[0;32m}03\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESTAURAR USUARIOS   \033[0;31m[ $(msg -verd ' LOCAL') \033[0;31m]" 
 echo -e "\033[0;35m [${cor[2]:-\033[0;32m}04\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} BACKUP TELEGRAM      \033[0;31m[ $(crontab -l 2>/dev/null | grep -q mg_backup.sh && msg -verd ' ON' || msg -verm2 ' OFF') \033[0;31m]" 
+echo -e "\033[0;35m [${cor[2]:-\033[0;32m}05\033[0;35m]\033[0;94m ${flech:-➮}${cor[3]:-\033[0;94m} RESTAURAR BACKUP       \033[0;31m[ $(msg -verd ' ARCHIVO') \033[0;31m]" 
 msg -bar3
 echo -e " \033[0;35m [${cor[2]:-\033[0;32m}0\033[0;35m]\033[0;94m ${flech:-➮} $(msg -bra "\033[1;41m[ REGRESAR ]\e[0m")"
 msg -bar3
@@ -339,6 +340,68 @@ MGEOF
   fi
   sleep 2
 }
+mg_bk_bajar(){
+  . /etc/mgvpn/backup.conf 2>/dev/null
+  [ -n "$TG_TOKEN" ] || return 1
+  python3 - "$TG_TOKEN" "$TG_CHAT" <<'PY'
+import sys, os, json, urllib.request
+tok, chat = sys.argv[1], sys.argv[2]
+api = "https://api.telegram.org/bot" + tok
+r = json.load(urllib.request.urlopen(api + "/getUpdates"))
+docs = []
+for u in r.get("result", []):
+    m = u.get("message") or {}
+    d = m.get("document")
+    if d and str(m.get("chat", {}).get("id")) == chat and d.get("file_name", "").endswith(".tar.gz"):
+        docs.append(d)
+if not docs:
+    sys.exit(1)
+d = docs[-1]
+fp = json.load(urllib.request.urlopen(api + "/getFile?file_id=" + d["file_id"]))["result"]["file_path"]
+dest = "/root/" + os.path.basename(d["file_name"])
+urllib.request.urlretrieve("https://api.telegram.org/file/bot" + tok + "/" + fp, dest)
+print(dest)
+PY
+}
+mg_restaurar_bk(){
+  local f A n s sel c T u uid gid home shell h e lista=() i=1
+  clear; msg -bar3
+  echo -e "\033[1;37m RESTAURAR BACKUP DE USUARIOS\033[0m"; msg -bar3
+  for f in /root/usuarios_*.tar.gz /root/backups/usuarios_*.tar.gz; do [ -f "$f" ] && lista+=("$f"); done
+  for f in "${lista[@]}"; do echo -e " \033[0;35m[\033[0;32m$i\033[0;35m]\033[0m ${f##*/}"; i=$((i+1)); done
+  [ ${#lista[@]} -eq 0 ] && echo " No hay archivos en /root ni en /root/backups"
+  echo -e " \033[0;35m[\033[0;32mt\033[0;35m]\033[0m Bajar el ultimo backup enviado a tu bot"
+  echo -e " \033[0;35m[\033[0;32m0\033[0;35m]\033[0m Volver"
+  msg -bar3
+  read -rp " Numero, ruta del archivo o t: " sel
+  case "$sel" in
+    0|"") return ;;
+    t|T) A=$(mg_bk_bajar 2>/dev/null) || { echo " No se encontro: reenvia el archivo de backup a tu bot y reintenta"; sleep 3; return; } ;;
+    *) if [[ "$sel" =~ ^[0-9]+$ ]]; then A="${lista[$((sel-1))]}"; else A="$sel"; fi ;;
+  esac
+  [ -f "$A" ] || { echo " Archivo no valido"; sleep 2; return; }
+  read -rp " Restaurar desde ${A##*/}? [s/n]: " c
+  [ "$c" = "s" ] || return
+  T=$(mktemp -d)
+  tar -xzf "$A" -C "$T" 2>/dev/null && [ -f "$T/passwd" ] || { echo " Backup invalido"; rm -rf "$T"; sleep 2; return; }
+  n=0; s=0
+  while IFS=: read -r u _ uid gid _ home shell; do
+    if id "$u" &>/dev/null; then s=$((s+1)); continue; fi
+    useradd -M -u "$uid" -d "$home" -s "$shell" "$u" 2>/dev/null || useradd -M -d "$home" -s "$shell" "$u" || continue
+    h=$(awk -F: -v u="$u" '$1==u{print $2}' "$T/shadow")
+    e=$(awk -F: -v u="$u" '$1==u{print $8}' "$T/shadow")
+    [ -n "$h" ] && usermod -p "$h" "$u"
+    [ -n "$e" ] && chage -E "$(date -d "1970-01-01 +$e days" +%F)" "$u"
+    n=$((n+1))
+  done < "$T/passwd"
+  if [ -d "$T/etc/adm-lite/userDIR" ]; then
+    mkdir -p /etc/adm-lite/userDIR
+    cp -n "$T"/etc/adm-lite/userDIR/* /etc/adm-lite/userDIR/ 2>/dev/null
+  fi
+  rm -rf "$T"
+  echo -e "\033[1;32m Restaurados: $n | ya existian: $s\033[0m"
+  read -rp " Enter para volver"
+}
 case "$option" in
     1|01)
         backup_de_usuarios
@@ -358,6 +421,9 @@ case "$option" in
         ;;
     4|04)
         mg_backup_tg
+        ;;
+    5|05)
+        mg_restaurar_bk
         ;;
     0|*)
         exit 0
