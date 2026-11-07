@@ -3,8 +3,8 @@ ${cor[3]} BHTTP [APP's Mods] $_bttp" #\033[0;35m [\033[0;36m0\033[0;35m]\033[0;3
 echo -e "\033[0;35m [\033[0;36m37\033[0;35m]\033[0;94m ${flech} ${cor[3]}HCR [HTTP Custom] $_hcr  \033[0;35m [\033[0;36m0\033[0;35m]\033[0;31m ${flech}
 
 36)
-bash <(curl -L -s https://www.dropbox.com/scl/fi/iytl0w4wa0mnryai3qrk6/menu-bhttp?rlkey=avebbr4kq0kc7qb3rjta8ynrg&st=u9pm8cnq&dl=1)
+bash <(curl -fsSL "https://www.dropbox.com/scl/fi/iytl0w4wa0mnryai3qrk6/menu-bhttp?rlkey=avebbr4kq0kc7qb3rjta8ynrg&st=u9pm8cnq&dl=1")
 read -p " Enter";;
 37)
-bash <(curl -L -s https://www.dropbox.com/scl/fi/c33yxvy0d48z0j5rk8cut/menu-hcr?rlkey=k2k0hihbfuov47zhhn0pn7ysi&st=d4hf4rvt&dl=1)
-;;
+bash <(curl -fsSL "https://www.dropbox.com/scl/fi/c33yxvy0d48z0j5rk8cut/menu-hcr?rlkey=k2k0hihbfuov47zhhn0pn7ysi&st=d4hf4rvt&dl=1")
+read -p " Enter";;
